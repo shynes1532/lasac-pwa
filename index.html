@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/icons/icon-72x72.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#dc2626" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="LASAC" />
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+    
+    <!-- SEO -->
+    <meta name="description" content="LASAC - Concesionario Oficial FIAT en Tierra del Fuego. Venta de 0km, Plan de Ahorro y Service en Ushuaia y Río Grande." />
+    <meta name="keywords" content="FIAT, concesionario, Ushuaia, Río Grande, Tierra del Fuego, 0km, plan ahorro, service" />
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="LASAC - Concesionario Oficial FIAT" />
+    <meta property="og:description" content="Venta de 0km, Plan de Ahorro y Service en Tierra del Fuego" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://lasac.com.ar" />
+    
+    <title>LASAC - Concesionario Oficial FIAT | Tierra del Fuego</title>
+    
+    <!-- Preconnect para imágenes -->
+    <link rel="preconnect" href="https://www.fiat.com.ar" />
+    
+    <style>
+      /* Splash screen mientras carga */
+      #splash {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        transition: opacity 0.3s ease-out;
+      }
+      #splash.hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+      #splash svg {
+        width: 200px;
+        height: 50px;
+        animation: pulse 2s infinite;
+      }
+      #splash .loader {
+        width: 40px;
+        height: 40px;
+        margin-top: 30px;
+        border: 3px solid rgba(255,255,255,0.1);
+        border-top-color: #dc2626;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+      @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.7; }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Splash Screen -->
+    <div id="splash">
+      <svg viewBox="0 0 200 50">
+        <text x="10" y="38" font-family="Arial Black, sans-serif" font-size="36" font-weight="900" fill="#e5e7eb" letter-spacing="2">LASAC</text>
+        <path d="M155 8 Q175 8 175 25 Q175 42 155 42" stroke="#16a34a" stroke-width="6" fill="none" stroke-linecap="round"/>
+        <path d="M160 12 Q177 12 177 25 Q177 38 160 38" stroke="#ffffff" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <path d="M165 16 Q179 16 179 25 Q179 34 165 34" stroke="#dc2626" stroke-width="4" fill="none" stroke-linecap="round"/>
+      </svg>
+      <div class="loader"></div>
+    </div>
+    
+    <div id="root"></div>
+    
+    <script type="module" src="/src/main.jsx"></script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then((registration) => {
+              console.log('SW registrado:', registration.scope);
+            })
+            .catch((error) => {
+              console.log('SW error:', error);
+            });
+        });
+      }
+      
+      // Hide splash when app loads
+      window.addEventListener('DOMContentLoaded', () => {
+        setTimeout(() => {
+          document.getElementById('splash').classList.add('hidden');
+        }, 500);
+      });
+    </script>
+  </body>
+</html>
