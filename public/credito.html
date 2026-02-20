@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitud de Crédito Automotor - LASAC</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --fiat-red: #E30613;
+            --fiat-dark: #1e3a5f;
+            --white: #FFFFFF;
+            --gray-50: #F9FAFB;
+            --gray-100: #F3F4F6;
+            --gray-200: #E5E7EB;
+            --gray-300: #D1D5DB;
+            --gray-400: #9CA3AF;
+            --gray-600: #4B5563;
+            --gray-800: #1F2937;
+            --success: #10B981;
+            --error: #EF4444;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%);
+            color: var(--gray-800);
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px 20px;
+            background: var(--white);
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        
+        .logo {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--fiat-dark);
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+        
+        .logo .red {
+            color: var(--fiat-red);
+        }
+        
+        .subtitle {
+            font-size: 16px;
+            color: var(--gray-600);
+            margin-bottom: 12px;
+        }
+        
+        .description {
+            font-size: 14px;
+            color: var(--gray-400);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .form-container {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            margin-bottom: 20px;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: var(--gray-200);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 32px;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--fiat-red) 0%, #FF1744 100%);
+            transition: width 0.3s ease;
+            border-radius: 10px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+            display: none;
+        }
+        
+        .section.active {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .section-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--fiat-dark);
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--gray-200);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .section-number {
+            width: 36px;
+            height: 36px;
+            background: var(--fiat-red);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 16px;
+        }
+        
+        .form-group {
+            margin-bottom: 24px;
+        }
+        
+        .form-group.hidden {
+            display: none;
+        }
+        
+        label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gray-800);
+            margin-bottom: 8px;
+        }
+        
+        label .required {
+            color: var(--fiat-red);
+        }
+        
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid var(--gray-200);
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: inherit;
+            transition: all 0.2s;
+            background: var(--white);
+        }
+        
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--fiat-red);
+            box-shadow: 0 0 0 3px rgba(227, 6, 19, 0.1);
+        }
+        
+        input::placeholder {
+            color: var(--gray-400);
+        }
+        
+        .radio-group,
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .radio-option,
+        .checkbox-option {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            border: 2px solid var(--gray-200);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .radio-option:hover,
+        .checkbox-option:hover {
+            border-color: var(--fiat-red);
+            background: rgba(227, 6, 19, 0.02);
+        }
+        
+        .radio-option input,
+        .checkbox-option input {
+            margin-right: 12px;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+        
+        .slider-container {
+            padding: 20px 0;
+        }
+        
+        .slider {
+            width: 100%;
+            height: 8px;
+            border-radius: 10px;
+            background: var(--gray-200);
+            outline: none;
+            -webkit-appearance: none;
+        }
+        
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--fiat-red);
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(227, 6, 19, 0.4);
+        }
+        
+        .slider::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--fiat-red);
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 8px rgba(227, 6, 19, 0.4);
+        }
+        
+        .slider-value {
+            text-align: center;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--fiat-red);
+            margin-top: 12px;
+        }
+        
+        .slider-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: var(--gray-400);
+            margin-top: 8px;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 32px;
+        }
+        
+        .btn {
+            flex: 1;
+            padding: 14px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+        
+        .btn-primary {
+            background: var(--fiat-red);
+            color: var(--white);
+        }
+        
+        .btn-primary:hover:not(:disabled) {
+            background: #C50510;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(227, 6, 19, 0.3);
+        }
+        
+        .btn-secondary {
+            background: var(--white);
+            color: var(--gray-600);
+            border: 2px solid var(--gray-200);
+        }
+        
+        .btn-secondary:hover:not(:disabled) {
+            border-color: var(--gray-300);
+            background: var(--gray-50);
+        }
+        
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .success-message {
+            text-align: center;
+            padding: 60px 20px;
+        }
+        
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--success);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 40px;
+        }
+        
+        .success-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--gray-800);
+            margin-bottom: 12px;
+        }
+        
+        .success-text {
+            font-size: 16px;
+            color: var(--gray-600);
+            margin-bottom: 32px;
+        }
+        
+        .error-message {
+            background: #FEE2E2;
+            border: 2px solid var(--error);
+            color: #991B1B;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        
+        .error-message.show {
+            display: block;
+        }
+        
+        .helper-text {
+            font-size: 13px;
+            color: var(--gray-400);
+            margin-top: 4px;
+        }
+        
+        @media (max-width: 640px) {
+            .form-container {
+                padding: 24px 20px;
+            }
+            
+            .button-group {
+                flex-direction: column-reverse;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">LASAC <span class="red">FIAT</span></div>
+            <div class="subtitle">Solicitud de Crédito Automotor</div>
+            <div class="description">Completá el formulario y te contactamos en 24hs con tu pre-aprobación</div>
+        </div>
+
+        <div class="form-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill" style="width: 20%"></div>
+            </div>
+
+            <div class="error-message" id="errorMessage"></div>
+
+            <form id="creditForm">
+                <!-- SECCIÓN 1: Datos Personales -->
+                <div class="section active" data-section="1">
+                    <div class="section-title">
+                        <span class="section-number">1</span>
+                        Datos Personales
+                    </div>
+
+                    <div class="form-group">
+                        <label>Nombre y Apellido <span class="required">*</span></label>
+                        <input type="text" name="nombre" required placeholder="Ej: Juan Pérez">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Dirección <span class="required">*</span></label>
+                        <input type="text" name="direccion" required placeholder="Calle, número, barrio">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Teléfono (WhatsApp) <span class="required">*</span></label>
+                        <input type="tel" name="telefono" required placeholder="2901XXXXXX">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email <span class="required">*</span></label>
+                        <input type="email" name="email" required placeholder="ejemplo@mail.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Estado Civil <span class="required">*</span></label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="estadoCivil" value="Soltero/a" required>
+                                Soltero/a
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="estadoCivil" value="Casado/a">
+                                Casado/a
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="estadoCivil" value="Divorciado/a">
+                                Divorciado/a
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="estadoCivil" value="Viudo/a">
+                                Viudo/a
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Campos del cónyuge (se muestran si está casado) -->
+                    <div id="conyugeFields" class="hidden">
+                        <div class="form-group">
+                            <label>Nombre y Apellido del Cónyuge <span class="required">*</span></label>
+                            <input type="text" name="nombreConyugue" placeholder="Nombre completo">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Teléfono del Cónyuge</label>
+                            <input type="tel" name="telefonoConyugue" placeholder="2901XXXXXX">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Email del Cónyuge</label>
+                            <input type="email" name="emailConyugue" placeholder="ejemplo@mail.com">
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="button" class="btn btn-primary" onclick="nextSection(2)">Siguiente →</button>
+                    </div>
+                </div>
+
+                <!-- SECCIÓN 2: Situación Laboral -->
+                <div class="section" data-section="2">
+                    <div class="section-title">
+                        <span class="section-number">2</span>
+                        Situación Laboral y Financiera
+                    </div>
+
+                    <div class="form-group">
+                        <label>¿Trabajás en relación de dependencia? <span class="required">*</span></label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="relDependencia" value="Sí" required>
+                                Sí
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="relDependencia" value="No">
+                                No
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>¿Sos autónomo? <span class="required">*</span></label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="autonomo" value="Sí" required>
+                                Sí
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="autonomo" value="No">
+                                No
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Sueldo que percibís en blanco (mensual) <span class="required">*</span></label>
+                        <input type="text" name="sueldoBlanco" required placeholder="Ej: $800.000">
+                        <div class="helper-text">Ingresá el monto aproximado</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Otros ingresos no declarados</label>
+                        <input type="text" name="otrosIngresos" placeholder="Ej: $200.000 (opcional)">
+                        <div class="helper-text">Este dato es confidencial y nos ayuda a mejorar tu oferta</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>¿Tenés tarjetas de crédito de banco? <span class="required">*</span></label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="tieneTarjetas" value="Sí" required>
+                                Sí
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="tieneTarjetas" value="No">
+                                No
+                            </label>
+                        </div>
+                    </div>
+
+                    <div id="tarjetasFields" class="form-group hidden">
+                        <label>¿Qué tarjetas tenés?</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="tarjetas" value="Visa">
+                                Visa
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="tarjetas" value="Mastercard">
+                                Mastercard
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="tarjetas" value="American Express">
+                                American Express
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="tarjetas" value="Cabal">
+                                Cabal
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="tarjetas" value="Naranja">
+                                Naranja
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="tarjetas" value="Otra">
+                                Otra
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="button" class="btn btn-secondary" onclick="prevSection(1)">← Anterior</button>
+                        <button type="button" class="btn btn-primary" onclick="nextSection(3)">Siguiente →</button>
+                    </div>
+                </div>
+
+                <!-- SECCIÓN 3: Vehículo de Interés -->
+                <div class="section" data-section="3">
+                    <div class="section-title">
+                        <span class="section-number">3</span>
+                        Vehículo de Interés
+                    </div>
+
+                    <div class="form-group">
+                        <label>¿Qué modelo te interesa? <span class="required">*</span></label>
+                        <select name="modeloInteres" required>
+                            <option value="">Seleccioná un modelo</option>
+                            <option value="FIAT Mobi">FIAT Mobi</option>
+                            <option value="FIAT Argo">FIAT Argo</option>
+                            <option value="FIAT Cronos">FIAT Cronos</option>
+                            <option value="FIAT Pulse">FIAT Pulse</option>
+                            <option value="FIAT Fastback">FIAT Fastback</option>
+                            <option value="FIAT Toro">FIAT Toro</option>
+                            <option value="Otro">Otro</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>¿Cuánto podés dar de anticipo? <span class="required">*</span></label>
+                        <input type="text" name="anticipo" required placeholder="Ej: $2.000.000 o 20%">
+                        <div class="helper-text">Puede ser un monto o un porcentaje del valor</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>¿Qué valor de cuota te queda cómoda? <span class="required">*</span></label>
+                        <input type="text" name="cuotaComoda" required placeholder="Ej: $300.000/mes">
+                    </div>
+
+                    <div class="form-group">
+                        <label>¿Necesitás la unidad urgente? <span class="required">*</span></label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="urgencia" value="Sí" required>
+                                Sí, la necesito cuanto antes
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="urgencia" value="No">
+                                No, puedo esperar
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="button" class="btn btn-secondary" onclick="prevSection(2)">← Anterior</button>
+                        <button type="button" class="btn btn-primary" onclick="nextSection(4)">Siguiente →</button>
+                    </div>
+                </div>
+
+                <!-- SECCIÓN 4: Entrega de Usado -->
+                <div class="section" data-section="4">
+                    <div class="section-title">
+                        <span class="section-number">4</span>
+                        Entrega de Vehículo Usado
+                    </div>
+
+                    <div class="form-group">
+                        <label>¿Entregás auto usado? <span class="required">*</span></label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="entregaUsado" value="Sí" required>
+                                Sí, tengo un vehículo para entregar
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="entregaUsado" value="No">
+                                No
+                            </label>
+                        </div>
+                    </div>
+
+                    <div id="usadoFields" class="hidden">
+                        <div class="form-group">
+                            <label>Marca del usado <span class="required">*</span></label>
+                            <input type="text" name="marcaUsado" placeholder="Ej: Volkswagen">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Modelo del usado <span class="required">*</span></label>
+                            <input type="text" name="modeloUsado" placeholder="Ej: Gol Trend">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Patente <span class="required">*</span></label>
+                            <input type="text" name="patenteUsado" placeholder="ABC123" style="text-transform: uppercase;">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Año <span class="required">*</span></label>
+                            <input type="number" name="anioUsado" min="1990" max="2026" placeholder="2018">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Kilometraje <span class="required">*</span></label>
+                            <input type="text" name="kmUsado" placeholder="85000">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Estado general del vehículo <span class="required">*</span></label>
+                            <div class="slider-container">
+                                <input type="range" min="1" max="10" value="5" class="slider" name="estadoUsado" id="estadoSlider">
+                                <div class="slider-value" id="estadoValue">5 / 10</div>
+                                <div class="slider-labels">
+                                    <span>Muy deteriorado</span>
+                                    <span>Impecable</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Valor aproximado del usado <span class="required">*</span></label>
+                            <input type="text" name="valorUsado" placeholder="Ej: $3.500.000">
+                            <div class="helper-text">Estimación aproximada del valor de mercado</div>
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="button" class="btn btn-secondary" onclick="prevSection(3)">← Anterior</button>
+                        <button type="submit" class="btn btn-primary" id="submitBtn">Enviar Solicitud</button>
+                    </div>
+                </div>
+
+                <!-- Mensaje de éxito (oculto inicialmente) -->
+                <div class="section" id="successSection" style="display: none;">
+                    <div class="success-message">
+                        <div class="success-icon">✓</div>
+                        <div class="success-title">¡Solicitud Recibida!</div>
+                        <div class="success-text">
+                            Gracias por tu interés. Nuestro equipo analizará tu solicitud<br>
+                            y te contactaremos por WhatsApp en las próximas 24 horas.
+                        </div>
+                        <div style="color: var(--gray-400); font-size: 14px;">
+                            LIENDO AUTOMOTORES - Concesionario Oficial FIAT<br>
+                            Ushuaia | Río Grande
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Lógica condicional: mostrar campos de cónyuge si está casado
+        document.querySelectorAll('input[name="estadoCivil"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                const conyugeFields = document.getElementById('conyugeFields');
+                if (this.value === 'Casado/a') {
+                    conyugeFields.classList.remove('hidden');
+                    document.querySelector('input[name="nombreConyugue"]').required = true;
+                } else {
+                    conyugeFields.classList.add('hidden');
+                    document.querySelector('input[name="nombreConyugue"]').required = false;
+                }
+            });
+        });
+
+        // Lógica condicional: mostrar tarjetas si tiene
+        document.querySelectorAll('input[name="tieneTarjetas"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                const tarjetasFields = document.getElementById('tarjetasFields');
+                if (this.value === 'Sí') {
+                    tarjetasFields.classList.remove('hidden');
+                } else {
+                    tarjetasFields.classList.add('hidden');
+                }
+            });
+        });
+
+        // Lógica condicional: mostrar campos de usado
+        document.querySelectorAll('input[name="entregaUsado"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                const usadoFields = document.getElementById('usadoFields');
+                const requiredFields = usadoFields.querySelectorAll('input[type="text"], input[type="number"]');
+                
+                if (this.value === 'Sí') {
+                    usadoFields.classList.remove('hidden');
+                    requiredFields.forEach(field => field.required = true);
+                } else {
+                    usadoFields.classList.add('hidden');
+                    requiredFields.forEach(field => field.required = false);
+                }
+            });
+        });
+
+        // Slider de estado del usado
+        const estadoSlider = document.getElementById('estadoSlider');
+        const estadoValue = document.getElementById('estadoValue');
+        
+        if (estadoSlider) {
+            estadoSlider.addEventListener('input', function() {
+                estadoValue.textContent = this.value + ' / 10';
+            });
+        }
+
+        // Navegación entre secciones
+        let currentSection = 1;
+
+        function nextSection(sectionNumber) {
+            // Validar campos de la sección actual
+            const currentSectionEl = document.querySelector(`.section[data-section="${currentSection}"]`);
+            const requiredFields = currentSectionEl.querySelectorAll('[required]');
+            let valid = true;
+            let errorMsg = '';
+
+            requiredFields.forEach(field => {
+                // Saltear campos ocultos
+                if (field.closest('.hidden')) return;
+                
+                if (!field.value && field.type !== 'radio' && field.type !== 'checkbox') {
+                    valid = false;
+                    field.style.borderColor = 'var(--error)';
+                    errorMsg = 'Por favor completá todos los campos obligatorios';
+                } else {
+                    field.style.borderColor = '';
+                }
+
+                // Validar radio buttons
+                if (field.type === 'radio') {
+                    const radioGroup = document.querySelectorAll(`input[name="${field.name}"]`);
+                    const checked = Array.from(radioGroup).some(r => r.checked);
+                    if (!checked) {
+                        valid = false;
+                        errorMsg = 'Por favor completá todos los campos obligatorios';
+                    }
+                }
+            });
+
+            if (!valid) {
+                showError(errorMsg);
+                return;
+            }
+
+            hideError();
+            currentSectionEl.classList.remove('active');
+            document.querySelector(`.section[data-section="${sectionNumber}"]`).classList.add('active');
+            currentSection = sectionNumber;
+            updateProgress();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function prevSection(sectionNumber) {
+            document.querySelector(`.section[data-section="${currentSection}"]`).classList.remove('active');
+            document.querySelector(`.section[data-section="${sectionNumber}"]`).classList.add('active');
+            currentSection = sectionNumber;
+            updateProgress();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function updateProgress() {
+            const progress = (currentSection / 4) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+        }
+
+        function showError(message) {
+            const errorEl = document.getElementById('errorMessage');
+            errorEl.textContent = message;
+            errorEl.classList.add('show');
+        }
+
+        function hideError() {
+            document.getElementById('errorMessage').classList.remove('show');
+        }
+
+        // Envío del formulario
+        document.getElementById('creditForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Enviando...';
+
+            // Recopilar datos
+            const formData = new FormData(this);
+            const data = {};
+            
+            formData.forEach((value, key) => {
+                if (key === 'tarjetas') {
+                    // Agrupar checkboxes
+                    if (!data[key]) data[key] = [];
+                    data[key].push(value);
+                } else {
+                    data[key] = value;
+                }
+            });
+
+            // Agregar timestamp
+            data.fecha = new Date().toLocaleString('es-AR');
+
+            // Convertir tarjetas array a string
+            if (data.tarjetas) {
+                data.tarjetas = data.tarjetas.join(', ');
+            }
+
+            try {
+                // Envío a Google Sheets vía Apps Script
+                const response = await fetch('https://script.google.com/macros/s/AKfycbyqgx_VwkaFH_4wZwTVpZCFuEgGk4vHQYPMmvu_CauR4Dvaf8KnYD6kapgRxzR59ACh/exec', {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                // Mostrar mensaje de éxito
+                document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
+                document.getElementById('successSection').style.display = 'block';
+                
+            } catch (error) {
+                console.error('Error:', error);
+                showError('Hubo un error al enviar el formulario. Por favor intentá nuevamente.');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Enviar Solicitud';
+            }
+        });
+
+        // Leer parámetros de URL (si viene desde WhatsApp)
+        window.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            
+            const telefono = urlParams.get('tel');
+            const nombre = urlParams.get('nombre');
+            
+            if (telefono) {
+                document.querySelector('input[name="telefono"]').value = telefono;
+            }
+            
+            if (nombre) {
+                document.querySelector('input[name="nombre"]').value = nombre;
+            }
+        });
+    </script>
+</body>
+</html>
