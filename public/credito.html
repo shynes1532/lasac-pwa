@@ -410,6 +410,20 @@
                     </div>
 
                     <div class="form-group">
+                        <label>¿Cómo querés adquirir tu FIAT? <span class="required">*</span></label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="modalidad" value="Plan de Ahorro" required>
+                                Plan de Ahorro
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="modalidad" value="Compra 0KM">
+                                Compra 0KM (contado/financiado)
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         <label>Nombre y Apellido <span class="required">*</span></label>
                         <input type="text" name="nombre" required placeholder="Ej: Juan Pérez">
                     </div>
@@ -582,13 +596,26 @@
                         <label>¿Qué modelo te interesa? <span class="required">*</span></label>
                         <select name="modeloInteres" required>
                             <option value="">Seleccioná un modelo</option>
-                            <option value="FIAT Mobi">FIAT Mobi</option>
-                            <option value="FIAT Argo">FIAT Argo</option>
-                            <option value="FIAT Cronos">FIAT Cronos</option>
-                            <option value="FIAT Pulse">FIAT Pulse</option>
-                            <option value="FIAT Fastback">FIAT Fastback</option>
-                            <option value="FIAT Toro">FIAT Toro</option>
-                            <option value="Otro">Otro</option>
+                            <optgroup label="🚗 Urbanos / Compactos">
+                                <option value="FIAT Mobi">FIAT Mobi</option>
+                                <option value="FIAT Argo">FIAT Argo</option>
+                                <option value="FIAT Cronos">FIAT Cronos</option>
+                            </optgroup>
+                            <optgroup label="🏔️ SUVs">
+                                <option value="FIAT 600 Hybrid">FIAT 600 Hybrid</option>
+                                <option value="FIAT Pulse">FIAT Pulse</option>
+                                <option value="FIAT Fastback">FIAT Fastback</option>
+                                <option value="FIAT Fastback Abarth">FIAT Fastback Abarth</option>
+                            </optgroup>
+                            <optgroup label="🚙 Pick-ups">
+                                <option value="FIAT Strada">FIAT Strada</option>
+                                <option value="FIAT Titano">FIAT Titano</option>
+                                <option value="FIAT Toro">FIAT Toro</option>
+                            </optgroup>
+                            <optgroup label="🚐 Utilitarios">
+                                <option value="FIAT Fiorino">FIAT Fiorino</option>
+                            </optgroup>
+                            <option value="Otro">Otro / Todavía no sé</option>
                         </select>
                     </div>
 
