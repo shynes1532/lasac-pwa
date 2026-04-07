@@ -365,6 +365,65 @@ const formatPrecio = (precio) => {
   return new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', maximumFractionDigits: 0 }).format(precio);
 };
 
+// Calcula el último día del mes actual a las 23:59:59
+const getFinDeMes = () => {
+  const ahora = new Date();
+  return new Date(ahora.getFullYear(), ahora.getMonth() + 1, 0, 23, 59, 59);
+};
+
+// Componente Countdown — se actualiza cada minuto
+const Countdown = ({ deadline, compact = false }) => {
+  const [tiempo, setTiempo] = useState(() => deadline.getTime() - Date.now());
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTiempo(deadline.getTime() - Date.now());
+    }, 60000); // cada minuto
+    return () => clearInterval(interval);
+  }, [deadline]);
+
+  if (tiempo <= 0) {
+    return <span className="text-red-400 text-xs font-bold">⏰ Oferta finalizada</span>;
+  }
+
+  const dias = Math.floor(tiempo / (1000 * 60 * 60 * 24));
+  const horas = Math.floor((tiempo / (1000 * 60 * 60)) % 24);
+  const minutos = Math.floor((tiempo / (1000 * 60)) % 60);
+
+  // Color dinámico según urgencia
+  const color = dias < 3 ? 'text-red-400' : dias < 7 ? 'text-amber-400' : 'text-green-400';
+
+  if (compact) {
+    return (
+      <span className={`${color} text-[10px] font-bold`}>
+        ⏰ {dias > 0 ? `${dias}d ${horas}h` : `${horas}h ${minutos}m`}
+      </span>
+    );
+  }
+
+  return (
+    <div className={`flex items-center justify-center gap-2 ${color} font-bold`}>
+      <span>⏰</span>
+      <div className="flex gap-1.5">
+        {dias > 0 && (
+          <div className="bg-black/40 rounded px-2 py-0.5 text-center min-w-[36px]">
+            <div className="text-base leading-none">{dias}</div>
+            <div className="text-[8px] opacity-70">DÍAS</div>
+          </div>
+        )}
+        <div className="bg-black/40 rounded px-2 py-0.5 text-center min-w-[36px]">
+          <div className="text-base leading-none">{horas}</div>
+          <div className="text-[8px] opacity-70">HRS</div>
+        </div>
+        <div className="bg-black/40 rounded px-2 py-0.5 text-center min-w-[36px]">
+          <div className="text-base leading-none">{minutos}</div>
+          <div className="text-[8px] opacity-70">MIN</div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 // Componente de imagen con fallback y múltiples extensiones
 const AutoImagen = ({ modelo, className = '', alt = '', contain = false }) => {
   const [imgSrc, setImgSrc] = useState(null);
@@ -692,23 +751,35 @@ export default function LasacApp() {
         {/* ========== OPORTUNIDADES ========== */}
         {seccion === 'oportunidades' && (
           <div>
-            <div className="bg-gradient-to-r from-red-600 to-red-800 rounded-xl p-4 text-center mb-4">
+            <div className="bg-gradient-to-r from-red-600 to-red-800 rounded-xl p-4 text-center mb-3">
               <h2 className="text-xl font-bold mb-1">🔥 Oferta del Mes</h2>
               <p className="text-sm">{totalStock} unidades • Entrega inmediata</p>
             </div>
+
+            {/* Countdown grande */}
+            <div className="bg-gradient-to-r from-amber-600/30 to-red-600/30 border border-amber-500/50 rounded-xl p-3 mb-3">
+              <p className="text-center text-[10px] text-white/70 mb-1.5">⚡ Estas ofertas finalizan en:</p>
+              <Countdown deadline={getFinDeMes()} />
+              <p className="text-center text-[9px] text-white/50 mt-1.5">No te quedes sin la tuya 🚗💨</p>
+            </div>
+
             <div className="bg-amber-500/10 border border-amber-500/30 rounded-lg p-2 mb-3">
               <p className="text-[10px] text-amber-200 leading-tight">
                 ⚠️ Precios y stock sujetos a modificación. Oferta válida hasta agotar existencias.{' '}
                 <button onClick={() => setSeccion('legal')} className="underline font-bold">Ver términos</button>
               </p>
             </div>
+
             <div className="space-y-3">
               {stockOportunidad.map((item, i) => (
                 <div key={i} className="bg-white/5 rounded-xl overflow-hidden border border-white/10 relative">
                   <span className="absolute top-2 right-2 bg-red-600 px-2 py-1 rounded text-xs font-bold z-10">x{item.stock} unidades</span>
                   <AutoImagen modelo={item.modelo} className="w-full h-36" contain />
                   <div className="p-3">
-                    <h3 className="font-bold text-sm">{item.nombre}</h3>
+                    <div className="flex items-start justify-between mb-1">
+                      <h3 className="font-bold text-sm flex-1">{item.nombre}</h3>
+                      <Countdown deadline={getFinDeMes()} compact />
+                    </div>
                     <p className="text-xs text-white/60 mb-2">🎨 {item.color}</p>
                     <div className="flex justify-between items-center">
                       <p className="text-lg font-bold text-green-400">{formatPrecio(item.precioFinal)}</p>

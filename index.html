@@ -86,7 +86,39 @@
     </div>
     
     <div id="root"></div>
-    
+
+    <!-- OneSignal Web Push - Notificaciones de ofertas -->
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+    <script>
+      window.OneSignalDeferred = window.OneSignalDeferred || [];
+      OneSignalDeferred.push(async function(OneSignal) {
+        await OneSignal.init({
+          appId: "TU_APP_ID_AQUI", // ⚠️ Reemplazar con el App ID real de OneSignal
+          notifyButton: {
+            enable: true,
+            size: 'medium',
+            position: 'bottom-right',
+            offset: { bottom: '80px', right: '16px' },
+            text: {
+              'tip.state.unsubscribed': '🔔 Recibí ofertas exclusivas',
+              'tip.state.subscribed': '✅ Estás suscripto a ofertas',
+              'tip.state.blocked': 'Activá las notificaciones',
+              'message.prenotify': 'Click para recibir ofertas',
+              'message.action.subscribed': '¡Listo! Te avisaremos de las mejores ofertas 🚗',
+              'message.action.resubscribed': '¡Listo! Te avisaremos de las mejores ofertas 🚗',
+              'message.action.unsubscribed': 'Ya no recibirás notificaciones',
+              'dialog.main.title': 'LASAC - Notificaciones',
+              'dialog.main.button.subscribe': 'SUSCRIBIRME',
+              'dialog.main.button.unsubscribe': 'CANCELAR',
+              'dialog.blocked.title': 'Activá las notificaciones',
+              'dialog.blocked.message': 'Seguí estos pasos para recibir nuestras ofertas:'
+            }
+          },
+          allowLocalhostAsSecureOrigin: true,
+        });
+      });
+    </script>
+
     <script type="module" src="/src/main.jsx"></script>
     
     <!-- Service Worker Registration -->
