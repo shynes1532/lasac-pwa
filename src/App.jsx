@@ -577,8 +577,8 @@ export default function LasacApp() {
   const enviarTurno = () => {
     const fechaStr = turno.fecha ? formatFecha(turno.fecha) : 'A confirmar';
     const msg = `🔧 *SOLICITUD DE TURNO*%0A%0A👤 ${turno.nombre}%0A📱 ${turno.telefono}%0A🚗 ${turno.modelo} - ${turno.patente}%0A📊 ${turno.km} km%0A🔧 ${turno.servicio}%0A📅 ${fechaStr} ${turno.horario}%0A📍 ${turno.sucursal}`;
-    const wa = turno.sucursal === 'Río Grande' ? '5492964465050' : '5492901559933';
-    window.open(`https://wa.me/${wa}?text=${msg}`, '_blank');
+    // Taller — mismo número para ambas sucursales
+    window.open(`https://wa.me/5492964465050?text=${msg}`, '_blank');
     setEnviado(true);
   };
 
@@ -1003,14 +1003,14 @@ export default function LasacApp() {
                   <p className="text-white/60">Docs listos: <span className="text-white font-medium">{Object.values(docChecks).filter(Boolean).length}/{DOCUMENTACION_PLAN.length}</span></p>
                 </div>
                 {/* WhatsApp */}
-                <a href={`https://wa.me/${planSucursal === 'Río Grande' ? '5492964487924' : '5492964487924'}?text=${encodeURIComponent(
+                <a href={`https://wa.me/5492964465270?text=${encodeURIComponent(
                   `📋 *CONSULTA FIAT PLAN*\n\nSoy ${tipoUsuarioPlan || 'interesado'}.\n${planSelecAbril ? `Plan: ${planSelecAbril.base} ${planSelecAbril.tipoPlan} (${planSelecAbril.condicion})` : ''}\n${modeloSelec ? `Modelo: ${modeloSelec.nombre} (PDA: ${modeloSelec.pda})` : ''}\nSucursal: ${planSucursal}\nDocs listos: ${Object.values(docChecks).filter(Boolean).length}/${DOCUMENTACION_PLAN.length}`)}`}
                   target="_blank" rel="noopener noreferrer"
                   className="flex items-center justify-center gap-2 w-full py-4 bg-green-600 rounded-xl font-bold text-lg active:scale-95 transition-all">
                   💬 WhatsApp {planSucursal}
                 </a>
                 <div className="grid grid-cols-2 gap-2">
-                  <a href="tel:+5492964487924" className="py-3 bg-white/10 rounded-xl font-bold text-center text-sm">📞 Llamar</a>
+                  <a href="tel:+5492964465270" className="py-3 bg-white/10 rounded-xl font-bold text-center text-sm">📞 Llamar</a>
                   <a href="mailto:planes@lasac.com.ar" className="py-3 bg-white/10 rounded-xl font-bold text-center text-sm">✉️ Email</a>
                 </div>
                 <div className="text-center">
@@ -1120,7 +1120,7 @@ export default function LasacApp() {
                         {/* Contactar */}
                         <button onClick={() => {
                           const msg = `📋 *QUIERO SUSCRIBIRME - FIAT PLAN*%0A%0AModelo: *${planDetalleSelec.nombre}*%0ACódigo: ${planDetalleSelec.codigo}%0APlan: ${planDetalleSelec.plan} (${planDetalleSelec.condicion})%0ASuscripción: ${formatPrecio(planDetalleSelec.suscripcion)}%0AValor Móvil: ${formatPrecio(planDetalleSelec.valorMovil)}%0ASucursal: ${planSucursal}`;
-                          window.open(`https://wa.me/5492964487924?text=${msg}`, '_blank');
+                          window.open(`https://wa.me/5492964465270?text=${msg}`, '_blank');
                         }} className="w-full mt-4 py-3 bg-gradient-to-r from-green-600 to-green-700 rounded-xl font-bold flex items-center justify-center gap-2">
                           💬 Quiero este Plan
                         </button>
@@ -1238,14 +1238,14 @@ export default function LasacApp() {
                 const descripcion = document.getElementById('siniestro-descripcion')?.value || '';
                 const sucursal = document.querySelector('[data-suc].bg-red-600')?.innerText?.split('\n')[0] || '';
                 const msg = `🛡️ *ATENCIÓN DE SINIESTRO*%0A%0A👤 *TITULAR*%0ANombre: ${nombre}%0ADNI: ${dni}%0ATel: ${telefono}%0A%0A🚗 *VEHÍCULO*%0A${marca} ${modelo} ${anio}%0APatente: ${patente}%0A%0A🏢 *SEGURO*%0AAseguradora: ${aseguradora}%0APóliza: ${poliza}%0AN° Siniestro: ${numSiniestro || 'Pendiente'}%0A%0A📋 *SINIESTRO*%0AFecha: ${fecha}%0ATipo: ${tipo}%0ADescripción: ${descripcion}%0A%0A📍 Sucursal: ${sucursal}`;
-                const wa = sucursal === 'Río Grande' ? '5492964465050' : '5492901559933';
-                window.open(`https://wa.me/${wa}?text=${msg}`, '_blank');
+                // Siniestros van a Calidad/Reclamos
+                window.open(`https://wa.me/5492964610900?text=${msg}`, '_blank');
               }} className="w-full py-4 rounded-xl font-bold text-lg bg-gradient-to-r from-orange-600 to-orange-700 active:scale-95 transition-all">
                 📱 Enviar Solicitud por WhatsApp
               </button>
               <div className="bg-white/5 rounded-xl p-4 border border-white/10 text-center">
                 <p className="text-xs text-white/60 mb-2">¿Necesitás ayuda urgente?</p>
-                <a href="tel:+5492901559933" className="inline-block px-4 py-2 bg-green-600 rounded-full text-sm font-bold">📞 Llamar ahora</a>
+                <a href="tel:+5492964610900" className="inline-block px-4 py-2 bg-green-600 rounded-full text-sm font-bold">📞 Llamar ahora</a>
               </div>
             </div>
           </div>
@@ -1662,7 +1662,7 @@ export default function LasacApp() {
             <h2 className="text-xl font-bold mb-4">📍 Sucursales</h2>
             <div className="space-y-4">
               {[
-                { ciudad: 'Ushuaia', icon: '🏔️', sub: 'Fin del Mundo', ventas: 'L. Lugones 1950', service: 'Piedrabuena 256', waVentas: '5492964487924', waService: '5492901559933' },
+                { ciudad: 'Ushuaia', icon: '🏔️', sub: 'Fin del Mundo', ventas: 'L. Lugones 1950', service: 'Piedrabuena 256', waVentas: '5492964487924', waService: '5492964465050' },
                 { ciudad: 'Río Grande', icon: '🏭', sub: 'Corazón Industrial', dir: 'San Martín 2599', waVentas: '5492964487924', waService: '5492964465050' }
               ].map(suc => (
                 <div key={suc.ciudad} className="bg-white/5 rounded-xl p-4 border border-white/10">
