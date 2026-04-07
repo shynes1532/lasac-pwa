@@ -659,7 +659,8 @@ export default function LasacApp() {
             <p className="text-white/60 text-xs mb-2">Precios Tierra del Fuego - Abril 2026</p>
             <div className="bg-amber-500/10 border border-amber-500/30 rounded-lg p-2 mb-3">
               <p className="text-[10px] text-amber-200 leading-tight">
-                ⚠️ <strong>Aviso legal:</strong> Los precios publicados son orientativos y están sujetos a modificaciones por parte de la Terminal sin previo aviso. La cotización final será confirmada al momento de la operación. Esta publicación no constituye oferta vinculante en los términos del Art. 7° de la Ley 24.240.
+                ⚠️ Precios orientativos sujetos a modificación sin previo aviso. La cotización final se confirma al momento de la operación. No constituye oferta vinculante.{' '}
+                <button onClick={() => setSeccion('legal')} className="underline font-bold">Ver términos</button>
               </p>
             </div>
             <div className="flex gap-2 mb-4 overflow-x-auto pb-2 -mx-3 px-3">
@@ -697,7 +698,8 @@ export default function LasacApp() {
             </div>
             <div className="bg-amber-500/10 border border-amber-500/30 rounded-lg p-2 mb-3">
               <p className="text-[10px] text-amber-200 leading-tight">
-                ⚠️ <strong>Aviso legal:</strong> Precios y stock sujetos a modificación sin previo aviso. La oferta es válida hasta agotar existencias y la cotización final se confirma al momento de la operación. No constituye oferta vinculante (Art. 7° Ley 24.240).
+                ⚠️ Precios y stock sujetos a modificación. Oferta válida hasta agotar existencias.{' '}
+                <button onClick={() => setSeccion('legal')} className="underline font-bold">Ver términos</button>
               </p>
             </div>
             <div className="space-y-3">
@@ -725,7 +727,8 @@ export default function LasacApp() {
             {planStep === 0 && (
               <div className="bg-amber-500/10 border border-amber-500/30 rounded-lg p-2 mb-3">
                 <p className="text-[10px] text-amber-200 leading-tight">
-                  ⚠️ <strong>Aviso legal:</strong> Valores correspondientes al Comercial FIAT Plan vigente para abril 2026. Las cuotas, valor móvil y suscripción están sujetos a actualización mensual por parte de FCA Compañía Financiera S.A. La cotización definitiva se confirma al momento de la suscripción. No constituye oferta vinculante (Art. 7° Ley 24.240).
+                  ⚠️ Valores Comercial FIAT Plan abril 2026. Sujetos a actualización mensual por FCA Compañía Financiera S.A.{' '}
+                  <button onClick={() => setSeccion('legal')} className="underline font-bold">Ver términos</button>
                 </p>
               </div>
             )}
@@ -1663,6 +1666,115 @@ export default function LasacApp() {
             </div>
             <div className="bg-white/5 rounded-xl p-4 mt-4 text-center border border-white/10">
               <a href="https://lasac.com.ar" target="_blank" rel="noopener noreferrer" className="inline-block px-6 py-2 bg-gradient-to-r from-red-600 to-red-700 rounded-full font-bold text-sm">🌐 lasac.com.ar</a>
+            </div>
+            <div className="text-center mt-4 pb-4">
+              <button onClick={() => setSeccion('legal')} className="text-[10px] text-white/40 underline">
+                Términos y condiciones
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* ========== LEGAL / TÉRMINOS Y CONDICIONES ========== */}
+        {seccion === 'legal' && (
+          <div className="space-y-4 pb-8">
+            <button onClick={() => setSeccion('contacto')} className="text-sm text-white/60 flex items-center gap-1">
+              ← Volver
+            </button>
+
+            <div className="text-center">
+              <h2 className="text-xl font-bold mb-1">📜 Términos y Condiciones</h2>
+              <p className="text-[10px] text-white/50">Última actualización: Abril 2026</p>
+            </div>
+
+            <div className="bg-white/5 rounded-xl p-4 border border-white/10 space-y-3">
+              <h3 className="font-bold text-sm text-red-400">1. Información sobre precios</h3>
+              <p className="text-xs text-white/80 leading-relaxed">
+                Los precios publicados en esta aplicación corresponden a la <strong>Lista de Precios FIAT N°04/2026</strong> con vigencia desde el 1° de abril de 2026, para la jurisdicción de la Provincia de Tierra del Fuego, Antártida e Islas del Atlántico Sur.
+              </p>
+              <p className="text-xs text-white/80 leading-relaxed">
+                Los valores son <strong>orientativos</strong> y están sujetos a modificación por parte de FCA Automobiles Argentina S.A. (Terminal) y/o FCA Compañía Financiera S.A. (Plan de Ahorro) sin necesidad de previo aviso. La cotización definitiva, condiciones de financiación y disponibilidad de stock serán <strong>confirmadas al momento de la operación</strong> por el asesor comercial.
+              </p>
+            </div>
+
+            <div className="bg-white/5 rounded-xl p-4 border border-white/10 space-y-3">
+              <h3 className="font-bold text-sm text-red-400">2. Naturaleza no vinculante</h3>
+              <p className="text-xs text-white/80 leading-relaxed">
+                La información publicada en esta aplicación tiene <strong>carácter meramente informativo</strong> y no constituye oferta vinculante en los términos del <strong>Art. 7° de la Ley N° 24.240 de Defensa del Consumidor</strong>. La aceptación de cualquier operación queda sujeta a la verificación de stock, evaluación crediticia (cuando corresponda) y confirmación expresa por escrito por parte de Liendo Automotores S.A. (LASAC).
+              </p>
+            </div>
+
+            <div className="bg-white/5 rounded-xl p-4 border border-white/10 space-y-3">
+              <h3 className="font-bold text-sm text-red-400">3. Stock y disponibilidad</h3>
+              <p className="text-xs text-white/80 leading-relaxed">
+                Las unidades publicadas en la sección <strong>Oportunidades</strong> están sujetas a disponibilidad de stock y se ofrecen <strong>hasta agotar existencias</strong>. El stock se actualiza periódicamente pero puede no reflejar la existencia real al momento de la consulta. La reserva de una unidad solo se considera efectiva con la firma del boleto de compraventa correspondiente y el pago de la seña.
+              </p>
+            </div>
+
+            <div className="bg-white/5 rounded-xl p-4 border border-white/10 space-y-3">
+              <h3 className="font-bold text-sm text-red-400">4. Plan de Ahorro FIAT</h3>
+              <p className="text-xs text-white/80 leading-relaxed">
+                El Plan de Ahorro FIAT es un sistema de ahorro previo administrado por <strong>FCA Compañía Financiera S.A.</strong> bajo la modalidad de Círculo Cerrado autorizada por la Inspección General de Justicia (IGJ). Las cuotas, valor móvil, gastos administrativos, sellados, derecho de suscripción y derecho de adjudicación están sujetos a actualización mensual conforme las variaciones del valor móvil del vehículo y normativas vigentes.
+              </p>
+              <p className="text-xs text-white/80 leading-relaxed">
+                La adjudicación se realiza por sorteo o licitación según las condiciones de cada plan. Los gastos de patentamiento, prenda, gestoría, flete y entrega son a cargo del adherente y no están incluidos en el valor de la cuota.
+              </p>
+            </div>
+
+            <div className="bg-white/5 rounded-xl p-4 border border-white/10 space-y-3">
+              <h3 className="font-bold text-sm text-red-400">5. Solicitud de crédito</h3>
+              <p className="text-xs text-white/80 leading-relaxed">
+                La solicitud de crédito automotor enviada a través de esta aplicación constituye una <strong>preselección</strong> y está sujeta a la evaluación crediticia y aprobación final por parte de la entidad financiera correspondiente. El envío del formulario no implica la aprobación automática del crédito ni compromete a Liendo Automotores S.A. a otorgar la financiación solicitada.
+              </p>
+            </div>
+
+            <div className="bg-white/5 rounded-xl p-4 border border-white/10 space-y-3">
+              <h3 className="font-bold text-sm text-red-400">6. Protección de datos personales</h3>
+              <p className="text-xs text-white/80 leading-relaxed">
+                Los datos personales suministrados a través de esta aplicación serán tratados conforme a la <strong>Ley N° 25.326 de Protección de Datos Personales</strong>. Los datos serán utilizados exclusivamente para gestionar consultas, solicitudes de crédito, turnos de service y comunicaciones comerciales relacionadas con productos y servicios de Liendo Automotores S.A. El titular de los datos podrá ejercer en cualquier momento los derechos de acceso, rectificación y supresión previstos en la mencionada ley.
+              </p>
+            </div>
+
+            <div className="bg-white/5 rounded-xl p-4 border border-white/10 space-y-3">
+              <h3 className="font-bold text-sm text-red-400">7. Atención de siniestros</h3>
+              <p className="text-xs text-white/80 leading-relaxed">
+                La gestión de siniestros se realiza en coordinación con la compañía aseguradora del cliente. Los tiempos de gestión, autorización de presupuestos, provisión de repuestos y reparación dependen de las condiciones particulares de cada póliza y de la respuesta de la aseguradora. LASAC actúa como prestador de servicios técnicos y no es responsable por demoras imputables a la compañía de seguros.
+              </p>
+            </div>
+
+            <div className="bg-white/5 rounded-xl p-4 border border-white/10 space-y-3">
+              <h3 className="font-bold text-sm text-red-400">8. Limitación de responsabilidad</h3>
+              <p className="text-xs text-white/80 leading-relaxed">
+                Liendo Automotores S.A. realiza sus mejores esfuerzos para mantener actualizada la información publicada en esta aplicación, pero <strong>no garantiza la exactitud, completitud ni vigencia</strong> permanente de los datos. En caso de discrepancia entre la información publicada en la aplicación y la información oficial brindada por la Terminal o Compañía Financiera, prevalecerá esta última. LASAC no será responsable por daños o perjuicios derivados del uso o interpretación errónea de la información publicada.
+              </p>
+            </div>
+
+            <div className="bg-white/5 rounded-xl p-4 border border-white/10 space-y-3">
+              <h3 className="font-bold text-sm text-red-400">9. Modificaciones</h3>
+              <p className="text-xs text-white/80 leading-relaxed">
+                Liendo Automotores S.A. se reserva el derecho de modificar los presentes Términos y Condiciones en cualquier momento, así como la información, productos, servicios y precios publicados, sin necesidad de notificación previa. Las modificaciones serán efectivas desde su publicación en la aplicación.
+              </p>
+            </div>
+
+            <div className="bg-white/5 rounded-xl p-4 border border-white/10 space-y-3">
+              <h3 className="font-bold text-sm text-red-400">10. Jurisdicción</h3>
+              <p className="text-xs text-white/80 leading-relaxed">
+                Para toda controversia que pudiera derivarse del uso de esta aplicación o de las operaciones comerciales con Liendo Automotores S.A., serán competentes los <strong>Tribunales Ordinarios de la Ciudad de Ushuaia, Provincia de Tierra del Fuego</strong>, con renuncia expresa a cualquier otro fuero o jurisdicción que pudiera corresponder.
+              </p>
+            </div>
+
+            <div className="bg-white/5 rounded-xl p-4 border border-white/10 text-center space-y-2">
+              <p className="text-xs font-bold">LIENDO AUTOMOTORES S.A.</p>
+              <p className="text-[10px] text-white/60">Concesionario Oficial FIAT</p>
+              <p className="text-[10px] text-white/60">Tierra del Fuego, Antártida e Islas del Atlántico Sur</p>
+              <p className="text-[10px] text-white/60">CUIT: 30-XXXXXXXX-X</p>
+              <p className="text-[10px] text-white/40 mt-2">📧 atencionalcliente@lasac.com.ar</p>
+            </div>
+
+            <div className="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3">
+              <p className="text-[10px] text-amber-200 leading-tight">
+                ⚠️ Al utilizar esta aplicación, el usuario declara haber leído, comprendido y aceptado los presentes Términos y Condiciones en todos sus términos.
+              </p>
             </div>
           </div>
         )}
