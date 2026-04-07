@@ -656,7 +656,12 @@ export default function LasacApp() {
         {seccion === 'catalogo' && (
           <div>
             <h2 className="text-xl font-bold mb-1">🚗 Catálogo</h2>
-            <p className="text-white/60 text-xs mb-3">Precios Tierra del Fuego - Abril 2026</p>
+            <p className="text-white/60 text-xs mb-2">Precios Tierra del Fuego - Abril 2026</p>
+            <div className="bg-amber-500/10 border border-amber-500/30 rounded-lg p-2 mb-3">
+              <p className="text-[10px] text-amber-200 leading-tight">
+                ⚠️ <strong>Aviso legal:</strong> Los precios publicados son orientativos y están sujetos a modificaciones por parte de la Terminal sin previo aviso. La cotización final será confirmada al momento de la operación. Esta publicación no constituye oferta vinculante en los términos del Art. 7° de la Ley 24.240.
+              </p>
+            </div>
             <div className="flex gap-2 mb-4 overflow-x-auto pb-2 -mx-3 px-3">
               {['todos', 'autos', 'suv', 'pickups', 'utilitarios'].map(cat => (
                 <button key={cat} onClick={() => setFiltro(cat)} className={`px-3 py-1.5 rounded-full text-xs capitalize whitespace-nowrap ${filtro === cat ? 'bg-red-600' : 'bg-white/10'}`}>{cat}</button>
@@ -690,6 +695,11 @@ export default function LasacApp() {
               <h2 className="text-xl font-bold mb-1">🔥 Oferta del Mes</h2>
               <p className="text-sm">{totalStock} unidades • Entrega inmediata</p>
             </div>
+            <div className="bg-amber-500/10 border border-amber-500/30 rounded-lg p-2 mb-3">
+              <p className="text-[10px] text-amber-200 leading-tight">
+                ⚠️ <strong>Aviso legal:</strong> Precios y stock sujetos a modificación sin previo aviso. La oferta es válida hasta agotar existencias y la cotización final se confirma al momento de la operación. No constituye oferta vinculante (Art. 7° Ley 24.240).
+              </p>
+            </div>
             <div className="space-y-3">
               {stockOportunidad.map((item, i) => (
                 <div key={i} className="bg-white/5 rounded-xl overflow-hidden border border-white/10 relative">
@@ -712,6 +722,13 @@ export default function LasacApp() {
         {/* ========== PLAN DE AHORRO MEJORADO - MULTI STEP ========== */}
         {seccion === 'simulador' && (
           <div>
+            {planStep === 0 && (
+              <div className="bg-amber-500/10 border border-amber-500/30 rounded-lg p-2 mb-3">
+                <p className="text-[10px] text-amber-200 leading-tight">
+                  ⚠️ <strong>Aviso legal:</strong> Valores correspondientes al Comercial FIAT Plan vigente para abril 2026. Las cuotas, valor móvil y suscripción están sujetos a actualización mensual por parte de FCA Compañía Financiera S.A. La cotización definitiva se confirma al momento de la suscripción. No constituye oferta vinculante (Art. 7° Ley 24.240).
+                </p>
+              </div>
+            )}
             {/* Barra de navegación interna */}
             {planStep > 0 && (
               <div className="flex items-center justify-between mb-4">
