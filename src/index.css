@@ -2,6 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ============================================================
+   Tema por marca (Grupo LASAC)
+   Las variables --brand* las setea useTemaMarca() según la marca activa.
+   ============================================================ */
+:root {
+  --brand: #dc2626;
+  --brand-dark: #991b1b;
+  --brand-on: #ffffff;
+  --brand-grad-from: #dc2626;
+  --brand-grad-to: #991b1b;
+}
+
+.bg-brand { background-color: var(--brand); }
+.bg-brand-dark { background-color: var(--brand-dark); }
+.text-brand { color: var(--brand); }
+.border-brand { border-color: var(--brand); }
+.ring-brand { --tw-ring-color: var(--brand); }
+.bg-brand-soft { background-color: color-mix(in srgb, var(--brand) 18%, transparent); }
+.bg-brand-gradient { background-image: linear-gradient(to bottom right, var(--brand-grad-from), var(--brand-grad-to)); }
+.bg-brand-gradient-x { background-image: linear-gradient(to right, var(--brand-grad-from), var(--brand-grad-to)); }
+.text-on-brand { color: var(--brand-on); }
+
 /* Reset y estilos base */
 * {
   margin: 0;

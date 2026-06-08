@@ -9,26 +9,23 @@
     <meta name="theme-color" content="#dc2626" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="apple-mobile-web-app-title" content="LASAC" />
+    <meta name="apple-mobile-web-app-title" content="Grupo LASAC" />
     <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
-    
+
     <!-- Manifest -->
     <link rel="manifest" href="/manifest.json" />
-    
+
     <!-- SEO -->
-    <meta name="description" content="LASAC - Concesionario Oficial FIAT en Tierra del Fuego. Venta de 0km, Plan de Ahorro y Service en Ushuaia y Río Grande." />
-    <meta name="keywords" content="FIAT, concesionario, Ushuaia, Río Grande, Tierra del Fuego, 0km, plan ahorro, service" />
-    
+    <meta name="description" content="Grupo LASAC - Concesionario de FIAT, JAC Motors, Forthing y Dongfeng en Tierra del Fuego. Venta de 0km, Plan de Ahorro y Service en Ushuaia y Río Grande." />
+    <meta name="keywords" content="FIAT, JAC Motors, Forthing, Dongfeng, concesionario, Ushuaia, Río Grande, Tierra del Fuego, 0km, plan ahorro, service" />
+
     <!-- Open Graph -->
-    <meta property="og:title" content="LASAC - Concesionario Oficial FIAT" />
+    <meta property="og:title" content="Grupo LASAC - FIAT, JAC, Forthing y Dongfeng" />
     <meta property="og:description" content="Venta de 0km, Plan de Ahorro y Service en Tierra del Fuego" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://lasac.com.ar" />
-    
-    <title>LASAC - Concesionario Oficial FIAT | Tierra del Fuego</title>
-    
-    <!-- Preconnect para imágenes -->
-    <link rel="preconnect" href="https://www.fiat.com.ar" />
+
+    <title>Grupo LASAC - FIAT, JAC, Forthing y Dongfeng | Tierra del Fuego</title>
     
     <style>
       /* Splash screen mientras carga */
@@ -91,17 +88,39 @@
     
     <!-- Service Worker Registration -->
     <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
+      // En desarrollo (localhost / IP de red local / puerto 3000) NO usamos el SW,
+      // para que los cambios se vean al instante. Además desregistramos cualquier SW
+      // viejo y limpiamos sus caches. En producción sí se registra como PWA.
+      (function () {
+        var h = location.hostname;
+        var esDev = h === 'localhost' || h === '127.0.0.1' ||
+          /^(192\.168\.|10\.|172\.(1[6-9]|2\d|3[01])\.)/.test(h) ||
+          location.port === '3000';
+
+        if (!('serviceWorker' in navigator)) return;
+
+        if (esDev) {
+          navigator.serviceWorker.getRegistrations().then(function (regs) {
+            regs.forEach(function (r) { r.unregister(); });
+          });
+          if (window.caches) {
+            caches.keys().then(function (keys) {
+              keys.forEach(function (k) { caches.delete(k); });
+            });
+          }
+          return;
+        }
+
+        window.addEventListener('load', function () {
           navigator.serviceWorker.register('/sw.js')
-            .then((registration) => {
+            .then(function (registration) {
               console.log('SW registrado:', registration.scope);
             })
-            .catch((error) => {
+            .catch(function (error) {
               console.log('SW error:', error);
             });
         });
-      }
+      })();
       
       // Hide splash when app loads
       window.addEventListener('DOMContentLoaded', () => {

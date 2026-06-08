@@ -1,11 +1,11 @@
 {
-  "name": "LASAC - Concesionario Oficial FIAT",
-  "short_name": "LASAC",
-  "description": "App oficial de Liendo Automotores SAC - Concesionario Oficial FIAT en Tierra del Fuego",
+  "name": "Grupo LASAC - FIAT, JAC, Forthing y Dongfeng",
+  "short_name": "Grupo LASAC",
+  "description": "App oficial del Grupo LASAC - Concesionario de FIAT, JAC Motors, Forthing y Dongfeng en Tierra del Fuego",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#1e3a5f",
-  "theme_color": "#1e3a5f",
+  "background_color": "#0f172a",
+  "theme_color": "#dc2626",
   "orientation": "portrait",
   "scope": "/",
   "icons": [
