@@ -3,3 +3,4 @@ dist
 .claude
 *.local
 .DS_Store
+_migra
