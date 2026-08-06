@@ -1,4 +1,4 @@
-const CACHE_NAME = 'lasac-pwa-v3';
+const CACHE_NAME = 'lasac-pwa-v4';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -38,7 +38,10 @@ self.addEventListener('fetch', (event) => {
   event.respondWith(
     fetch(event.request)
       .then((response) => {
-        if (response && response.status === 200) {
+        // Solo cacheamos respuestas propias (mismo origen) y exitosas.
+        // Evita guardar recursos de terceros (OneSignal, CDNs) en el cache.
+        const mismoOrigen = event.request.url.startsWith(self.location.origin);
+        if (response && response.status === 200 && mismoOrigen) {
           const responseToCache = response.clone();
           caches.open(CACHE_NAME).then((cache) => {
             cache.put(event.request, responseToCache);

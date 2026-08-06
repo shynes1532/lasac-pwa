@@ -150,10 +150,24 @@
           navigator.serviceWorker.register('/sw.js')
             .then(function (registration) {
               console.log('SW registrado:', registration.scope);
+              // Chequear si hay una versión nueva publicada
+              registration.update();
             })
             .catch(function (error) {
               console.log('SW error:', error);
             });
+
+          // Si la página ya estaba controlada por un service worker y entra uno
+          // nuevo (deploy nuevo), recargar UNA sola vez para mostrar la versión
+          // actualizada. El guard evita bucles de recarga.
+          if (navigator.serviceWorker.controller) {
+            var recargado = false;
+            navigator.serviceWorker.addEventListener('controllerchange', function () {
+              if (recargado) return;
+              recargado = true;
+              window.location.reload();
+            });
+          }
         });
       })();
       
