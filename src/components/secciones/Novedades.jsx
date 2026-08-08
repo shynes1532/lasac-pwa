@@ -14,12 +14,12 @@ export default function Novedades({ marca }) {
       ) : (
         <div className="space-y-4">
           {novedades.map((nov) => (
-            <div key={nov.id} className="bg-white/5 rounded-xl overflow-hidden border border-white/10">
+            <div key={nov.id} className="bg-white/[0.06] rounded-2xl overflow-hidden border border-white/10 shadow-lg shadow-black/20 transition-all duration-200 hover:border-white/20 hover:-translate-y-0.5">
               <AutoImagen basePath={marca.imagenesPath} modelo={nov.imagen} ext={marca.imgExt} className="w-full h-44" contain />
               <div className="p-4">
-                <p className="text-[10px] text-white/50 mb-1">{nov.fecha}</p>
-                <h3 className="font-bold text-lg mb-2">{nov.titulo}</h3>
-                <p className="text-sm text-white/70">{nov.descripcion}</p>
+                <p className="text-[10px] text-white/40 mb-1 tracking-wide uppercase">{nov.fecha}</p>
+                <h3 className="font-bold text-lg mb-2 tracking-tight">{nov.titulo}</h3>
+                <p className="text-sm text-white/70 leading-relaxed">{nov.descripcion}</p>
               </div>
             </div>
           ))}
