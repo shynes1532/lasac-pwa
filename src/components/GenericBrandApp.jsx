@@ -84,9 +84,9 @@ export default function GenericBrandApp({ marca, onCambiarMarca }) {
             const meta = SECCIONES_META[id];
             const activo = seccionActiva === id;
             return (
-              <button key={id} onClick={() => navegar(id)} className={`flex flex-col items-center py-1 px-2 rounded-lg ${activo ? 'text-brand' : 'text-white/60'}`}>
-                <span className="text-lg">{meta.icon}</span>
-                <span className="text-[9px] mt-0.5">{meta.navLabel || meta.label}</span>
+              <button key={id} onClick={() => navegar(id)} className={`flex flex-col items-center py-1.5 px-3 rounded-xl transition-all duration-200 ${activo ? 'text-brand bg-brand-soft' : 'text-white/55 hover:text-white/85 active:scale-95'}`}>
+                <span className={`text-lg transition-transform duration-200 ${activo ? 'scale-110' : ''}`}>{meta.icon}</span>
+                <span className={`text-[9px] mt-0.5 ${activo ? 'font-semibold' : ''}`}>{meta.navLabel || meta.label}</span>
               </button>
             );
           })}
