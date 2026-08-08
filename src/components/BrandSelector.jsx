@@ -17,7 +17,7 @@ export default function BrandSelector({ onElegir }) {
 
       <main className="flex-1 max-w-lg mx-auto w-full p-5 flex flex-col justify-center">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-black mb-2">{grupo.nombre}</h1>
+          <h1 className="text-3xl font-black tracking-tight mb-2">{grupo.nombre}</h1>
           <p className="text-white/60 text-sm">{grupo.tagline}</p>
           <p className="text-white/40 text-xs mt-3">Elegí una marca para continuar</p>
         </div>
@@ -29,16 +29,18 @@ export default function BrandSelector({ onElegir }) {
               <button
                 key={marca.id}
                 onClick={() => onElegir(marca.id)}
-                className="relative rounded-2xl p-5 h-36 flex flex-col justify-between text-left overflow-hidden active:scale-95 transition-all shadow-lg"
+                className="group relative rounded-2xl p-5 h-36 flex flex-col justify-between text-left overflow-hidden shadow-lg ring-1 ring-inset ring-white/15 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-2xl active:scale-95"
                 style={{ backgroundImage: `linear-gradient(to bottom right, ${g1}, ${g2})`, color: marca.tema.onPrimary || '#fff' }}
               >
-                <div className="absolute -top-8 -right-8 w-28 h-28 bg-white/10 rounded-full" />
+                {/* Brillos y profundidad */}
+                <div className="absolute -top-10 -right-8 w-28 h-28 bg-white/15 rounded-full blur-xl" />
+                <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/25 to-transparent" />
                 {marca.oficial && (
-                  <span className="relative self-start text-[9px] font-bold bg-white/25 px-2 py-0.5 rounded-full">OFICIAL</span>
+                  <span className="relative self-start text-[9px] font-bold tracking-wide bg-white/20 ring-1 ring-white/25 backdrop-blur-sm px-2 py-0.5 rounded-full">OFICIAL</span>
                 )}
                 <div className="relative">
-                  <div className="text-xl font-black leading-tight">{marca.nombre}</div>
-                  <div className="text-[11px] opacity-80 mt-0.5">{marca.descripcion}</div>
+                  <div className="text-xl font-extrabold tracking-tight leading-tight drop-shadow-sm">{marca.nombre}</div>
+                  <div className="text-[11px] font-medium opacity-85 mt-0.5 leading-snug">{marca.descripcion}</div>
                 </div>
               </button>
             );
