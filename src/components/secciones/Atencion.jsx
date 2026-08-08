@@ -41,7 +41,7 @@ export default function Atencion({ marca }) {
           <div className="text-6xl">✅</div>
           <h3 className="text-xl font-bold">¡Mensaje enviado!</h3>
           <p className="text-white/60 text-sm">Tu {tipoActual?.titulo.toLowerCase()} fue derivada al equipo de atención</p>
-          <button onClick={reset} className="px-6 py-3 bg-white/10 rounded-xl font-bold text-sm">Enviar otra consulta</button>
+          <button onClick={reset} className="px-6 py-3 bg-white/10 hover:bg-white/20 rounded-xl font-bold text-sm transition-all active:scale-95">Enviar otra consulta</button>
         </div>
       ) : (
         <>
@@ -74,26 +74,26 @@ export default function Atencion({ marca }) {
                 </div>
               </div>
 
-              <div className="bg-white/5 rounded-xl p-4 border border-white/10 space-y-2">
+              <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20 space-y-2">
                 <h3 className="font-bold text-sm mb-3">👤 Tus Datos</h3>
                 <input placeholder="Nombre completo *" value={form.nombre} onChange={(e) => set('nombre', e.target.value)} className="w-full p-2.5 rounded-lg bg-white/5 border border-white/20 text-sm" />
                 <input placeholder="Teléfono *" type="tel" value={form.telefono} onChange={(e) => set('telefono', e.target.value)} className="w-full p-2.5 rounded-lg bg-white/5 border border-white/20 text-sm" />
                 <input placeholder="Email (opcional)" type="email" value={form.email} onChange={(e) => set('email', e.target.value)} className="w-full p-2.5 rounded-lg bg-white/5 border border-white/20 text-sm" />
               </div>
 
-              <div className="bg-white/5 rounded-xl p-4 border border-white/10">
+              <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
                 <h3 className="font-bold text-sm mb-3">🏢 Área Relacionada</h3>
                 <div className="grid grid-cols-2 gap-2">
                   {areasAtencion.map((a) => (
                     <button key={a} onClick={() => set('area', a)}
-                      className={`p-2 rounded-lg text-xs font-medium transition-all ${form.area === a ? 'bg-brand text-white' : 'bg-white/5 border border-white/20 text-white/70'}`}>
+                      className={`p-2 rounded-lg text-xs font-medium transition-all duration-200 active:scale-95 ${form.area === a ? 'bg-brand text-on-brand shadow-md shadow-black/20' : 'bg-white/5 border border-white/20 text-white/70 hover:bg-white/[0.09]'}`}>
                       {a}
                     </button>
                   ))}
                 </div>
               </div>
 
-              <div className={`bg-white/5 rounded-xl p-4 border border-white/10 ${tipo === 'reclamo' ? 'ring-1 ring-red-400/30' : ''}`}>
+              <div className={`bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20 ${tipo === 'reclamo' ? 'ring-1 ring-red-400/30' : ''}`}>
                 <h3 className="font-bold text-sm mb-1">🚗 Vehículo {tipo === 'reclamo' ? '' : '(opcional)'}</h3>
                 {tipo === 'reclamo' && <p className="text-[10px] text-red-300 mb-3">Completá estos datos para agilizar tu reclamo</p>}
                 <div className="grid grid-cols-2 gap-2">
@@ -102,7 +102,7 @@ export default function Atencion({ marca }) {
                 </div>
               </div>
 
-              <div className="bg-white/5 rounded-xl p-4 border border-white/10">
+              <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
                 <h3 className="font-bold text-sm mb-3">✍️ Tu Mensaje *</h3>
                 <textarea
                   placeholder={
@@ -115,12 +115,12 @@ export default function Atencion({ marca }) {
                   rows={4} className="w-full p-2.5 rounded-lg bg-white/5 border border-white/20 text-sm resize-none" />
               </div>
 
-              <div className="bg-white/5 rounded-xl p-4 border border-white/10">
+              <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
                 <h3 className="font-bold text-sm mb-3">📍 Sucursal *</h3>
                 <div className="grid grid-cols-2 gap-2">
                   {sucursales.map((s) => (
                     <button key={s.ciudad} onClick={() => setSucursal(s.ciudad)}
-                      className={`p-3 rounded-lg font-bold text-sm transition-all ${sucursal === s.ciudad ? 'bg-brand' : 'bg-white/5 border border-white/20'}`}>
+                      className={`p-3 rounded-xl font-bold text-sm transition-all duration-200 active:scale-95 ${sucursal === s.ciudad ? 'bg-brand text-on-brand shadow-md shadow-black/20' : 'bg-white/5 border border-white/20 hover:bg-white/[0.09]'}`}>
                       {s.ciudad}
                     </button>
                   ))}
@@ -132,11 +132,11 @@ export default function Atencion({ marca }) {
                 <span>📲</span> Enviar {tipoActual.titulo} por WhatsApp
               </button>
 
-              <div className="bg-white/5 rounded-xl p-4 border border-white/10">
+              <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
                 <p className="text-sm text-center text-white/70 mb-3">También podés contactarnos directamente:</p>
                 <div className="flex gap-2 justify-center">
-                  <a href={`tel:+${marca.contacto.whatsapp.atencion || marca.contacto.whatsapp.ventas}`} className="px-4 py-2 bg-green-600 rounded-full text-sm font-bold">📞 Llamar</a>
-                  <a href="mailto:atencion@lasac.com.ar" className="px-4 py-2 bg-blue-600 rounded-full text-sm font-bold">✉️ Email</a>
+                  <a href={`tel:+${marca.contacto.whatsapp.atencion || marca.contacto.whatsapp.ventas}`} className="px-4 py-2 bg-green-600 hover:bg-green-500 rounded-full text-sm font-bold shadow-md shadow-black/20 transition-all active:scale-95">📞 Llamar</a>
+                  <a href="mailto:atencion@lasac.com.ar" className="px-4 py-2 bg-blue-600 hover:bg-blue-500 rounded-full text-sm font-bold shadow-md shadow-black/20 transition-all active:scale-95">✉️ Email</a>
                 </div>
               </div>
             </div>

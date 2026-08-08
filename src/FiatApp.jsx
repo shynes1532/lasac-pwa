@@ -741,13 +741,14 @@ export default function FiatApp() {
               <h2 className="font-bold mb-3 flex items-center gap-2">📰 Novedades</h2>
               <div className="space-y-2">
                 {novedades.filter(n => n.destacado).map(nov => (
-                  <div key={nov.id} onClick={() => setSeccion('novedades')} className="bg-white/5 rounded-xl p-3 border border-white/10 flex gap-3">
-                    <AutoImagen modelo={nov.imagen} className="w-16 h-16 rounded-lg flex-shrink-0" />
+                  <div key={nov.id} onClick={() => setSeccion('novedades')} className="bg-white/[0.06] rounded-2xl p-3 border border-white/10 shadow-lg shadow-black/20 flex gap-3 items-center transition-all duration-200 hover:border-white/20 active:scale-[0.98] cursor-pointer">
+                    <AutoImagen modelo={nov.imagen} className="w-16 h-16 rounded-xl flex-shrink-0" />
                     <div className="flex-1 min-w-0">
-                      <p className="text-[10px] text-white/50">{nov.fecha}</p>
+                      <p className="text-[10px] text-white/40 tracking-wide uppercase">{nov.fecha}</p>
                       <h3 className="font-bold text-sm truncate">{nov.titulo}</h3>
-                      <p className="text-xs text-white/60 line-clamp-2">{nov.descripcion}</p>
+                      <p className="text-xs text-white/60 line-clamp-2 leading-snug">{nov.descripcion}</p>
                     </div>
+                    <span className="text-white/25 text-lg shrink-0">›</span>
                   </div>
                 ))}
               </div>
@@ -848,7 +849,7 @@ export default function FiatApp() {
             {planStep === 0 && (
               <div className="bg-amber-500/10 border border-amber-500/30 rounded-lg p-2 mb-3">
                 <p className="text-[10px] text-amber-200 leading-tight">
-                  ⚠️ Valores Comercial FIAT Plan julio 2026. Sujetos a actualización mensual por FCA Compañía Financiera S.A.{' '}
+                  ⚠️ Valores Comercial FIAT Plan agosto 2026. Sujetos a actualización mensual por FCA Compañía Financiera S.A.{' '}
                   <button onClick={() => setSeccion('legal')} className="underline font-bold">Ver términos</button>
                 </p>
               </div>
@@ -883,7 +884,7 @@ export default function FiatApp() {
                   </div>
                 </div>
 
-                <div className="bg-white/5 rounded-xl p-4 border border-white/10">
+                <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
                   <h3 className="font-bold text-sm mb-3">¿Cuál es tu situación?</h3>
                   <div className="space-y-2">
                     {[
@@ -905,7 +906,7 @@ export default function FiatApp() {
                   </div>
                 </div>
 
-                <div className="bg-white/5 rounded-xl p-4 border border-white/10">
+                <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
                   <h3 className="font-bold text-sm mb-3">📍 Sucursal</h3>
                   <div className="grid grid-cols-2 gap-2">
                     {['Ushuaia', 'Río Grande'].map(s => (
@@ -962,7 +963,7 @@ export default function FiatApp() {
                 </div>
                 {planesAbril.filter(p => !planFiltro || p.familia === planFiltro).map(plan => (
                   <button key={plan.id} onClick={() => { setPlanSelecAbril(plan); setPlanExpandido(null); setPlanStep(3); }}
-                    className="w-full bg-white/5 rounded-xl p-4 border border-white/10 text-left active:scale-[0.98] transition-all">
+                    className="w-full bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20 text-left active:scale-[0.98] transition-all">
                     <div className="flex items-center justify-between mb-2">
                       <div className="flex items-center gap-2">
                         <span className="text-xl">{plan.emoji}</span>
@@ -1083,7 +1084,7 @@ export default function FiatApp() {
                   <p className="text-sm opacity-80">Contactá a tu asesor para avanzar</p>
                 </div>
                 {/* Resumen */}
-                <div className="bg-white/5 rounded-xl p-4 border border-white/10 space-y-2 text-sm">
+                <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20 space-y-2 text-sm">
                   <h3 className="font-bold">📝 Resumen</h3>
                   {tipoUsuarioPlan && <p className="text-white/60">Tipo: <span className="text-white font-medium capitalize">{tipoUsuarioPlan}</span></p>}
                   {planSelecAbril && <p className="text-white/60">Plan: <span className="text-white font-medium">{planSelecAbril.base} {planSelecAbril.tipoPlan}</span></p>}
@@ -1117,21 +1118,24 @@ export default function FiatApp() {
                     <p className="text-white/60 text-xs mb-2">FIAT Plan — Vigencia Agosto 2026 · Valores s/IVA (TDF)</p>
                     <p className="text-sm text-white/70 mb-2">Seleccioná un plan para ver el detalle completo:</p>
                     {planesDetalle.map(plan => (
-                      <div key={plan.id} onClick={() => setPlanDetalleSelec(plan)} className="bg-white/5 rounded-xl overflow-hidden border border-white/10 active:scale-[0.98] transition-all">
-                        <AutoImagen modelo={plan.modelo} className="w-full h-32" contain />
-                        <div className="p-3">
-                          <div className="flex justify-between items-start">
+                      <div key={plan.id} onClick={() => setPlanDetalleSelec(plan)} className="group bg-white/[0.06] rounded-2xl overflow-hidden border border-white/10 shadow-lg shadow-black/20 transition-all duration-200 hover:border-white/20 hover:-translate-y-0.5 active:scale-[0.98] cursor-pointer">
+                        <AutoImagen modelo={plan.modelo} className="w-full h-36" contain />
+                        <div className="p-3.5">
+                          <div className="flex justify-between items-start gap-2">
                             <h3 className="font-bold text-sm">{plan.nombre}</h3>
-                            <span className="bg-red-600 px-1.5 py-0.5 rounded text-[10px] font-bold">{plan.codigo}</span>
+                            <span className="shrink-0 bg-red-600 px-1.5 py-0.5 rounded text-[10px] font-bold tracking-wide">{plan.codigo}</span>
                           </div>
-                          <div className="flex gap-2 mt-1">
-                            <span className="bg-blue-500/30 px-1.5 py-0.5 rounded text-[10px]">{plan.plan}</span>
-                            <span className="bg-green-500/30 px-1.5 py-0.5 rounded text-[10px]">{plan.condicion}</span>
-                            <span className="bg-purple-500/30 px-1.5 py-0.5 rounded text-[10px]">{plan.tipo}</span>
+                          <div className="flex gap-1.5 mt-1.5 flex-wrap">
+                            <span className="bg-blue-500/25 text-blue-200 px-1.5 py-0.5 rounded text-[10px] font-medium">{plan.plan}</span>
+                            <span className="bg-green-500/25 text-green-200 px-1.5 py-0.5 rounded text-[10px] font-medium">{plan.condicion}</span>
+                            <span className="bg-purple-500/25 text-purple-200 px-1.5 py-0.5 rounded text-[10px] font-medium">{plan.tipo}</span>
                           </div>
-                          <div className="flex justify-between items-center mt-2">
-                            <p className="text-sm text-green-400 font-bold">Suscripción: {formatPrecio(plan.suscripcion)}</p>
-                            <p className="text-[10px] text-white/40">VM: {formatPrecio(plan.valorMovil)}</p>
+                          <div className="flex justify-between items-end mt-2.5">
+                            <div className="min-w-0">
+                              <p className="text-[10px] text-white/40 leading-none mb-1">Suscripción</p>
+                              <p className="text-lg text-green-400 font-extrabold tabular-nums tracking-tight leading-none">{formatPrecio(plan.suscripcion)}</p>
+                            </div>
+                            <p className="text-[10px] text-white/40 tabular-nums group-hover:text-white/60 transition-colors">VM {formatPrecio(plan.valorMovil)} →</p>
                           </div>
                         </div>
                       </div>
@@ -1139,12 +1143,12 @@ export default function FiatApp() {
                   </>
                 ) : (
                   <div className="space-y-4">
-                    <div className="bg-white/5 rounded-xl overflow-hidden border border-white/10">
+                    <div className="bg-white/[0.06] rounded-2xl overflow-hidden border border-white/10 shadow-xl shadow-black/30">
                       <AutoImagen modelo={planDetalleSelec.modelo} className="w-full h-44" contain />
                       <div className="p-4">
-                        <div className="flex justify-between items-start mb-3">
-                          <h3 className="font-bold text-lg">{planDetalleSelec.nombre}</h3>
-                          <span className="bg-red-600 px-2 py-1 rounded text-xs font-bold">{planDetalleSelec.codigo}</span>
+                        <div className="flex justify-between items-start gap-2 mb-3">
+                          <h3 className="font-bold text-lg tracking-tight">{planDetalleSelec.nombre}</h3>
+                          <span className="shrink-0 bg-red-600 px-2 py-1 rounded text-xs font-bold tracking-wide">{planDetalleSelec.codigo}</span>
                         </div>
                         <div className="grid grid-cols-2 gap-2 mb-4">
                           <div className="bg-black/20 rounded-lg p-2"><p className="text-[10px] text-white/50">Plan</p><p className="font-bold text-sm">{planDetalleSelec.plan}</p></div>
@@ -1154,9 +1158,9 @@ export default function FiatApp() {
                         </div>
 
                         {/* Suscripción destacada */}
-                        <div className="bg-gradient-to-r from-green-600 to-green-700 rounded-xl p-4 mb-4">
-                          <p className="text-xs opacity-80">CUOTA SUSCRIPCIÓN Nro 1</p>
-                          <p className="text-2xl font-bold">{formatPrecio(planDetalleSelec.suscripcion)}</p>
+                        <div className="bg-gradient-to-r from-green-600 to-green-700 rounded-xl p-4 mb-4 shadow-lg shadow-green-900/30">
+                          <p className="text-xs opacity-80 tracking-wide">CUOTA SUSCRIPCIÓN Nro 1</p>
+                          <p className="text-2xl font-extrabold tabular-nums tracking-tight">{formatPrecio(planDetalleSelec.suscripcion)}</p>
                         </div>
 
                         {/* Toggle cuota s/IVA vs Total Cliente */}
@@ -1228,12 +1232,12 @@ export default function FiatApp() {
             <h2 className="text-xl font-bold mb-4">📰 Novedades</h2>
             <div className="space-y-4">
               {novedades.map(nov => (
-                <div key={nov.id} className="bg-white/5 rounded-xl overflow-hidden border border-white/10">
+                <div key={nov.id} className="bg-white/[0.06] rounded-2xl overflow-hidden border border-white/10 shadow-lg shadow-black/20 transition-all duration-200 hover:border-white/20 hover:-translate-y-0.5">
                   <AutoImagen modelo={nov.imagen} className="w-full h-44" contain />
                   <div className="p-4">
-                    <p className="text-[10px] text-white/50 mb-1">{nov.fecha}</p>
-                    <h3 className="font-bold text-lg mb-2">{nov.titulo}</h3>
-                    <p className="text-sm text-white/70">{nov.descripcion}</p>
+                    <p className="text-[10px] text-white/40 mb-1 tracking-wide uppercase">{nov.fecha}</p>
+                    <h3 className="font-bold text-lg mb-2 tracking-tight">{nov.titulo}</h3>
+                    <p className="text-sm text-white/70 leading-relaxed">{nov.descripcion}</p>
                   </div>
                 </div>
               ))}
@@ -1250,7 +1254,7 @@ export default function FiatApp() {
               <div className="bg-amber-500/20 rounded-xl p-4 border border-amber-500/30">
                 <p className="text-sm">⚠️ <strong>Importante:</strong> Completá todos los datos para agilizar la gestión de tu siniestro.</p>
               </div>
-              <div className="bg-white/5 rounded-xl p-4 border border-white/10">
+              <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
                 <h3 className="font-bold text-sm mb-3">👤 Datos del Titular</h3>
                 <div className="space-y-2">
                   <input placeholder="Nombre completo *" id="siniestro-nombre" className="w-full p-2.5 rounded-lg bg-white/5 border border-white/20 text-sm" />
@@ -1259,7 +1263,7 @@ export default function FiatApp() {
                   <input placeholder="Email" id="siniestro-email" type="email" className="w-full p-2.5 rounded-lg bg-white/5 border border-white/20 text-sm" />
                 </div>
               </div>
-              <div className="bg-white/5 rounded-xl p-4 border border-white/10">
+              <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
                 <h3 className="font-bold text-sm mb-3">🚗 Datos del Vehículo</h3>
                 <div className="grid grid-cols-2 gap-2">
                   <select id="siniestro-marca" className="p-2.5 rounded-lg bg-slate-800 border border-white/20 text-sm">
@@ -1272,7 +1276,7 @@ export default function FiatApp() {
                   <input placeholder="Kilometraje" id="siniestro-km" className="p-2.5 rounded-lg bg-white/5 border border-white/20 text-sm" />
                 </div>
               </div>
-              <div className="bg-white/5 rounded-xl p-4 border border-white/10">
+              <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
                 <h3 className="font-bold text-sm mb-3">🏢 Datos de la Aseguradora</h3>
                 <div className="space-y-2">
                   <select id="siniestro-aseguradora" className="w-full p-2.5 rounded-lg bg-slate-800 border border-white/20 text-sm">
@@ -1287,7 +1291,7 @@ export default function FiatApp() {
                   <input placeholder="N° de Siniestro (si lo tenés)" id="siniestro-numero" className="w-full p-2.5 rounded-lg bg-white/5 border border-white/20 text-sm" />
                 </div>
               </div>
-              <div className="bg-white/5 rounded-xl p-4 border border-white/10">
+              <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
                 <h3 className="font-bold text-sm mb-3">📋 Datos del Siniestro</h3>
                 <div className="space-y-2">
                   <input placeholder="Fecha del siniestro *" id="siniestro-fecha" type="date" className="w-full p-2.5 rounded-lg bg-slate-800 border border-white/20 text-sm" />
@@ -1300,7 +1304,7 @@ export default function FiatApp() {
                   <textarea placeholder="Descripción del siniestro *" id="siniestro-descripcion" rows={3} className="w-full p-2.5 rounded-lg bg-white/5 border border-white/20 text-sm resize-none" />
                 </div>
               </div>
-              <div className="bg-white/5 rounded-xl p-4 border border-white/10">
+              <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
                 <h3 className="font-bold text-sm mb-3">📍 Sucursal de Atención</h3>
                 <div className="grid grid-cols-2 gap-2">
                   <button type="button" onClick={(e) => { document.querySelectorAll('[data-suc]').forEach(el => el.classList.remove('bg-red-600')); e.currentTarget.classList.add('bg-red-600'); }} data-suc data-sucursal="Ushuaia" className="p-3 rounded-lg text-left bg-white/5 border border-white/10">
@@ -1332,7 +1336,7 @@ export default function FiatApp() {
               }} className="w-full py-4 rounded-xl font-bold text-lg bg-gradient-to-r from-orange-600 to-orange-700 active:scale-95 transition-all">
                 📱 Enviar Solicitud por WhatsApp
               </button>
-              <div className="bg-white/5 rounded-xl p-4 border border-white/10 text-center">
+              <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20 text-center">
                 <p className="text-xs text-white/60 mb-2">¿Necesitás ayuda urgente?</p>
                 <a href="tel:+5492964610900" className="inline-block px-4 py-2 bg-green-600 rounded-full text-sm font-bold">📞 Llamar ahora</a>
               </div>
@@ -1388,7 +1392,7 @@ export default function FiatApp() {
                     </div>
 
                     {/* Datos personales */}
-                    <div className="bg-white/5 rounded-xl p-4 border border-white/10 space-y-2">
+                    <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20 space-y-2">
                       <h3 className="font-bold text-sm mb-3">👤 Tus Datos</h3>
                       <input placeholder="Nombre completo *" value={atencionForm.nombre} onChange={e => setAtencionForm({...atencionForm, nombre: e.target.value})} className="w-full p-2.5 rounded-lg bg-white/5 border border-white/20 text-sm" />
                       <input placeholder="Teléfono *" type="tel" value={atencionForm.telefono} onChange={e => setAtencionForm({...atencionForm, telefono: e.target.value})} className="w-full p-2.5 rounded-lg bg-white/5 border border-white/20 text-sm" />
@@ -1396,7 +1400,7 @@ export default function FiatApp() {
                     </div>
 
                     {/* Área - botones seleccionables */}
-                    <div className="bg-white/5 rounded-xl p-4 border border-white/10">
+                    <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
                       <h3 className="font-bold text-sm mb-3">🏢 Área Relacionada</h3>
                       <div className="grid grid-cols-2 gap-2">
                         {areasAtencion.map(a => (
@@ -1409,7 +1413,7 @@ export default function FiatApp() {
                     </div>
 
                     {/* Vehículo - más prominente en Reclamo */}
-                    <div className={`bg-white/5 rounded-xl p-4 border border-white/10 ${atencionTipo === 'reclamo' ? 'ring-1 ring-red-400/30' : ''}`}>
+                    <div className={`bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20 ${atencionTipo === 'reclamo' ? 'ring-1 ring-red-400/30' : ''}`}>
                       <h3 className="font-bold text-sm mb-1">🚗 Vehículo {atencionTipo === 'reclamo' ? '' : '(opcional)'}</h3>
                       {atencionTipo === 'reclamo' && <p className="text-[10px] text-red-300 mb-3">Completá estos datos para agilizar tu reclamo</p>}
                       <div className="grid grid-cols-2 gap-2">
@@ -1419,7 +1423,7 @@ export default function FiatApp() {
                     </div>
 
                     {/* Mensaje - placeholder adaptado */}
-                    <div className="bg-white/5 rounded-xl p-4 border border-white/10">
+                    <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
                       <h3 className="font-bold text-sm mb-3">✍️ Tu Mensaje *</h3>
                       <textarea
                         placeholder={
@@ -1433,7 +1437,7 @@ export default function FiatApp() {
                     </div>
 
                     {/* Sucursal */}
-                    <div className="bg-white/5 rounded-xl p-4 border border-white/10">
+                    <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
                       <h3 className="font-bold text-sm mb-3">📍 Sucursal *</h3>
                       <div className="grid grid-cols-2 gap-2">
                         {['Ushuaia', 'Río Grande'].map(s => (
@@ -1452,7 +1456,7 @@ export default function FiatApp() {
                     </button>
 
                     {/* Contacto directo */}
-                    <div className="bg-white/5 rounded-xl p-4 border border-white/10">
+                    <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
                       <p className="text-sm text-center text-white/70 mb-3">También podés contactarnos directamente:</p>
                       <div className="flex gap-2 justify-center">
                         <a href="tel:+5492964610900" className="px-4 py-2 bg-green-600 rounded-full text-sm font-bold">📞 Llamar</a>
@@ -1488,14 +1492,14 @@ export default function FiatApp() {
               </div>
             ) : (
               <div className="space-y-4">
-                <div className="bg-white/5 rounded-xl p-4 border border-white/10">
+                <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
                   <h3 className="font-bold text-sm mb-3">👤 Datos</h3>
                   <div className="space-y-2">
                     <input placeholder="Nombre *" value={turno.nombre} onChange={e => setTurno({...turno, nombre: e.target.value})} className="w-full p-2.5 rounded-lg bg-white/5 border border-white/20 text-sm" />
                     <input placeholder="Teléfono *" value={turno.telefono} onChange={e => setTurno({...turno, telefono: e.target.value})} className="w-full p-2.5 rounded-lg bg-white/5 border border-white/20 text-sm" />
                   </div>
                 </div>
-                <div className="bg-white/5 rounded-xl p-4 border border-white/10">
+                <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
                   <h3 className="font-bold text-sm mb-3">🚗 Vehículo</h3>
                   <div className="grid grid-cols-2 gap-2">
                     <select value={turno.modelo} onChange={e => setTurno({...turno, modelo: e.target.value})} className="p-2.5 rounded-lg bg-slate-800 border border-white/20 text-sm">
@@ -1506,7 +1510,7 @@ export default function FiatApp() {
                     <input placeholder="Kilometraje *" value={turno.km} onChange={e => setTurno({...turno, km: e.target.value})} className="col-span-2 p-2.5 rounded-lg bg-white/5 border border-white/20 text-sm" />
                   </div>
                 </div>
-                <div className="bg-white/5 rounded-xl p-4 border border-white/10">
+                <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
                   <h3 className="font-bold text-sm mb-3">🔧 Servicio</h3>
                   <div className="grid grid-cols-2 gap-2">
                     {servicios.map(s => (
@@ -1517,7 +1521,7 @@ export default function FiatApp() {
                     ))}
                   </div>
                 </div>
-                <div className="bg-white/5 rounded-xl p-4 border border-white/10">
+                <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
                   <h3 className="font-bold text-sm mb-3">📅 Fecha</h3>
                   <Calendario fechaSeleccionada={turno.fecha} onSeleccionar={(fecha) => setTurno({...turno, fecha})} />
                   {turno.fecha && (
@@ -1529,7 +1533,7 @@ export default function FiatApp() {
                     </div>
                   )}
                 </div>
-                <div className="bg-white/5 rounded-xl p-4 border border-white/10">
+                <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
                   <h3 className="font-bold text-sm mb-3">📍 Sucursal</h3>
                   <div className="grid grid-cols-2 gap-2">
                     {[{ nombre: 'Ushuaia', dir: 'Piedrabuena 256' }, { nombre: 'Río Grande', dir: 'San Martín 2599' }].map(suc => (
@@ -1577,7 +1581,7 @@ export default function FiatApp() {
                 {/* Step 0: Datos Personales */}
                 {creditoStep === 0 && (
                   <div className="space-y-3">
-                    <div className="bg-white/5 rounded-xl p-4 border border-white/10 space-y-2">
+                    <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20 space-y-2">
                       <h3 className="font-bold text-sm mb-2">👤 Datos Personales</h3>
                       <input placeholder="Nombre completo *" value={creditoForm.nombre} onChange={e => setCreditoForm({...creditoForm, nombre: e.target.value})} className="w-full p-2.5 rounded-lg bg-white/5 border border-white/20 text-sm" />
                       <input placeholder="DNI *" value={creditoForm.dni} onChange={e => setCreditoForm({...creditoForm, dni: e.target.value})} className="w-full p-2.5 rounded-lg bg-white/5 border border-white/20 text-sm" />
@@ -1594,7 +1598,7 @@ export default function FiatApp() {
                       <input placeholder="Teléfono *" type="tel" value={creditoForm.telefono} onChange={e => setCreditoForm({...creditoForm, telefono: e.target.value})} className="w-full p-2.5 rounded-lg bg-white/5 border border-white/20 text-sm" />
                       <input placeholder="Email *" type="email" value={creditoForm.email} onChange={e => setCreditoForm({...creditoForm, email: e.target.value})} className="w-full p-2.5 rounded-lg bg-white/5 border border-white/20 text-sm" />
                     </div>
-                    <div className="bg-white/5 rounded-xl p-4 border border-white/10">
+                    <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
                       <h3 className="font-bold text-sm mb-3">💍 Estado Civil</h3>
                       <div className="grid grid-cols-2 gap-2">
                         {['Soltero/a', 'Casado/a', 'Divorciado/a', 'Viudo/a'].map(ec => (
@@ -1619,7 +1623,7 @@ export default function FiatApp() {
                 {/* Step 1: Datos Laborales */}
                 {creditoStep === 1 && (
                   <div className="space-y-3">
-                    <div className="bg-white/5 rounded-xl p-4 border border-white/10 space-y-2">
+                    <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20 space-y-2">
                       <h3 className="font-bold text-sm mb-2">💼 Datos Laborales</h3>
                       <input placeholder="Empleador / Empresa *" value={creditoForm.empleador} onChange={e => setCreditoForm({...creditoForm, empleador: e.target.value})} className="w-full p-2.5 rounded-lg bg-white/5 border border-white/20 text-sm" />
                       <div className="grid grid-cols-2 gap-2">
@@ -1628,7 +1632,7 @@ export default function FiatApp() {
                       </div>
                       <input placeholder="Ingreso neto mensual ($) *" type="number" value={creditoForm.ingresoNeto} onChange={e => setCreditoForm({...creditoForm, ingresoNeto: e.target.value})} className="w-full p-2.5 rounded-lg bg-white/5 border border-white/20 text-sm" />
                     </div>
-                    <div className="bg-white/5 rounded-xl p-4 border border-white/10">
+                    <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
                       <div className="flex items-center justify-between mb-3">
                         <h3 className="font-bold text-sm">💳 ¿Tenés tarjetas de crédito?</h3>
                         <button onClick={() => setCreditoForm({...creditoForm, tieneTarjetas: !creditoForm.tieneTarjetas})}
@@ -1663,14 +1667,14 @@ export default function FiatApp() {
                 {/* Step 2: Vehículo */}
                 {creditoStep === 2 && (
                   <div className="space-y-3">
-                    <div className="bg-white/5 rounded-xl p-4 border border-white/10 space-y-2">
+                    <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20 space-y-2">
                       <h3 className="font-bold text-sm mb-2">🚗 Vehículo de Interés</h3>
                       <select value={creditoForm.vehiculoInteres} onChange={e => setCreditoForm({...creditoForm, vehiculoInteres: e.target.value})} className="w-full p-2.5 rounded-lg bg-slate-800 border border-white/20 text-sm">
                         <option value="">Seleccioná un modelo *</option>
                         {catalogo.map(v => <option key={v.id} value={v.nombre}>{v.nombre} — {formatPrecio(v.precio)}</option>)}
                       </select>
                     </div>
-                    <div className="bg-white/5 rounded-xl p-4 border border-white/10">
+                    <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
                       <h3 className="font-bold text-sm mb-3">⏰ Urgencia</h3>
                       <div className="grid grid-cols-3 gap-2">
                         {[{id:'alta',label:'🔥 Urgente',desc:'Esta semana'},{id:'normal',label:'📅 Normal',desc:'Este mes'},{id:'baja',label:'🕐 Sin apuro',desc:'Explorando'}].map(u => (
@@ -1682,7 +1686,7 @@ export default function FiatApp() {
                         ))}
                       </div>
                     </div>
-                    <div className="bg-white/5 rounded-xl p-4 border border-white/10">
+                    <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
                       <div className="flex items-center justify-between mb-3">
                         <h3 className="font-bold text-sm">🔄 ¿Entregás un usado?</h3>
                         <button onClick={() => setCreditoForm({...creditoForm, entregaUsado: !creditoForm.entregaUsado})}
@@ -1716,7 +1720,7 @@ export default function FiatApp() {
                 {/* Step 3: Resumen y enviar */}
                 {creditoStep === 3 && (
                   <div className="space-y-3">
-                    <div className="bg-white/5 rounded-xl p-4 border border-white/10">
+                    <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
                       <h3 className="font-bold text-sm mb-3">📋 Resumen de Solicitud</h3>
                       <div className="space-y-2 text-xs">
                         <div className="flex justify-between py-1.5 border-b border-white/10"><span className="text-white/50">Nombre</span><span className="font-medium">{creditoForm.nombre}</span></div>
@@ -1754,7 +1758,7 @@ export default function FiatApp() {
                 { ciudad: 'Ushuaia', icon: '🏔️', sub: 'Fin del Mundo', ventas: 'L. Lugones 1950', service: 'Piedrabuena 256', waVentas: '5492964487924', waService: '5492964465050' },
                 { ciudad: 'Río Grande', icon: '🏭', sub: 'Corazón Industrial', dir: 'San Martín 2599', waVentas: '5492964487924', waService: '5492964465050' }
               ].map(suc => (
-                <div key={suc.ciudad} className="bg-white/5 rounded-xl p-4 border border-white/10">
+                <div key={suc.ciudad} className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
                   <div className="bg-gradient-to-r from-red-600 to-red-700 rounded-lg p-3 text-center mb-3">
                     <span className="text-3xl">{suc.icon}</span>
                     <h3 className="text-xl font-bold">{suc.ciudad}</h3>
@@ -1774,12 +1778,12 @@ export default function FiatApp() {
             </div>
             <h3 className="text-lg font-bold mt-6 mb-3">📞 Otros Contactos</h3>
             <div className="space-y-2">
-              <a href="https://wa.me/5492964465270" className="flex items-center gap-3 bg-white/5 rounded-xl p-4 border border-white/10 active:scale-[0.98] transition-all">
+              <a href="https://wa.me/5492964465270" className="flex items-center gap-3 bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20 active:scale-[0.98] transition-all">
                 <div className="w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 flex items-center justify-center text-xl">📋</div>
                 <div className="flex-1"><h4 className="font-bold text-sm">FIAT Plan - Administración</h4><p className="text-xs text-white/60">Consultas sobre tu plan de ahorro</p></div>
                 <span className="text-green-500 text-xl">💬</span>
               </a>
-              <a href="https://wa.me/5492964609082" className="flex items-center gap-3 bg-white/5 rounded-xl p-4 border border-white/10 active:scale-[0.98] transition-all">
+              <a href="https://wa.me/5492964609082" className="flex items-center gap-3 bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20 active:scale-[0.98] transition-all">
                 <div className="w-12 h-12 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 flex items-center justify-center text-xl">🔩</div>
                 <div className="flex-1"><h4 className="font-bold text-sm">Repuestos</h4><p className="text-xs text-white/60">Consultas y pedidos de repuestos</p></div>
                 <span className="text-green-500 text-xl">💬</span>
@@ -1808,7 +1812,7 @@ export default function FiatApp() {
               <p className="text-[10px] text-white/50">Última actualización: Abril 2026</p>
             </div>
 
-            <div className="bg-white/5 rounded-xl p-4 border border-white/10 space-y-3">
+            <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20 space-y-3">
               <h3 className="font-bold text-sm text-red-400">1. Información sobre precios</h3>
               <p className="text-xs text-white/80 leading-relaxed">
                 Los precios publicados en esta aplicación corresponden a la <strong>Lista de Precios FIAT N°04/2026</strong> con vigencia desde el 1° de abril de 2026, para la jurisdicción de la Provincia de Tierra del Fuego, Antártida e Islas del Atlántico Sur.
@@ -1818,21 +1822,21 @@ export default function FiatApp() {
               </p>
             </div>
 
-            <div className="bg-white/5 rounded-xl p-4 border border-white/10 space-y-3">
+            <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20 space-y-3">
               <h3 className="font-bold text-sm text-red-400">2. Naturaleza no vinculante</h3>
               <p className="text-xs text-white/80 leading-relaxed">
                 La información publicada en esta aplicación tiene <strong>carácter meramente informativo</strong> y no constituye oferta vinculante en los términos del <strong>Art. 7° de la Ley N° 24.240 de Defensa del Consumidor</strong>. La aceptación de cualquier operación queda sujeta a la verificación de stock, evaluación crediticia (cuando corresponda) y confirmación expresa por escrito por parte de Liendo Automotores S.A.C. (LASAC).
               </p>
             </div>
 
-            <div className="bg-white/5 rounded-xl p-4 border border-white/10 space-y-3">
+            <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20 space-y-3">
               <h3 className="font-bold text-sm text-red-400">3. Stock y disponibilidad</h3>
               <p className="text-xs text-white/80 leading-relaxed">
                 Las unidades publicadas en la sección <strong>Oportunidades</strong> están sujetas a disponibilidad de stock y se ofrecen <strong>hasta agotar existencias</strong>. El stock se actualiza periódicamente pero puede no reflejar la existencia real al momento de la consulta. La reserva de una unidad solo se considera efectiva con la firma del boleto de compraventa correspondiente y el pago de la seña.
               </p>
             </div>
 
-            <div className="bg-white/5 rounded-xl p-4 border border-white/10 space-y-3">
+            <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20 space-y-3">
               <h3 className="font-bold text-sm text-red-400">4. Plan de Ahorro FIAT</h3>
               <p className="text-xs text-white/80 leading-relaxed">
                 El Plan de Ahorro FIAT es un sistema de ahorro previo administrado por <strong>FCA Compañía Financiera S.A.</strong> bajo la modalidad de Círculo Cerrado autorizada por la Inspección General de Justicia (IGJ). Las cuotas, valor móvil, gastos administrativos, sellados, derecho de suscripción y derecho de adjudicación están sujetos a actualización mensual conforme las variaciones del valor móvil del vehículo y normativas vigentes.
@@ -1842,49 +1846,49 @@ export default function FiatApp() {
               </p>
             </div>
 
-            <div className="bg-white/5 rounded-xl p-4 border border-white/10 space-y-3">
+            <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20 space-y-3">
               <h3 className="font-bold text-sm text-red-400">5. Solicitud de crédito</h3>
               <p className="text-xs text-white/80 leading-relaxed">
                 La solicitud de crédito automotor enviada a través de esta aplicación constituye una <strong>preselección</strong> y está sujeta a la evaluación crediticia y aprobación final por parte de la entidad financiera correspondiente. El envío del formulario no implica la aprobación automática del crédito ni compromete a Liendo Automotores S.A.C. a otorgar la financiación solicitada.
               </p>
             </div>
 
-            <div className="bg-white/5 rounded-xl p-4 border border-white/10 space-y-3">
+            <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20 space-y-3">
               <h3 className="font-bold text-sm text-red-400">6. Protección de datos personales</h3>
               <p className="text-xs text-white/80 leading-relaxed">
                 Los datos personales suministrados a través de esta aplicación serán tratados conforme a la <strong>Ley N° 25.326 de Protección de Datos Personales</strong>. Los datos serán utilizados exclusivamente para gestionar consultas, solicitudes de crédito, turnos de service y comunicaciones comerciales relacionadas con productos y servicios de Liendo Automotores S.A.C. El titular de los datos podrá ejercer en cualquier momento los derechos de acceso, rectificación y supresión previstos en la mencionada ley.
               </p>
             </div>
 
-            <div className="bg-white/5 rounded-xl p-4 border border-white/10 space-y-3">
+            <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20 space-y-3">
               <h3 className="font-bold text-sm text-red-400">7. Atención de siniestros</h3>
               <p className="text-xs text-white/80 leading-relaxed">
                 La gestión de siniestros se realiza en coordinación con la compañía aseguradora del cliente. Los tiempos de gestión, autorización de presupuestos, provisión de repuestos y reparación dependen de las condiciones particulares de cada póliza y de la respuesta de la aseguradora. LASAC actúa como prestador de servicios técnicos y no es responsable por demoras imputables a la compañía de seguros.
               </p>
             </div>
 
-            <div className="bg-white/5 rounded-xl p-4 border border-white/10 space-y-3">
+            <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20 space-y-3">
               <h3 className="font-bold text-sm text-red-400">8. Limitación de responsabilidad</h3>
               <p className="text-xs text-white/80 leading-relaxed">
                 Liendo Automotores S.A.C. realiza sus mejores esfuerzos para mantener actualizada la información publicada en esta aplicación, pero <strong>no garantiza la exactitud, completitud ni vigencia</strong> permanente de los datos. En caso de discrepancia entre la información publicada en la aplicación y la información oficial brindada por la Terminal o Compañía Financiera, prevalecerá esta última. LASAC no será responsable por daños o perjuicios derivados del uso o interpretación errónea de la información publicada.
               </p>
             </div>
 
-            <div className="bg-white/5 rounded-xl p-4 border border-white/10 space-y-3">
+            <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20 space-y-3">
               <h3 className="font-bold text-sm text-red-400">9. Modificaciones</h3>
               <p className="text-xs text-white/80 leading-relaxed">
                 Liendo Automotores S.A.C. se reserva el derecho de modificar los presentes Términos y Condiciones en cualquier momento, así como la información, productos, servicios y precios publicados, sin necesidad de notificación previa. Las modificaciones serán efectivas desde su publicación en la aplicación.
               </p>
             </div>
 
-            <div className="bg-white/5 rounded-xl p-4 border border-white/10 space-y-3">
+            <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20 space-y-3">
               <h3 className="font-bold text-sm text-red-400">10. Jurisdicción</h3>
               <p className="text-xs text-white/80 leading-relaxed">
                 Para toda controversia que pudiera derivarse del uso de esta aplicación o de las operaciones comerciales con Liendo Automotores S.A.C., serán competentes los <strong>Tribunales Ordinarios de la Ciudad de Ushuaia, Provincia de Tierra del Fuego</strong>, con renuncia expresa a cualquier otro fuero o jurisdicción que pudiera corresponder.
               </p>
             </div>
 
-            <div className="bg-white/5 rounded-xl p-4 border border-white/10 text-center space-y-2">
+            <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20 text-center space-y-2">
               <p className="text-xs font-bold">LIENDO AUTOMOTORES SOCIEDAD ANÓNIMA C.</p>
               <p className="text-[10px] text-white/60">Concesionario Oficial FIAT</p>
               <p className="text-[10px] text-white/60">Tierra del Fuego, Antártida e Islas del Atlántico Sur</p>

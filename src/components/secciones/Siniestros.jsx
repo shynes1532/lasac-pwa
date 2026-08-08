@@ -32,7 +32,7 @@ export default function Siniestros({ marca }) {
           <p className="text-sm">⚠️ <strong>Importante:</strong> Completá todos los datos para agilizar la gestión de tu siniestro.</p>
         </div>
 
-        <div className="bg-white/5 rounded-xl p-4 border border-white/10">
+        <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
           <h3 className="font-bold text-sm mb-3">👤 Datos del Titular</h3>
           <div className="space-y-2">
             <input placeholder="Nombre completo *" value={f.nombre} onChange={(e) => set('nombre', e.target.value)} className={inputCls} />
@@ -42,7 +42,7 @@ export default function Siniestros({ marca }) {
           </div>
         </div>
 
-        <div className="bg-white/5 rounded-xl p-4 border border-white/10">
+        <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
           <h3 className="font-bold text-sm mb-3">🚗 Datos del Vehículo</h3>
           <div className="grid grid-cols-2 gap-2">
             <select value={f.marcaVeh} onChange={(e) => set('marcaVeh', e.target.value)} className="p-2.5 rounded-lg bg-slate-800 border border-white/20 text-sm">
@@ -57,7 +57,7 @@ export default function Siniestros({ marca }) {
           </div>
         </div>
 
-        <div className="bg-white/5 rounded-xl p-4 border border-white/10">
+        <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
           <h3 className="font-bold text-sm mb-3">🏢 Datos de la Aseguradora</h3>
           <div className="space-y-2">
             <select value={f.aseguradora} onChange={(e) => set('aseguradora', e.target.value)} className={selectCls}>
@@ -69,7 +69,7 @@ export default function Siniestros({ marca }) {
           </div>
         </div>
 
-        <div className="bg-white/5 rounded-xl p-4 border border-white/10">
+        <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
           <h3 className="font-bold text-sm mb-3">📋 Datos del Siniestro</h3>
           <div className="space-y-2">
             <input placeholder="Fecha del siniestro *" type="date" value={f.fecha} onChange={(e) => set('fecha', e.target.value)} className={selectCls} />
@@ -81,14 +81,14 @@ export default function Siniestros({ marca }) {
           </div>
         </div>
 
-        <div className="bg-white/5 rounded-xl p-4 border border-white/10">
+        <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
           <h3 className="font-bold text-sm mb-3">📍 Sucursal de Atención</h3>
           <div className="grid grid-cols-2 gap-2">
             {sucursales.map((s) => (
               <button key={s.ciudad} type="button" onClick={() => set('sucursal', s.ciudad)}
-                className={`p-3 rounded-lg text-left border border-white/10 ${f.sucursal === s.ciudad ? 'bg-brand' : 'bg-white/5'}`}>
+                className={`p-3 rounded-xl text-left border transition-all duration-200 active:scale-95 ${f.sucursal === s.ciudad ? 'bg-brand text-on-brand border-transparent shadow-md shadow-black/20' : 'bg-white/5 border-white/10 hover:bg-white/[0.09]'}`}>
                 <div className="font-bold text-sm">{s.ciudad}</div>
-                <div className="text-[10px] text-white/60">{s.service || s.dir || ''}</div>
+                <div className="text-[10px] opacity-70">{s.service || s.dir || ''}</div>
               </button>
             ))}
           </div>
@@ -99,9 +99,9 @@ export default function Siniestros({ marca }) {
           📱 Enviar Solicitud por WhatsApp
         </button>
 
-        <div className="bg-white/5 rounded-xl p-4 border border-white/10 text-center">
+        <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20 text-center">
           <p className="text-xs text-white/60 mb-2">¿Necesitás ayuda urgente?</p>
-          <a href={`tel:+${marca.contacto.whatsapp.ventas}`} className="inline-block px-4 py-2 bg-green-600 rounded-full text-sm font-bold">📞 Llamar ahora</a>
+          <a href={`tel:+${marca.contacto.whatsapp.ventas}`} className="inline-block px-4 py-2 bg-green-600 hover:bg-green-500 rounded-full text-sm font-bold shadow-md shadow-black/20 transition-all active:scale-95">📞 Llamar ahora</a>
         </div>
       </div>
     </div>
