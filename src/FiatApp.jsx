@@ -268,6 +268,7 @@ const stockOportunidad = [
 
 // ========== NOVEDADES ==========
 const novedades = [
+  { id: 9, fecha: '08 Ago 2026', titulo: '🎉 Ahora somos Grupo LASAC', descripcion: 'Crecimos para estar más cerca tuyo. LASAC ahora es Grupo LASAC: una sola gran familia que reúne a FIAT, JAC Motors, Forthing y Dongfeng bajo un mismo techo. Más marcas, más modelos y la misma atención de siempre en Ushuaia y Río Grande. ¡Bienvenido a Grupo LASAC! 🇦🇷', imagen: 'grupo-lasac', destacado: true },
   { id: 1, fecha: '01 Ago 2026', titulo: '📋 Nueva Sobrepauta Agosto 2026', descripcion: 'Actualizamos el FIAT Plan con la sobrepauta comercial de Agosto 2026. Nuevo Cronos Drive Plus 90/10, Argo, Pulse, Fastback, Titano y más. Consultá el simulador de cuotas.', imagen: 'cronos', destacado: true },
   { id: 2, fecha: '04 Mar 2026', titulo: '💳 Nuevo: Solicitud de Crédito Online', descripcion: 'Ahora podés solicitar tu crédito automotor directamente desde la app. Completá el formulario y te contactamos en 24hs.', imagen: 'pulse', destacado: true },
   { id: 3, fecha: '01 Mar 2026', titulo: '🚀 Nuevo Fiat 600 Hybrid disponible', descripcion: 'Llegó el nuevo Fiat 600 con tecnología híbrida. Motor 1.2 de 145 CV. Disponible para ahorristas de Pulse y Fastback.', imagen: 'fiat600', destacado: false },

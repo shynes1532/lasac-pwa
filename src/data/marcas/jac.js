@@ -27,6 +27,7 @@ const catalogo = [
 const stockOportunidad = [];
 
 const novedades = [
+  { id: 9, fecha: '08 Ago 2026', titulo: '🎉 Ahora somos Grupo LASAC', descripcion: 'Crecimos para estar más cerca tuyo. LASAC ahora es Grupo LASAC: una sola gran familia que reúne a FIAT, JAC Motors, Forthing y Dongfeng bajo un mismo techo. Más marcas, más modelos y la misma atención de siempre en Ushuaia y Río Grande. ¡Bienvenido a Grupo LASAC! 🇦🇷', imagen: 'grupo-lasac', destacado: true },
   { id: 1, fecha: '2026', titulo: '🚀 JAC Motors en el Grupo LASAC', descripcion: 'Toda la gama JAC en Tierra del Fuego: SUVs, pickups, híbridos y eléctricos. Consultá disponibilidad y financiación.', imagen: 'js6', destacado: true },
 ];
 
