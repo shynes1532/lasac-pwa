@@ -44,6 +44,7 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 /* Ocultar scrollbars pero mantener funcionalidad */
@@ -70,7 +71,39 @@ body {
 
 .card-hover:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 14px 30px -10px rgba(0, 0, 0, 0.5);
+}
+
+/* ============================================================
+   Pulido visual (guía saas-ui-polish): tipografía fina, foco,
+   scrollbars discretos y selección con color de marca.
+   ============================================================ */
+@layer base {
+  h1, h2, h3, h4 { letter-spacing: -0.02em; }
+}
+
+::selection {
+  background-color: color-mix(in srgb, var(--brand) 40%, transparent);
+  color: #fff;
+}
+
+/* Scrollbars finos y discretos */
+* { scrollbar-width: thin; scrollbar-color: rgba(255, 255, 255, 0.16) transparent; }
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background-color: rgba(255, 255, 255, 0.14); border-radius: 9999px; }
+::-webkit-scrollbar-thumb:hover { background-color: rgba(255, 255, 255, 0.24); }
+
+/* Foco visible premium (solo teclado, accesible) */
+:where(button, a, [role="button"], [tabindex]):focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--brand) 75%, #fff 5%);
+  outline-offset: 2px;
+  border-radius: 0.6rem;
+}
+:where(input, select, textarea):focus-visible {
+  outline: none;
+  border-color: var(--brand);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--brand) 22%, transparent);
 }
 
 /* Safe area para dispositivos con notch */

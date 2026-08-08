@@ -759,7 +759,7 @@ export default function FiatApp() {
         {seccion === 'catalogo' && (
           <div>
             <h2 className="text-xl font-bold mb-1">🚗 Catálogo</h2>
-            <p className="text-white/60 text-xs mb-2">Precios Tierra del Fuego - Abril 2026</p>
+            <p className="text-white/60 text-xs mb-2">Precios Tierra del Fuego · Lista N°08/2026 (Agosto)</p>
             <div className="bg-amber-500/10 border border-amber-500/30 rounded-lg p-2 mb-3">
               <p className="text-[10px] text-amber-200 leading-tight">
                 ⚠️ Precios orientativos sujetos a modificación sin previo aviso. La cotización final se confirma al momento de la operación. No constituye oferta vinculante.{' '}
@@ -768,22 +768,25 @@ export default function FiatApp() {
             </div>
             <div className="flex gap-2 mb-4 overflow-x-auto pb-2 -mx-3 px-3">
               {['todos', 'autos', 'suv', 'pickups', 'utilitarios'].map(cat => (
-                <button key={cat} onClick={() => setFiltro(cat)} className={`px-3 py-1.5 rounded-full text-xs capitalize whitespace-nowrap ${filtro === cat ? 'bg-red-600' : 'bg-white/10'}`}>{cat}</button>
+                <button key={cat} onClick={() => setFiltro(cat)} className={`px-3.5 py-1.5 rounded-full text-xs capitalize whitespace-nowrap transition-all duration-200 ${filtro === cat ? 'bg-red-600 text-white font-semibold shadow-md' : 'bg-white/10 text-white/70 hover:bg-white/[0.16]'}`}>{cat}</button>
               ))}
             </div>
             <div className="space-y-3">
               {vehiculos.map(v => (
-                <div key={v.id} className="bg-white/5 rounded-xl overflow-hidden border border-white/10">
-                  <AutoImagen modelo={v.modelo} className="w-full h-36" alt={v.nombre} contain />
-                  <div className="p-3">
+                <div key={v.id} className="bg-white/[0.06] rounded-2xl overflow-hidden border border-white/10 shadow-lg shadow-black/20 transition-all duration-200 hover:border-white/20 hover:-translate-y-0.5">
+                  <AutoImagen modelo={v.modelo} className="w-full h-40" alt={v.nombre} contain />
+                  <div className="p-3.5">
                     <h3 className="font-bold text-sm truncate">{v.nombre}</h3>
-                    <div className="flex gap-1 my-1.5 flex-wrap">
-                      <span className="bg-blue-500/30 px-1.5 py-0.5 rounded text-[10px]">{v.motor}</span>
-                      <span className="bg-green-500/30 px-1.5 py-0.5 rounded text-[10px]">{v.potencia}</span>
+                    <div className="flex gap-1.5 my-1.5 flex-wrap">
+                      <span className="bg-blue-500/25 text-blue-200 px-2 py-0.5 rounded-md text-[10px] font-medium">{v.motor}</span>
+                      <span className="bg-emerald-500/25 text-emerald-200 px-2 py-0.5 rounded-md text-[10px] font-medium">{v.potencia}</span>
                     </div>
-                    <div className="flex justify-between items-center">
-                      <p className="text-lg font-bold text-green-400">{formatPrecio(v.precio)}</p>
-                      <button onClick={() => consultarVehiculo(v)} className="px-4 py-2 bg-red-600 rounded-lg text-xs font-bold">💬 Consultar</button>
+                    <div className="flex justify-between items-end mt-2">
+                      <div className="min-w-0">
+                        <p className="text-[10px] text-white/40 leading-none mb-1">Precio</p>
+                        <p className="text-xl font-extrabold text-green-400 tabular-nums tracking-tight leading-none">{formatPrecio(v.precio)}</p>
+                      </div>
+                      <button onClick={() => consultarVehiculo(v)} className="shrink-0 px-4 py-2 bg-red-600 text-white rounded-lg text-xs font-bold shadow-md shadow-black/20 active:scale-95 transition-transform">💬 Consultar</button>
                     </div>
                   </div>
                 </div>
@@ -816,18 +819,21 @@ export default function FiatApp() {
 
             <div className="space-y-3">
               {stockOportunidad.map((item, i) => (
-                <div key={i} className="bg-white/5 rounded-xl overflow-hidden border border-white/10 relative">
-                  <span className="absolute top-2 right-2 bg-red-600 px-2 py-1 rounded text-xs font-bold z-10">x{item.stock} unidades</span>
-                  <AutoImagen modelo={item.modelo} className="w-full h-36" contain />
+                <div key={i} className="bg-white/[0.06] rounded-2xl overflow-hidden border border-white/10 shadow-lg shadow-black/20 relative transition-all duration-200 hover:border-white/20 hover:-translate-y-0.5">
+                  <span className="absolute top-2 right-2 bg-red-600 px-2 py-1 rounded-md text-xs font-bold z-10 shadow-md shadow-black/30">x{item.stock} unidades</span>
+                  <AutoImagen modelo={item.modelo} className="w-full h-40" contain />
                   <div className="p-3">
                     <div className="flex items-start justify-between mb-1">
                       <h3 className="font-bold text-sm flex-1">{item.nombre}</h3>
                       <Countdown deadline={getFinDeMes()} compact />
                     </div>
                     <p className="text-xs text-white/60 mb-2">🎨 {item.color}</p>
-                    <div className="flex justify-between items-center">
-                      <p className="text-lg font-bold text-green-400">{formatPrecio(item.precioFinal)}</p>
-                      <button onClick={() => consultarVehiculo(item)} className="px-4 py-2 bg-green-600 rounded-lg text-xs font-bold">⚡ Consultar</button>
+                    <div className="flex justify-between items-end mt-1">
+                      <div className="min-w-0">
+                        <p className="text-[10px] text-white/40 leading-none mb-1">Precio final</p>
+                        <p className="text-xl font-extrabold text-green-400 tabular-nums tracking-tight leading-none">{formatPrecio(item.precioFinal)}</p>
+                      </div>
+                      <button onClick={() => consultarVehiculo(item)} className="shrink-0 px-4 py-2 bg-green-600 text-white rounded-lg text-xs font-bold shadow-md shadow-black/20 active:scale-95 transition-transform">⚡ Consultar</button>
                     </div>
                   </div>
                 </div>
@@ -1906,9 +1912,9 @@ export default function FiatApp() {
             { id: 'turnos', icon: '🔧', label: 'Service' },
             { id: 'contacto', icon: '📍', label: 'Contacto' },
           ].map(item => (
-            <button key={item.id} onClick={() => setSeccion(item.id)} className={`flex flex-col items-center py-1 px-2 rounded-lg ${seccion === item.id ? 'text-red-500' : 'text-white/60'}`}>
-              <span className="text-lg">{item.icon}</span>
-              <span className="text-[9px] mt-0.5">{item.label}</span>
+            <button key={item.id} onClick={() => setSeccion(item.id)} className={`flex flex-col items-center py-1.5 px-3 rounded-xl transition-all duration-200 ${seccion === item.id ? 'text-red-500 bg-red-500/15' : 'text-white/55 hover:text-white/85 active:scale-95'}`}>
+              <span className={`text-lg transition-transform duration-200 ${seccion === item.id ? 'scale-110' : ''}`}>{item.icon}</span>
+              <span className={`text-[9px] mt-0.5 ${seccion === item.id ? 'font-semibold' : ''}`}>{item.label}</span>
             </button>
           ))}
         </div>
