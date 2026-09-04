@@ -210,37 +210,38 @@ const planesDetalle = [
 ];
 
 // ========== CATÁLOGO VEHÍCULOS ==========
-// Lista FIAT N°08/2026 — Vigencia 1° de Agosto 2026 (precio público sugerido c/IVA)
+// Lista FIAT N°08/2026 — precio = PRECIO FINAL Tierra del Fuego según planilla LASAC_Precios (sep 2026):
+// público neto de IVA − 14% + 10% de margen + flete $241.000 + patentamiento + administrativos.
+// precioPublico = precio público sugerido c/IVA (referencia). Cronos en versiones MY27; Strada Ranch T200 discontinuada.
 const catalogo = [
-  { id: 1, categoria: 'autos', modelo: 'mobi', nombre: 'Mobi Trekking 1.0', precio: 30210000, motor: '1.0 8V', potencia: '75 CV', caja: 'Manual 5V' },
-  { id: 2, categoria: 'autos', modelo: 'argo', nombre: 'Argo Drive 1.3L MT', precio: 33040000, motor: '1.3 Firefly', potencia: '99 CV', caja: 'Manual 5V' },
-  { id: 3, categoria: 'autos', modelo: 'argo', nombre: 'Argo Drive 1.3L CVT', precio: 35140000, motor: '1.3 Firefly', potencia: '99 CV', caja: 'CVT' },
-  { id: 4, categoria: 'autos', modelo: 'cronos', nombre: 'Cronos Like 1.3 GSE', precio: 34010000, motor: '1.3 GSE', potencia: '99 CV', caja: 'Manual 5V' },
-  { id: 5, categoria: 'autos', modelo: 'cronos', nombre: 'Cronos Drive 1.3 MT Pack Plus', precio: 36380000, motor: '1.3 GSE', potencia: '99 CV', caja: 'Manual 5V' },
-  { id: 6, categoria: 'autos', modelo: 'cronos', nombre: 'Cronos Drive 1.3 CVT Pack Plus', precio: 41540000, motor: '1.3 GSE', potencia: '99 CV', caja: 'CVT' },
-  { id: 7, categoria: 'autos', modelo: 'cronos', nombre: 'Cronos Precision 1.3 CVT', precio: 42170000, motor: '1.3 GSE', potencia: '99 CV', caja: 'CVT' },
-  { id: 8, categoria: 'suv', modelo: 'pulse', nombre: 'Pulse Drive 1.3 MT5', precio: 40920000, motor: '1.3 Firefly', potencia: '99 CV', caja: 'Manual 5V' },
-  { id: 9, categoria: 'suv', modelo: 'pulse', nombre: 'Pulse Drive 1.3 CVT', precio: 41500000, motor: '1.3 Firefly', potencia: '99 CV', caja: 'CVT' },
-  { id: 10, categoria: 'suv', modelo: 'pulse', nombre: 'Pulse Audace 1.0T CVT', precio: 44390000, motor: '1.0 Turbo', potencia: '130 CV', caja: 'CVT' },
-  { id: 11, categoria: 'suv', modelo: 'pulse', nombre: 'Pulse Impetus 1.0T CVT', precio: 45930000, motor: '1.0 Turbo', potencia: '130 CV', caja: 'CVT' },
-  { id: 12, categoria: 'suv', modelo: 'pulse', nombre: 'Pulse Abarth Turbo 270 AT6', precio: 48170000, motor: '1.3 Turbo', potencia: '185 CV', caja: 'AT6' },
-  { id: 13, categoria: 'suv', modelo: 'fastback', nombre: 'Fastback Turbo 270 AT', precio: 50540000, motor: '1.3 Turbo', potencia: '185 CV', caja: 'AT6' },
-  { id: 14, categoria: 'suv', modelo: 'fastback', nombre: 'Fastback Abarth Turbo 270 AT6', precio: 53490000, motor: '1.3 Turbo', potencia: '185 CV', caja: 'AT6' },
-  { id: 15, categoria: 'suv', modelo: 'fiat600', nombre: 'Fiat 600 Hybrid 1.2 eDCT', precio: 49340000, motor: '1.2 Hybrid', potencia: '145 CV', caja: 'eDCT' },
-  { id: 16, categoria: 'utilitarios', modelo: 'fiorino', nombre: 'Fiorino Endurance 1.3 Firefly', precio: 32210000, motor: '1.3 Firefly', potencia: '99 CV', caja: 'Manual 5V' },
-  { id: 17, categoria: 'pickups', modelo: 'strada', nombre: 'Strada Freedom C/S 1.3 MT', precio: 35570000, motor: '1.3 8V', potencia: '99 CV', caja: 'Manual 5V' },
-  { id: 18, categoria: 'pickups', modelo: 'strada', nombre: 'Strada Freedom 1.3 8V CD', precio: 41220000, motor: '1.3 8V', potencia: '99 CV', caja: 'Manual 5V' },
-  { id: 19, categoria: 'pickups', modelo: 'strada', nombre: 'Strada Volcano 1.3 8V CD CVT', precio: 45320000, motor: '1.3 8V', potencia: '99 CV', caja: 'CVT' },
-  { id: 20, categoria: 'pickups', modelo: 'strada', nombre: 'Strada Ranch T200 CD CVT', precio: 49000000, motor: '1.0 Turbo', potencia: '130 CV', caja: 'CVT' },
-  { id: 21, categoria: 'pickups', modelo: 'strada', nombre: 'Strada Ultra T200 CD CVT', precio: 49140000, motor: '1.0 Turbo', potencia: '130 CV', caja: 'CVT' },
-  { id: 22, categoria: 'pickups', modelo: 'toro', nombre: 'Toro Freedom 1.3T AT6 4X2', precio: 51910000, motor: '1.3 Turbo', potencia: '185 CV', caja: 'AT6' },
-  { id: 23, categoria: 'pickups', modelo: 'toro', nombre: 'Toro Volcano 1.3T AT6 4X2', precio: 57110000, motor: '1.3 Turbo', potencia: '185 CV', caja: 'AT6' },
-  { id: 24, categoria: 'pickups', modelo: 'toro', nombre: 'Toro Volcano 2.2TD AT9 4X4', precio: 61550000, motor: '2.2 Diesel', potencia: '200 CV', caja: 'AT9' },
-  { id: 25, categoria: 'pickups', modelo: 'titano', nombre: 'Titano Endurance MT 4X2', precio: 52270000, motor: '2.2 Diesel', potencia: '200 CV', caja: 'Manual 6V' },
-  { id: 26, categoria: 'pickups', modelo: 'titano', nombre: 'Titano Endurance MT 4X4', precio: 55320000, motor: '2.2 Diesel', potencia: '200 CV', caja: 'Manual 6V' },
-  { id: 27, categoria: 'pickups', modelo: 'titano', nombre: 'Titano Freedom MT 4X4', precio: 60920000, motor: '2.2 Diesel', potencia: '200 CV', caja: 'Manual 6V' },
-  { id: 28, categoria: 'pickups', modelo: 'titano', nombre: 'Titano Freedom Plus AT 4X4', precio: 66890000, motor: '2.2 Diesel', potencia: '200 CV', caja: 'AT8' },
-  { id: 29, categoria: 'pickups', modelo: 'titano', nombre: 'Titano Ranch AT 4X4', precio: 72220000, motor: '2.2 Diesel', potencia: '200 CV', caja: 'AT8' },
+  { id: 1, categoria: 'autos', modelo: 'mobi', nombre: 'Mobi Trekking 1.0', precio: 27718727, precioPublico: 30210000, motor: '1.0 8V', potencia: '75 CV', caja: 'Manual 5V' },
+  { id: 2, categoria: 'autos', modelo: 'argo', nombre: 'Argo Drive 1.3L MT', precio: 30331273, precioPublico: 33040000, motor: '1.3 Firefly', potencia: '99 CV', caja: 'Manual 5V' },
+  { id: 3, categoria: 'autos', modelo: 'argo', nombre: 'Argo Drive 1.3L CVT', precio: 32173091, precioPublico: 35140000, motor: '1.3 Firefly', potencia: '99 CV', caja: 'CVT' },
+  { id: 4, categoria: 'autos', modelo: 'cronos', nombre: 'Cronos Like 1.3 MT', precio: 31186636, precioPublico: 34010000, motor: '1.3 GSE', potencia: '99 CV', caja: 'Manual 5V' },
+  { id: 5, categoria: 'autos', modelo: 'cronos', nombre: 'Cronos Drive Plus 1.3 MT', precio: 33342545, precioPublico: 36380000, motor: '1.3 GSE', potencia: '99 CV', caja: 'Manual 5V' },
+  { id: 6, categoria: 'autos', modelo: 'cronos', nombre: 'Cronos Drive 1.3 CVT', precio: 38037727, precioPublico: 41540000, motor: '1.3 GSE', potencia: '99 CV', caja: 'CVT' },
+  { id: 7, categoria: 'autos', modelo: 'cronos', nombre: 'Cronos Precision 1.3 CVT', precio: 38610273, precioPublico: 42170000, motor: '1.3 GSE', potencia: '99 CV', caja: 'CVT' },
+  { id: 8, categoria: 'suv', modelo: 'pulse', nombre: 'Pulse Drive 1.3 MT5', precio: 37473000, precioPublico: 40920000, motor: '1.3 Firefly', potencia: '99 CV', caja: 'Manual 5V' },
+  { id: 9, categoria: 'suv', modelo: 'pulse', nombre: 'Pulse Drive 1.3 CVT', precio: 38000455, precioPublico: 41500000, motor: '1.3 Firefly', potencia: '99 CV', caja: 'CVT' },
+  { id: 10, categoria: 'suv', modelo: 'pulse', nombre: 'Pulse Audace 1.0T CVT', precio: 40396909, precioPublico: 44390000, motor: '1.0 Turbo', potencia: '130 CV', caja: 'CVT' },
+  { id: 11, categoria: 'suv', modelo: 'pulse', nombre: 'Pulse Impetus 1.0T CVT', precio: 41789909, precioPublico: 45930000, motor: '1.0 Turbo', potencia: '130 CV', caja: 'CVT' },
+  { id: 12, categoria: 'suv', modelo: 'pulse', nombre: 'Pulse Abarth Turbo 270 AT6', precio: 43816182, precioPublico: 48170000, motor: '1.3 Turbo', potencia: '185 CV', caja: 'AT6' },
+  { id: 13, categoria: 'suv', modelo: 'fastback', nombre: 'Fastback Turbo 270 AT', precio: 46313091, precioPublico: 50540000, motor: '1.3 Turbo', potencia: '185 CV', caja: 'AT6' },
+  { id: 14, categoria: 'suv', modelo: 'fastback', nombre: 'Fastback Abarth Turbo 270 AT6', precio: 48519455, precioPublico: 53490000, motor: '1.3 Turbo', potencia: '185 CV', caja: 'AT6' },
+  { id: 15, categoria: 'suv', modelo: 'fiat600', nombre: 'Fiat 600 Hybrid 1.2 eDCT', precio: 44874909, precioPublico: 49340000, motor: '1.2 Hybrid', potencia: '145 CV', caja: 'eDCT' },
+  { id: 16, categoria: 'utilitarios', modelo: 'fiorino', nombre: 'Fiorino Endurance 1.3 Firefly', precio: 30082364, precioPublico: 32210000, motor: '1.3 Firefly', potencia: '99 CV', caja: 'Manual 5V' },
+  { id: 17, categoria: 'pickups', modelo: 'strada', nombre: 'Strada Freedom C/S 1.3 MT', precio: 32648273, precioPublico: 35570000, motor: '1.3 8V', potencia: '99 CV', caja: 'Manual 5V' },
+  { id: 18, categoria: 'pickups', modelo: 'strada', nombre: 'Strada Freedom 1.3 8V CD', precio: 37796545, precioPublico: 41220000, motor: '1.3 8V', potencia: '99 CV', caja: 'Manual 5V' },
+  { id: 19, categoria: 'pickups', modelo: 'strada', nombre: 'Strada Volcano 1.3 8V CD CVT', precio: 41532000, precioPublico: 45320000, motor: '1.3 8V', potencia: '99 CV', caja: 'CVT' },
+  { id: 21, categoria: 'pickups', modelo: 'strada', nombre: 'Strada Ultra T200 CD CVT', precio: 45018545, precioPublico: 49140000, motor: '1.0 Turbo', potencia: '130 CV', caja: 'CVT' },
+  { id: 22, categoria: 'pickups', modelo: 'toro', nombre: 'Toro Freedom 1.3T AT6 4X2', precio: 47484182, precioPublico: 51910000, motor: '1.3 Turbo', potencia: '185 CV', caja: 'AT6' },
+  { id: 23, categoria: 'pickups', modelo: 'toro', nombre: 'Toro Volcano 1.3T AT6 4X2', precio: 51549636, precioPublico: 57110000, motor: '1.3 Turbo', potencia: '185 CV', caja: 'AT6' },
+  { id: 24, categoria: 'pickups', modelo: 'toro', nombre: 'Toro Volcano 2.2TD AT9 4X4', precio: 55420909, precioPublico: 61550000, motor: '2.2 Diesel', potencia: '200 CV', caja: 'AT9' },
+  { id: 25, categoria: 'pickups', modelo: 'titano', nombre: 'Titano Endurance MT 4X2', precio: 47686636, precioPublico: 52270000, motor: '2.2 Diesel', potencia: '200 CV', caja: 'Manual 6V' },
+  { id: 26, categoria: 'pickups', modelo: 'titano', nombre: 'Titano Endurance MT 4X4', precio: 50455182, precioPublico: 55320000, motor: '2.2 Diesel', potencia: '200 CV', caja: 'Manual 6V' },
+  { id: 27, categoria: 'pickups', modelo: 'titano', nombre: 'Titano Freedom MT 4X4', precio: 55538364, precioPublico: 60920000, motor: '2.2 Diesel', potencia: '200 CV', caja: 'Manual 6V' },
+  { id: 28, categoria: 'pickups', modelo: 'titano', nombre: 'Titano Freedom Plus AT 4X4', precio: 60695818, precioPublico: 66890000, motor: '2.2 Diesel', potencia: '200 CV', caja: 'AT8' },
+  { id: 29, categoria: 'pickups', modelo: 'titano', nombre: 'Titano Ranch AT 4X4', precio: 65162909, precioPublico: 72220000, motor: '2.2 Diesel', potencia: '200 CV', caja: 'AT8' },
 ];
 
 // ========== STOCK OPORTUNIDAD ==========
@@ -760,10 +761,10 @@ export default function FiatApp() {
         {seccion === 'catalogo' && (
           <div>
             <h2 className="text-xl font-bold mb-1">🚗 Catálogo</h2>
-            <p className="text-white/60 text-xs mb-2">Precios Tierra del Fuego · Lista N°08/2026 (Agosto)</p>
+            <p className="text-white/60 text-xs mb-2">Precio final Tierra del Fuego · base Lista N°08/2026</p>
             <div className="bg-amber-500/10 border border-amber-500/30 rounded-lg p-2 mb-3">
               <p className="text-[10px] text-amber-200 leading-tight">
-                ⚠️ Precios orientativos sujetos a modificación sin previo aviso. La cotización final se confirma al momento de la operación. No constituye oferta vinculante.{' '}
+                ⚠️ Precio final en Tierra del Fuego (sin IVA): incluye flete, patentamiento y gastos administrativos. Precios orientativos sujetos a modificación sin previo aviso. La cotización final se confirma al momento de la operación. No constituye oferta vinculante.{' '}
                 <button onClick={() => setSeccion('legal')} className="underline font-bold">Ver términos</button>
               </p>
             </div>
@@ -784,8 +785,9 @@ export default function FiatApp() {
                     </div>
                     <div className="flex justify-between items-end mt-2">
                       <div className="min-w-0">
-                        <p className="text-[10px] text-white/40 leading-none mb-1">Precio</p>
+                        <p className="text-[10px] text-white/40 leading-none mb-1">Precio final TDF</p>
                         <p className="text-xl font-extrabold text-green-400 tabular-nums tracking-tight leading-none">{formatPrecio(v.precio)}</p>
+                        {v.precioPublico && <p className="text-[10px] text-white/45 mt-1 tabular-nums">Público sugerido c/IVA {formatPrecio(v.precioPublico)}</p>}
                       </div>
                       <button onClick={() => consultarVehiculo(v)} className="shrink-0 px-4 py-2 bg-red-600 text-white rounded-lg text-xs font-bold shadow-md shadow-black/20 active:scale-95 transition-transform">💬 Consultar</button>
                     </div>
