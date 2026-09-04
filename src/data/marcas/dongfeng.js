@@ -1,7 +1,7 @@
 // ============================================================
 // DONGFENG — Camiones y Utilitarios (Grupo LASAC)
-// Precios en USD. Se muestra el "Precio Final" (incluye flete, inscripción,
-// gastos administrativos e ingresos brutos).
+// Lista Septiembre 2026 — precios en USD. Se muestra el "Precio Final" (incluye
+// flete, inscripción, gastos administrativos e ingresos brutos). T/C ref. $1.530.
 // Imágenes en  public/images/dongfeng/<modelo>.png
 // ⚠️ Color de marca tentativo: ajustar al oficial Dongfeng.
 // ============================================================
@@ -27,6 +27,7 @@ const catalogo = [
   { id: 14, categoria: 'camiones', modelo: 'c1016chasis', nombre: 'C 1016 Chasis', precio: 42200 },
   { id: 15, categoria: 'camiones', modelo: 'c1016caja', nombre: 'C 1016 con Caja', precio: 45700 },
   { id: 16, categoria: 'camiones', modelo: 'c1217chasis', nombre: 'C 1217 Chasis', precio: 47200 },
+  { id: 19, categoria: 'camiones', modelo: 'd1830chasis', nombre: 'D 1830 Tractor', precio: 68000 },
   { id: 17, categoria: 'camiones', modelo: 'd1830chasis', nombre: 'D 1830 Chasis', precio: 68000 },
   { id: 18, categoria: 'camiones', modelo: 'd1830caja', nombre: 'D 1830 con Caja', precio: 70500 },
 ];
@@ -54,6 +55,7 @@ const dongfeng = {
   imagenesPath: '/images/dongfeng/',
   imgExt: 'webp',
   moneda: 'USD',
+  notaCatalogo: 'Lista Septiembre 2026 · Precios finales en USD (incluyen flete, inscripción y gastos). Tipo de cambio de referencia: $1.530.',
   // ⚠️ Color tentativo (índigo). Ajustar al oficial Dongfeng.
   tema: {
     primary: '#4f46e5', primaryDark: '#3730a3',

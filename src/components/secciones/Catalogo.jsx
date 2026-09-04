@@ -16,6 +16,11 @@ export default function Catalogo({ marca }) {
     <div>
       <h2 className="text-xl font-bold mb-1">🚗 Catálogo {marca.nombre}</h2>
       <p className="text-white/60 text-xs mb-3">Precios Tierra del Fuego</p>
+      {marca.notaCatalogo && (
+        <div className="bg-amber-500/10 border border-amber-500/30 rounded-lg p-2 mb-3 -mt-1">
+          <p className="text-[10px] text-amber-200 leading-tight">{marca.notaCatalogo}</p>
+        </div>
+      )}
       <div className="flex gap-2 mb-4 overflow-x-auto pb-2 -mx-3 px-3">
         {categorias.map((cat) => (
           <button key={cat} onClick={() => setFiltro(cat)} className={`px-3.5 py-1.5 rounded-full text-xs capitalize whitespace-nowrap transition-all duration-200 ${filtro === cat ? 'bg-brand text-on-brand font-semibold shadow-md' : 'bg-white/10 text-white/70 hover:bg-white/[0.16]'}`}>{cat}</button>
@@ -41,6 +46,7 @@ export default function Catalogo({ marca }) {
                   <div className="min-w-0">
                     <p className="text-[10px] text-white/40 leading-none mb-1">Precio</p>
                     <p className="text-xl font-extrabold text-green-400 tabular-nums tracking-tight leading-none">{formatPrecio(v.precio, marca.moneda)}</p>
+                    {v.precioFinanciado && <p className="text-[10px] text-white/45 mt-1 tabular-nums">Financiado {formatPrecio(v.precioFinanciado, marca.moneda)}</p>}
                   </div>
                   <button onClick={() => consultar(v)} className="shrink-0 px-4 py-2 bg-brand text-on-brand rounded-lg text-xs font-bold shadow-md shadow-black/20 active:scale-95 transition-transform">💬 Consultar</button>
                 </div>
