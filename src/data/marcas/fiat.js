@@ -1,97 +1,97 @@
 // ============================================================
 // FIAT — Concesionario Oficial (Grupo LASAC)
-// Plan de Ahorro actualizado a la Sobrepauta Comercial Agosto 2026 (LASAC).
+// Plan de Ahorro actualizado a la Nueva Lista de Precios Plan LASAC — Septiembre 2026.
 // ============================================================
 
-// ---------- PLAN DE AHORRO (FIAT Plan) — Sobrepauta Agosto 2026 ----------
+// ---------- PLAN DE AHORRO (FIAT Plan) — Septiembre 2026 ----------
 // Valores sin IVA. Cuota = Total Cliente (incluye sellado TDF).
 const planesDetalle = [
   {
     id: 'mobi-80-20', modelo: 'mobi', nombre: 'MOBI TREKKING 1.0', codigo: 'MB1',
-    plan: '80/20', condicion: 'M80', tipo: 'CUOTA VARIABLE', valorMovil: 24966942, suscripcion: 258022,
+    plan: '80/20', condicion: 'M80', tipo: 'CUOTA VARIABLE', valorMovil: 25024793, suscripcion: 258620,
     cuotas: [
-      { rango: 'Cuotas 2 a 11', valor: 303599 }, { rango: 'Cuota 12', valor: 322075 },
-      { rango: 'Cuotas 13 a 18', valor: 327377 }, { rango: 'Cuota 19', valor: 351155 },
-      { rango: 'Cuotas 20 a 24', valor: 280034 }, { rango: 'Cuotas 25 a 72', valor: 294895 },
-      { rango: 'Cuotas 73 a 84', valor: 280034 },
+      { rango: 'Cuotas 2 a 11', valor: 304303 }, { rango: 'Cuota 12', valor: 322821 },
+      { rango: 'Cuotas 13 a 18', valor: 328136 }, { rango: 'Cuota 19', valor: 351969 },
+      { rango: 'Cuotas 20 a 24', valor: 280683 }, { rango: 'Cuotas 25 a 72', valor: 295579 },
+      { rango: 'Cuotas 73 a 84', valor: 280683 },
     ],
     adjudicacion: 'Cuotas 4 y 6 + 20% (AE)', diferimientos: 'Cuotas 1 a 12: 20% / Cuotas 13 a 18: 10%', subite: true
   },
   {
     id: 'argo-70-30', modelo: 'argo', nombre: 'ARGO DRIVE 1.3L MT', codigo: 'AR2',
-    plan: '70/30', condicion: 'B70', tipo: 'SIN DIFERIMIENTOS', valorMovil: 27305785, suscripcion: 302577,
+    plan: '70/30', condicion: 'B70', tipo: 'SIN DIFERIMIENTOS', valorMovil: 28181818, suscripcion: 318551,
     cuotas: [
-      { rango: 'Cuotas 2 a 11', valor: 387185 }, { rango: 'Cuota 12', valor: 407391 },
-      { rango: 'Cuota 13', valor: 387185 }, { rango: 'Cuotas 14 a 84', valor: 270509 },
+      { rango: 'Cuotas 2 a 11', valor: 399607 }, { rango: 'Cuota 12', valor: 420461 },
+      { rango: 'Cuota 13', valor: 399607 }, { rango: 'Cuotas 14 a 84', valor: 279188 },
     ],
     adjudicacion: 'Cuotas 4, 6 y 12 + 30% (AE)', diferimientos: 'SIN DIFERIMIENTOS', subite: true
   },
   {
     id: 'fiorino-70-30', modelo: 'fiorino', nombre: 'FIORINO ENDURANCE 1.3L', codigo: 'FO1',
-    plan: '70/30', condicion: 'B70', tipo: 'SIN DIFERIMIENTOS', valorMovil: 29149321, suscripcion: 300895,
+    plan: '70/30', condicion: 'B70', tipo: 'SIN DIFERIMIENTOS', valorMovil: 30027149, suscripcion: 309957,
     cuotas: [
-      { rango: 'Cuotas 2 a 11', valor: 410169 }, { rango: 'Cuota 12', valor: 431739 },
-      { rango: 'Cuota 13', valor: 410169 }, { rango: 'Cuotas 14 a 84', valor: 288773 },
+      { rango: 'Cuotas 2 a 11', valor: 422521 }, { rango: 'Cuota 12', valor: 444741 },
+      { rango: 'Cuota 13', valor: 422521 }, { rango: 'Cuotas 14 a 84', valor: 297469 },
     ],
     adjudicacion: 'Cuotas 4, 6 y 12 + 30% (AE)', diferimientos: 'SIN DIFERIMIENTOS', subite: true
   },
   {
     id: 'cronos-90-10', modelo: 'cronos', nombre: 'CRONOS DRIVE 1.3L MT5 PACK PLUS', codigo: 'NC1',
-    plan: '90/10', condicion: 'B91', tipo: 'CUOTA VARIABLE', valorMovil: 30066116, suscripcion: 349560,
+    plan: '90/10', condicion: 'B91', tipo: 'CUOTA VARIABLE', valorMovil: 31033058, suscripcion: 360802,
     cuotas: [
-      { rango: 'Cuotas 2 a 11', valor: 440642 }, { rango: 'Cuota 12', valor: 462891 },
-      { rango: 'Cuota 13', valor: 472856 }, { rango: 'Cuotas 14 a 18', valor: 344386 },
-      { rango: 'Cuota 19', valor: 376600 }, { rango: 'Cuotas 20 a 24', valor: 376600 },
-      { rango: 'Cuotas 25 a 72', valor: 396733 }, { rango: 'Cuotas 73 a 84', valor: 376600 },
+      { rango: 'Cuotas 2 a 11', valor: 454814 }, { rango: 'Cuota 12', valor: 477778 },
+      { rango: 'Cuota 13', valor: 488063 }, { rango: 'Cuotas 14 a 18', valor: 355462 },
+      { rango: 'Cuota 19', valor: 388711 }, { rango: 'Cuotas 20 a 24', valor: 388711 },
+      { rango: 'Cuotas 25 a 72', valor: 409492 }, { rango: 'Cuotas 73 a 84', valor: 388711 },
     ],
     adjudicacion: 'Cuotas 3, 6, 9 y 12 + 15% (AE + 5%)', diferimientos: 'Cuotas 1 a 12: 20% / Cuotas 13 a 18: 10%', subite: true
   },
   {
     id: 'pulse-70-30', modelo: 'pulse', nombre: 'PULSE DRIVE 1.3L MT', codigo: 'FP3',
-    plan: '70/30', condicion: 'B70', tipo: 'SIN DIFERIMIENTOS', valorMovil: 33818182, suscripcion: 382261,
+    plan: '70/30', condicion: 'B70', tipo: 'SIN DIFERIMIENTOS', valorMovil: 34900826, suscripcion: 394449,
     cuotas: [
-      { rango: 'Cuotas 2 a 11', valor: 479528 }, { rango: 'Cuota 12', valor: 504553 },
-      { rango: 'Cuota 13', valor: 479528 }, { rango: 'Cuotas 14 a 84', valor: 335025 },
+      { rango: 'Cuotas 2 a 11', valor: 494879 }, { rango: 'Cuota 12', valor: 520706 },
+      { rango: 'Cuota 13', valor: 494879 }, { rango: 'Cuotas 14 a 84', valor: 345751 },
     ],
     adjudicacion: 'Cuotas 4, 6 y 12 + 30% (AE)', diferimientos: 'SIN DIFERIMIENTOS', subite: true
   },
   {
     id: 'strada-70-30', modelo: 'strada', nombre: 'STRADA FREEDOM CD', codigo: 'FS1',
-    plan: '70/30', condicion: 'B70', tipo: 'SIN DIFERIMIENTOS', valorMovil: 37303167, suscripcion: 385064,
+    plan: '70/30', condicion: 'B70', tipo: 'SIN DIFERIMIENTOS', valorMovil: 38497738, suscripcion: 397395,
     cuotas: [
-      { rango: 'Cuotas 2 a 11', valor: 524904 }, { rango: 'Cuota 12', valor: 552508 },
-      { rango: 'Cuota 13', valor: 524904 }, { rango: 'Cuotas 14 a 84', valor: 369550 },
+      { rango: 'Cuotas 2 a 11', valor: 541713 }, { rango: 'Cuota 12', valor: 570201 },
+      { rango: 'Cuota 13', valor: 541713 }, { rango: 'Cuotas 14 a 84', valor: 381384 },
     ],
     adjudicacion: 'Cuotas 6 y 12 + 30% (AE)', diferimientos: 'SIN DIFERIMIENTOS', subite: true
   },
   {
     id: 'fastback-70-30', modelo: 'fastback', nombre: 'FASTBACK TURBO 270 AT6', codigo: 'FT3',
-    plan: '70/30', condicion: 'B71', tipo: 'CUOTA VARIABLE', valorMovil: 41768595, suscripcion: 424915,
+    plan: '70/30', condicion: 'B71', tipo: 'CUOTA VARIABLE', valorMovil: 43107438, suscripcion: 438535,
     cuotas: [
-      { rango: 'Cuotas 2 a 11', valor: 557454 }, { rango: 'Cuota 12', valor: 588363 },
-      { rango: 'Cuota 13', valor: 592262 }, { rango: 'Cuotas 14 a 18', valor: 413788 },
-      { rango: 'Cuotas 19 a 42', valor: 431191 }, { rango: 'Cuotas 43 a 84', valor: 413788 },
+      { rango: 'Cuotas 2 a 11', valor: 575323 }, { rango: 'Cuota 12', valor: 607222 },
+      { rango: 'Cuota 13', valor: 611246 }, { rango: 'Cuotas 14 a 18', valor: 427051 },
+      { rango: 'Cuotas 19 a 42', valor: 445012 }, { rango: 'Cuotas 43 a 84', valor: 427051 },
     ],
     adjudicacion: 'Cuotas 4, 6 y 12 + 30% (AE)', diferimientos: 'Cuotas 1 a 12: 10%', subite: true
   },
   {
     id: 'toro-70-30', modelo: 'toro', nombre: 'TORO FREEDOM T270 AT6 4X2', codigo: 'NT3',
-    plan: '70/30', condicion: 'B71', tipo: 'CUOTA VARIABLE', valorMovil: 46977376, suscripcion: 436433,
+    plan: '70/30', condicion: 'B71', tipo: 'CUOTA VARIABLE', valorMovil: 48488688, suscripcion: 450474,
     cuotas: [
-      { rango: 'Cuotas 2 a 11', valor: 621885 }, { rango: 'Cuota 12', valor: 656648 },
-      { rango: 'Cuota 13', valor: 661033 }, { rango: 'Cuotas 14 a 18', valor: 465389 },
-      { rango: 'Cuotas 19 a 42', valor: 484963 }, { rango: 'Cuotas 43 a 84', valor: 465389 },
+      { rango: 'Cuotas 2 a 11', valor: 641892 }, { rango: 'Cuota 12', valor: 677773 },
+      { rango: 'Cuota 13', valor: 682299 }, { rango: 'Cuotas 14 a 18', valor: 480361 },
+      { rango: 'Cuotas 19 a 42', valor: 500565 }, { rango: 'Cuotas 43 a 84', valor: 480361 },
     ],
     adjudicacion: 'Cuotas 4, 6 y 12 + 30% (AE)', diferimientos: 'Cuotas 1 a 12: 10%', subite: true
   },
   {
     id: 'titano-70-30', modelo: 'titano', nombre: 'TITANO FREEDOM MT', codigo: 'DT1',
-    plan: '70/30', condicion: 'B76', tipo: 'CUOTA VARIABLE', valorMovil: 55131222, suscripcion: 455275,
+    plan: '70/30', condicion: 'B76', tipo: 'CUOTA VARIABLE', valorMovil: 56895928, suscripcion: 469848,
     cuotas: [
-      { rango: 'Cuotas 2 a 11', valor: 607349 }, { rango: 'Cuota 12', valor: 648146 },
-      { rango: 'Cuotas 13 a 18', valor: 653291 }, { rango: 'Cuota 19', valor: 699234 },
-      { rango: 'Cuotas 20 a 24', valor: 546167 }, { rango: 'Cuotas 25 a 72', valor: 574881 },
-      { rango: 'Cuotas 73 a 84', valor: 546167 },
+      { rango: 'Cuotas 2 a 11', valor: 626790 }, { rango: 'Cuota 12', valor: 668892 },
+      { rango: 'Cuotas 13 a 18', valor: 674203 }, { rango: 'Cuota 19', valor: 721616 },
+      { rango: 'Cuotas 20 a 24', valor: 563649 }, { rango: 'Cuotas 25 a 72', valor: 593282 },
+      { rango: 'Cuotas 73 a 84', valor: 563649 },
     ],
     adjudicacion: 'Cuotas 2, 4 y 6 + 20% (resto de AE se prorratea)', diferimientos: 'Cuotas 1 a 12: 20% / Cuotas 13 a 18: 10%', subite: true
   },
