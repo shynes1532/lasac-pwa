@@ -34,6 +34,8 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
   if (event.request.url.includes('wa.me') || event.request.url.includes('api.whatsapp')) return;
+  // Las funciones serverless (/api/*) nunca se cachean: siempre datos frescos.
+  if (new URL(event.request.url).pathname.startsWith('/api/')) return;
 
   event.respondWith(
     fetch(event.request)
