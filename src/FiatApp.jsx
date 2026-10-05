@@ -27,8 +27,8 @@ const nombreModelo = {
   toro: 'TORO', titano: 'TITANO', fiorino: 'FIORINO'
 };
 
-// ========== DATOS PLAN DE AHORRO — SEPTIEMBRE 2026 (FIAT Plan Comercial) ==========
-// Fuente: Nueva Lista de Precios Plan LASAC — Septiembre 2026 (valores verificados por fórmula).
+// ========== DATOS PLAN DE AHORRO — OCTUBRE 2026 (FIAT Plan Comercial) ==========
+// Fuente: Nueva Lista de Precios Plan LASAC — Octubre 2026 (valores verificados por fórmula).
 //   totalCliente = Total Cliente (cuota + sellado TDF)    -> valor impreso en la lista
 //   cuotas       = Cuota s/IVA (sin sellado)              -> totalCliente − sellado por cuota,
 //                  solo en el rango prorrateado (C2-C13, o C2-C19 en Mobi/Titano).
@@ -55,155 +55,155 @@ const planesDetalle = [
   },
   {
     id: 'argo-70-30', modelo: 'argo', nombre: 'ARGO DRIVE 1.3L MT', codigo: 'AR2',
-    plan: '70/30', condicion: 'B70', tipo: 'SIN DIFERIMIENTOS', valorMovil: 28181818, precioLista: 28181818, suscripcion: 318551,
-    derechoAdjudicacion: 511500,
+    plan: '70/30', condicion: 'B70', tipo: 'SIN DIFERIMIENTOS', valorMovil: 29314050, precioLista: 29314050, suscripcion: 331349,
+    derechoAdjudicacion: 532050,
     cuotas: [
-      { rango: 'C1', valor: 318551 }, { rango: 'C2 a C11', valor: 364438 },
-      { rango: 'C12', valor: 385292 }, { rango: 'C13', valor: 364438 },
-      { rango: 'C14 a C84', valor: 279188 },
+      { rango: 'C1', valor: 331349 }, { rango: 'C2 a C11', valor: 379079 },
+      { rango: 'C12', valor: 400772 }, { rango: 'C13', valor: 379079 },
+      { rango: 'C14 a C84', valor: 290405 },
     ],
-    selladoTDF: 422028, selladoCuotas: 'C2-C13', selladoPorCuota: 35169,
-    alicuota: 234848, gastosAdm: 23485, seguroVida: 20855, derSusc: 85250,
+    selladoTDF: 438984, selladoCuotas: 'C2-C13', selladoPorCuota: 36582,
+    alicuota: 244284, gastosAdm: 24428, seguroVida: 21692, derSusc: 88675,
     totalCliente: [
-      { rango: 'C1', valor: 318551 }, { rango: 'C2 a C11', valor: 399607 },
-      { rango: 'C12', valor: 420461 }, { rango: 'C13', valor: 399607 },
-      { rango: 'C14 a C84', valor: 279188 },
+      { rango: 'C1', valor: 331349 }, { rango: 'C2 a C11', valor: 415661 },
+      { rango: 'C12', valor: 437354 }, { rango: 'C13', valor: 415661 },
+      { rango: 'C14 a C84', valor: 290405 },
     ],
     adjudicacion: 'Cuotas 4, 6 y 12 + 30% (AE)', diferimientos: 'SIN DIFERIMIENTOS', subite: true
   },
   {
     id: 'cronos-90-10', modelo: 'cronos', nombre: 'CRONOS DRIVE 1.3L MT5 PACK PLUS', codigo: 'NC1',
-    plan: '90/10', condicion: 'B91', tipo: 'CON DIFERIMIENTOS', valorMovil: 31033058, precioLista: 31033058, suscripcion: 360802,
-    derechoAdjudicacion: 563250,
+    plan: '90/10', condicion: 'B91', tipo: 'CON DIFERIMIENTOS', valorMovil: 32404959, precioLista: 32404959, suscripcion: 376752,
+    derechoAdjudicacion: 588150,
     cuotas: [
-      { rango: 'C1', valor: 360802 }, { rango: 'C2 a C11', valor: 416087 },
-      { rango: 'C12', valor: 439051 }, { rango: 'C13', valor: 449336 },
-      { rango: 'C14 a C18', valor: 355462 }, { rango: 'C19', valor: 388711 },
-      { rango: 'C20 a C24', valor: 388711 }, { rango: 'C25 a C72', valor: 409492 },
-      { rango: 'C73 a C84', valor: 388711 },
+      { rango: 'C1', valor: 376752 }, { rango: 'C2 a C11', valor: 434481 },
+      { rango: 'C12', valor: 458461 }, { rango: 'C13', valor: 469201 },
+      { rango: 'C14 a C18', valor: 371176 }, { rango: 'C19', valor: 405895 },
+      { rango: 'C20 a C24', valor: 405895 }, { rango: 'C25 a C72', valor: 427595 },
+      { rango: 'C73 a C84', valor: 405895 },
     ],
-    selladoTDF: 464724, selladoCuotas: 'C2-C13', selladoPorCuota: 38727,
-    alicuota: 332497, gastosAdm: 33250, seguroVida: 22964, derSusc: 93875,
+    selladoTDF: 485268, selladoCuotas: 'C2-C13', selladoPorCuota: 40439,
+    alicuota: 347196, gastosAdm: 34720, seguroVida: 23980, derSusc: 98025,
     totalCliente: [
-      { rango: 'C1', valor: 360802 }, { rango: 'C2 a C11', valor: 454814 },
-      { rango: 'C12', valor: 477778 }, { rango: 'C13', valor: 488063 },
-      { rango: 'C14 a C18', valor: 355462 }, { rango: 'C19', valor: 388711 },
-      { rango: 'C20 a C24', valor: 388711 }, { rango: 'C25 a C72', valor: 409492 },
-      { rango: 'C73 a C84', valor: 388711 },
+      { rango: 'C1', valor: 376752 }, { rango: 'C2 a C11', valor: 474920 },
+      { rango: 'C12', valor: 498900 }, { rango: 'C13', valor: 509640 },
+      { rango: 'C14 a C18', valor: 371176 }, { rango: 'C19', valor: 405895 },
+      { rango: 'C20 a C24', valor: 405895 }, { rango: 'C25 a C72', valor: 427595 },
+      { rango: 'C73 a C84', valor: 405895 },
     ],
     adjudicacion: 'Cuotas 3, 6, 9 y 12 + 15% (AE + 5%)', diferimientos: 'C1-12: 20% / C13-18: 10% (recupero C25-72)', subite: true
   },
   {
     id: 'pulse-70-30', modelo: 'pulse', nombre: 'PULSE DRIVE 1.3L MT', codigo: 'FP3',
-    plan: '70/30', condicion: 'B70', tipo: 'SIN DIFERIMIENTOS', valorMovil: 34900826, precioLista: 34900826, suscripcion: 394449,
-    derechoAdjudicacion: 633450,
+    plan: '70/30', condicion: 'B70', tipo: 'SIN DIFERIMIENTOS', valorMovil: 36297521, precioLista: 36297521, suscripcion: 410286,
+    derechoAdjudicacion: 658800,
     cuotas: [
-      { rango: 'C1', valor: 394449 }, { rango: 'C2 a C11', valor: 451325 },
-      { rango: 'C12', valor: 477152 }, { rango: 'C13', valor: 451325 },
-      { rango: 'C14 a C84', valor: 345751 },
+      { rango: 'C1', valor: 410286 }, { rango: 'C2 a C11', valor: 469387 },
+      { rango: 'C12', valor: 496247 }, { rango: 'C13', valor: 469387 },
+      { rango: 'C14 a C84', valor: 359587 },
     ],
-    selladoTDF: 522648, selladoCuotas: 'C2-C13', selladoPorCuota: 43554,
-    alicuota: 290840, gastosAdm: 29084, seguroVida: 25827, derSusc: 105575,
+    selladoTDF: 543564, selladoCuotas: 'C2-C13', selladoPorCuota: 45297,
+    alicuota: 302479, gastosAdm: 30248, seguroVida: 26860, derSusc: 109800,
     totalCliente: [
-      { rango: 'C1', valor: 394449 }, { rango: 'C2 a C11', valor: 494879 },
-      { rango: 'C12', valor: 520706 }, { rango: 'C13', valor: 494879 },
-      { rango: 'C14 a C84', valor: 345751 },
+      { rango: 'C1', valor: 410286 }, { rango: 'C2 a C11', valor: 514684 },
+      { rango: 'C12', valor: 541544 }, { rango: 'C13', valor: 514684 },
+      { rango: 'C14 a C84', valor: 359587 },
     ],
     adjudicacion: 'Cuotas 4, 6 y 12 + 30% (AE)', diferimientos: 'SIN DIFERIMIENTOS', subite: true
   },
   {
     id: 'fastback-70-30', modelo: 'fastback', nombre: 'FASTBACK TURBO 270 AT6', codigo: 'FT3',
-    plan: '70/30', condicion: 'B71', tipo: 'CON DIFERIMIENTOS', valorMovil: 43107438, precioLista: 43107438, suscripcion: 438535,
-    derechoAdjudicacion: 782400,
+    plan: '70/30', condicion: 'B71', tipo: 'CON DIFERIMIENTOS', valorMovil: 44834711, precioLista: 44834711, suscripcion: 456107,
+    derechoAdjudicacion: 813750,
     cuotas: [
-      { rango: 'C1', valor: 438535 }, { rango: 'C2 a C11', valor: 521528 },
-      { rango: 'C12', valor: 553427 }, { rango: 'C13', valor: 557451 },
-      { rango: 'C14 a C18', valor: 427051 }, { rango: 'C19 a C42', valor: 445012 },
-      { rango: 'C43 a C84', valor: 427051 },
+      { rango: 'C1', valor: 456107 }, { rango: 'C2 a C11', valor: 542426 },
+      { rango: 'C12', valor: 575603 }, { rango: 'C13', valor: 579788 },
+      { rango: 'C14 a C18', valor: 444163 }, { rango: 'C19 a C42', valor: 462844 },
+      { rango: 'C43 a C84', valor: 444163 },
     ],
-    selladoTDF: 645540, selladoCuotas: 'C2-C13', selladoPorCuota: 53795,
-    alicuota: 359229, gastosAdm: 35923, seguroVida: 31900, derSusc: 130400,
+    selladoTDF: 671400, selladoCuotas: 'C2-C13', selladoPorCuota: 55950,
+    alicuota: 373623, gastosAdm: 37362, seguroVida: 33178, derSusc: 135625,
     totalCliente: [
-      { rango: 'C1', valor: 438535 }, { rango: 'C2 a C11', valor: 575323 },
-      { rango: 'C12', valor: 607222 }, { rango: 'C13', valor: 611246 },
-      { rango: 'C14 a C18', valor: 427051 }, { rango: 'C19 a C42', valor: 445012 },
-      { rango: 'C43 a C84', valor: 427051 },
+      { rango: 'C1', valor: 456107 }, { rango: 'C2 a C11', valor: 598376 },
+      { rango: 'C12', valor: 631553 }, { rango: 'C13', valor: 635738 },
+      { rango: 'C14 a C18', valor: 444163 }, { rango: 'C19 a C42', valor: 462844 },
+      { rango: 'C43 a C84', valor: 444163 },
     ],
     adjudicacion: 'Cuotas 4, 6 y 12 + 30% (AE)', diferimientos: 'C1-12: 10% (recupero C19-42)', subite: true
   },
   {
     id: 'fiorino-70-30', modelo: 'fiorino', nombre: 'FIORINO ENDURANCE 1.3L', codigo: 'FO1',
-    plan: '70/30', condicion: 'B70', tipo: 'SIN DIFERIMIENTOS', valorMovil: 30027149, precioLista: 30027149, suscripcion: 309957,
-    derechoAdjudicacion: 544993,
+    plan: '70/30', condicion: 'B70', tipo: 'SIN DIFERIMIENTOS', valorMovil: 31230769, precioLista: 31230769, suscripcion: 322381,
+    derechoAdjudicacion: 566838,
     cuotas: [
-      { rango: 'C1', valor: 309957 }, { rango: 'C2 a C11', valor: 388301 },
-      { rango: 'C12', valor: 410521 }, { rango: 'C13', valor: 388301 },
-      { rango: 'C14 a C84', valor: 297469 },
+      { rango: 'C1', valor: 322381 }, { rango: 'C2 a C11', valor: 403865 },
+      { rango: 'C12', valor: 426976 }, { rango: 'C13', valor: 403865 },
+      { rango: 'C14 a C84', valor: 309393 },
     ],
-    selladoTDF: 410640, selladoCuotas: 'C2-C13', selladoPorCuota: 34220,
-    alicuota: 250226, gastosAdm: 25023, seguroVida: 22220, derSusc: 90832,
+    selladoTDF: 427104, selladoCuotas: 'C2-C13', selladoPorCuota: 35592,
+    alicuota: 260256, gastosAdm: 26026, seguroVida: 23111, derSusc: 94473,
     totalCliente: [
-      { rango: 'C1', valor: 309957 }, { rango: 'C2 a C11', valor: 422521 },
-      { rango: 'C12', valor: 444741 }, { rango: 'C13', valor: 422521 },
-      { rango: 'C14 a C84', valor: 297469 },
+      { rango: 'C1', valor: 322381 }, { rango: 'C2 a C11', valor: 439457 },
+      { rango: 'C12', valor: 462568 }, { rango: 'C13', valor: 439457 },
+      { rango: 'C14 a C84', valor: 309393 },
     ],
     adjudicacion: 'Cuotas 4, 6 y 12 + 30% (AE)', diferimientos: 'SIN DIFERIMIENTOS', subite: true
   },
   {
     id: 'strada-70-30', modelo: 'strada', nombre: 'STRADA FREEDOM CD', codigo: 'FS1',
-    plan: '70/30', condicion: 'B70', tipo: 'SIN DIFERIMIENTOS', valorMovil: 38497738, precioLista: 38497738, suscripcion: 397395,
-    derechoAdjudicacion: 698734,
+    plan: '70/30', condicion: 'B70', tipo: 'SIN DIFERIMIENTOS', valorMovil: 40045249, precioLista: 40045249, suscripcion: 413369,
+    derechoAdjudicacion: 726821,
     cuotas: [
-      { rango: 'C1', valor: 397395 }, { rango: 'C2 a C11', valor: 497840 },
-      { rango: 'C12', valor: 526328 }, { rango: 'C13', valor: 497840 },
-      { rango: 'C14 a C84', valor: 381384 },
+      { rango: 'C1', valor: 413369 }, { rango: 'C2 a C11', valor: 517852 },
+      { rango: 'C12', valor: 547485 }, { rango: 'C13', valor: 517852 },
+      { rango: 'C14 a C84', valor: 396715 },
     ],
-    selladoTDF: 526476, selladoCuotas: 'C2-C13', selladoPorCuota: 43873,
-    alicuota: 320814, gastosAdm: 32081, seguroVida: 28488, derSusc: 116456,
+    selladoTDF: 547644, selladoCuotas: 'C2-C13', selladoPorCuota: 45637,
+    alicuota: 333710, gastosAdm: 33371, seguroVida: 29633, derSusc: 121137,
     totalCliente: [
-      { rango: 'C1', valor: 397395 }, { rango: 'C2 a C11', valor: 541713 },
-      { rango: 'C12', valor: 570201 }, { rango: 'C13', valor: 541713 },
-      { rango: 'C14 a C84', valor: 381384 },
+      { rango: 'C1', valor: 413369 }, { rango: 'C2 a C11', valor: 563489 },
+      { rango: 'C12', valor: 593122 }, { rango: 'C13', valor: 563489 },
+      { rango: 'C14 a C84', valor: 396715 },
     ],
     adjudicacion: 'Cuotas 6 y 12 + 30% (AE)', diferimientos: 'SIN DIFERIMIENTOS', subite: true
   },
   {
     id: 'toro-70-30', modelo: 'toro', nombre: 'TORO FREEDOM T270 AT6 4X2', codigo: 'NT3',
-    plan: '70/30', condicion: 'B71', tipo: 'CON DIFERIMIENTOS', valorMovil: 48488688, precioLista: 48488688, suscripcion: 450474,
-    derechoAdjudicacion: 880070,
+    plan: '70/30', condicion: 'B71', tipo: 'CON DIFERIMIENTOS', valorMovil: 50434389, precioLista: 50434389, suscripcion: 468550,
+    derechoAdjudicacion: 915384,
     cuotas: [
-      { rango: 'C1', valor: 450474 }, { rango: 'C2 a C11', valor: 586633 },
-      { rango: 'C12', valor: 622514 }, { rango: 'C13', valor: 627040 },
-      { rango: 'C14 a C18', valor: 480361 }, { rango: 'C19 a C42', valor: 500565 },
-      { rango: 'C43 a C84', valor: 480361 },
+      { rango: 'C1', valor: 468550 }, { rango: 'C2 a C11', valor: 610172 },
+      { rango: 'C12', valor: 647493 }, { rango: 'C13', valor: 652200 },
+      { rango: 'C14 a C18', valor: 499637 }, { rango: 'C19 a C42', valor: 520651 },
+      { rango: 'C43 a C84', valor: 499637 },
     ],
-    selladoTDF: 663108, selladoCuotas: 'C2-C13', selladoPorCuota: 55259,
-    alicuota: 404072, gastosAdm: 40407, seguroVida: 35882, derSusc: 146678,
+    selladoTDF: 689724, selladoCuotas: 'C2-C13', selladoPorCuota: 57477,
+    alicuota: 420287, gastosAdm: 42029, seguroVida: 37321, derSusc: 152564,
     totalCliente: [
-      { rango: 'C1', valor: 450474 }, { rango: 'C2 a C11', valor: 641892 },
-      { rango: 'C12', valor: 677773 }, { rango: 'C13', valor: 682299 },
-      { rango: 'C14 a C18', valor: 480361 }, { rango: 'C19 a C42', valor: 500565 },
-      { rango: 'C43 a C84', valor: 480361 },
+      { rango: 'C1', valor: 468550 }, { rango: 'C2 a C11', valor: 667649 },
+      { rango: 'C12', valor: 704970 }, { rango: 'C13', valor: 709677 },
+      { rango: 'C14 a C18', valor: 499637 }, { rango: 'C19 a C42', valor: 520651 },
+      { rango: 'C43 a C84', valor: 499637 },
     ],
     adjudicacion: 'Cuotas 4, 6 y 12 + 30% (AE)', diferimientos: 'C1-12: 10% (recupero C19-42)', subite: true
   },
   {
     id: 'titano-70-30', modelo: 'titano', nombre: 'TITANO FREEDOM MT', codigo: 'DT1',
-    plan: '70/30', condicion: 'B76', tipo: 'CON DIFERIMIENTOS', valorMovil: 56895928, precioLista: 56895928, suscripcion: 469848,
-    derechoAdjudicacion: 1032661,
+    plan: '70/30', condicion: 'B76', tipo: 'CON DIFERIMIENTOS', valorMovil: 59176471, precioLista: 59176471, suscripcion: 488681,
+    derechoAdjudicacion: 1074053,
     cuotas: [
-      { rango: 'C1', valor: 469848 }, { rango: 'C2 a C11', valor: 583563 },
-      { rango: 'C12', valor: 625665 }, { rango: 'C13 a C18', valor: 630976 },
-      { rango: 'C19', valor: 678389 }, { rango: 'C20 a C24', valor: 563649 },
-      { rango: 'C25 a C72', valor: 593282 }, { rango: 'C73 a C84', valor: 563649 },
+      { rango: 'C1', valor: 488681 }, { rango: 'C2 a C11', valor: 606953 },
+      { rango: 'C12', valor: 650744 }, { rango: 'C13 a C18', valor: 656267 },
+      { rango: 'C19', valor: 705580 }, { rango: 'C20 a C24', valor: 586242 },
+      { rango: 'C25 a C72', valor: 617063 }, { rango: 'C73 a C84', valor: 586242 },
     ],
-    selladoTDF: 778086, selladoCuotas: 'C2-C19', selladoPorCuota: 43227,
-    alicuota: 474133, gastosAdm: 47413, seguroVida: 42103, derSusc: 114740,
+    selladoTDF: 809280, selladoCuotas: 'C2-C19', selladoPorCuota: 44960,
+    alicuota: 493137, gastosAdm: 49314, seguroVida: 43791, derSusc: 119339,
     totalCliente: [
-      { rango: 'C1', valor: 469848 }, { rango: 'C2 a C11', valor: 626790 },
-      { rango: 'C12', valor: 668892 }, { rango: 'C13 a C18', valor: 674203 },
-      { rango: 'C19', valor: 721616 }, { rango: 'C20 a C24', valor: 563649 },
-      { rango: 'C25 a C72', valor: 593282 }, { rango: 'C73 a C84', valor: 563649 },
+      { rango: 'C1', valor: 488681 }, { rango: 'C2 a C11', valor: 651913 },
+      { rango: 'C12', valor: 695704 }, { rango: 'C13 a C18', valor: 701227 },
+      { rango: 'C19', valor: 750540 }, { rango: 'C20 a C24', valor: 586242 },
+      { rango: 'C25 a C72', valor: 617063 }, { rango: 'C73 a C84', valor: 586242 },
     ],
     adjudicacion: 'Cuotas 2, 4 y 6 + 20% (resto de AE se prorratea)', diferimientos: 'C1-12: 20% / C13-18: 10% (recupero C25-72)', subite: true
   },
@@ -374,16 +374,16 @@ const MODELOS_POR_FAMILIA = {
   ],
 };
 
-// ========== PLANES SOBREPAUTA - SEPTIEMBRE 2026 ==========
+// ========== PLANES SOBREPAUTA - OCTUBRE 2026 ==========
 const planesAbril = [
-  { id: "cronos9010", base: "Cronos", tipoPlan: "90/10", condicion: "B91", familia: "cronos", emoji: "📈", precio: 31033058, entregaMin: 5632500, da: 563250, gastos: 3980000, pctEntrega: 15, adjCuotas: [3,6,9,12], licitacionMin: 30, restriccion: "Solo familia Cronos.", descripcion: "Máxima financiación: solo 10% de anticipo." },
-  { id: "argo", base: "Argo", tipoPlan: "70/30", condicion: "B70", familia: "argo", emoji: "🚗", precio: 28181818, entregaMin: 10230000, da: 511500, gastos: 3220000, pctEntrega: 30, adjCuotas: [4,6,12], licitacionMin: 30, restriccion: "Familia Argo + cambio a Cronos disponible.", descripcion: "Hatch versátil: MT y CVT." },
-  { id: "pulse", base: "Pulse", tipoPlan: "70/30", condicion: "B70", familia: "pulse", emoji: "⛰️", precio: 34900826, entregaMin: 12669000, da: 633450, gastos: 3960000, pctEntrega: 30, adjCuotas: [4,6,12], licitacionMin: 30, restriccion: "Familia Pulse (incluye FIAT 600) + cambio a Cronos.", descripcion: "SUV compacto + acceso al FIAT 600." },
-  { id: "strada", base: "Strada", tipoPlan: "70/30", condicion: "B70", familia: "strada", emoji: "🛻", precio: 38497738, entregaMin: 12762000, da: 698734, gastos: 4435000, pctEntrega: 30, adjCuotas: [6,12], licitacionMin: 35, restriccion: "Familia Strada + cambio a Cronos disponible.", descripcion: "Pickup compacta. Cabina doble y simple." },
-  { id: "fiorino", base: "Fiorino", tipoPlan: "70/30", condicion: "B70", familia: "fiorino", emoji: "📦", precio: 30027149, entregaMin: 9954000, da: 544993, gastos: 3465000, pctEntrega: 30, adjCuotas: [4,6,12], licitacionMin: 30, restriccion: "Familia Fiorino + cambio a Cronos disponible.", descripcion: "Utilitario compacto. Ideal para negocios." },
-  { id: "toro", base: "Toro", tipoPlan: "70/30", condicion: "B71", familia: "toro", emoji: "💪", precio: 48488688, entregaMin: 16074000, da: 880070, gastos: 5590000, pctEntrega: 30, adjCuotas: [4,6,12], licitacionMin: 30, restriccion: "Familia Toro + cambio a Cronos disponible.", descripcion: "Pickup mediana. Potencia y tecnología." },
-  { id: "fastback", base: "Fastback", tipoPlan: "70/30", condicion: "B71", familia: "fastback", emoji: "🏎️", precio: 43107438, entregaMin: 15648000, da: 782400, gastos: 4890000, pctEntrega: 30, adjCuotas: [4,6,12], licitacionMin: 30, restriccion: "Familia Fastback (incluye FIAT 600) + cambio a Cronos.", descripcion: "SUV coupé. Turbo 270 CV." },
-  { id: "titano", base: "Titano", tipoPlan: "70/30", condicion: "B76", familia: "titano", emoji: "🏔️", precio: 56895928, entregaMin: 12574000, da: 1032661, gastos: 6890000, pctEntrega: 20, adjCuotas: [2,4,6], licitacionMin: 40, restriccion: "Familia Titano + cambio a Cronos disponible.", descripcion: "La pickup grande de FIAT." },
+  { id: "cronos9010", base: "Cronos", tipoPlan: "90/10", condicion: "B91", familia: "cronos", emoji: "📈", precio: 32404959, entregaMin: 5881500, da: 588150, gastos: 3980000, pctEntrega: 15, adjCuotas: [3,6,9,12], licitacionMin: 30, restriccion: "Solo familia Cronos.", descripcion: "Máxima financiación: solo 10% de anticipo." },
+  { id: "argo", base: "Argo", tipoPlan: "70/30", condicion: "B70", familia: "argo", emoji: "🚗", precio: 29314050, entregaMin: 10641000, da: 532050, gastos: 3220000, pctEntrega: 30, adjCuotas: [4,6,12], licitacionMin: 30, restriccion: "Familia Argo + cambio a Cronos disponible.", descripcion: "Hatch versátil: MT y CVT." },
+  { id: "pulse", base: "Pulse", tipoPlan: "70/30", condicion: "B70", familia: "pulse", emoji: "⛰️", precio: 36297521, entregaMin: 13176000, da: 658800, gastos: 3960000, pctEntrega: 30, adjCuotas: [4,6,12], licitacionMin: 30, restriccion: "Familia Pulse (incluye FIAT 600) + cambio a Cronos.", descripcion: "SUV compacto + acceso al FIAT 600." },
+  { id: "strada", base: "Strada", tipoPlan: "70/30", condicion: "B70", familia: "strada", emoji: "🛻", precio: 40045249, entregaMin: 13275000, da: 726821, gastos: 4435000, pctEntrega: 30, adjCuotas: [6,12], licitacionMin: 35, restriccion: "Familia Strada + cambio a Cronos disponible.", descripcion: "Pickup compacta. Cabina doble y simple." },
+  { id: "fiorino", base: "Fiorino", tipoPlan: "70/30", condicion: "B70", familia: "fiorino", emoji: "📦", precio: 31230769, entregaMin: 10353000, da: 566838, gastos: 3465000, pctEntrega: 30, adjCuotas: [4,6,12], licitacionMin: 30, restriccion: "Familia Fiorino + cambio a Cronos disponible.", descripcion: "Utilitario compacto. Ideal para negocios." },
+  { id: "toro", base: "Toro", tipoPlan: "70/30", condicion: "B71", familia: "toro", emoji: "💪", precio: 50434389, entregaMin: 16719000, da: 915384, gastos: 5590000, pctEntrega: 30, adjCuotas: [4,6,12], licitacionMin: 30, restriccion: "Familia Toro + cambio a Cronos disponible.", descripcion: "Pickup mediana. Potencia y tecnología." },
+  { id: "fastback", base: "Fastback", tipoPlan: "70/30", condicion: "B71", familia: "fastback", emoji: "🏎️", precio: 44834711, entregaMin: 16275000, da: 813750, gastos: 4890000, pctEntrega: 30, adjCuotas: [4,6,12], licitacionMin: 30, restriccion: "Familia Fastback (incluye FIAT 600) + cambio a Cronos.", descripcion: "SUV coupé. Turbo 270 CV." },
+  { id: "titano", base: "Titano", tipoPlan: "70/30", condicion: "B76", familia: "titano", emoji: "🏔️", precio: 59176471, entregaMin: 13078000, da: 1074053, gastos: 6890000, pctEntrega: 20, adjCuotas: [2,4,6], licitacionMin: 40, restriccion: "Familia Titano + cambio a Cronos disponible.", descripcion: "La pickup grande de FIAT." },
   { id: "mobi", base: "Mobi", tipoPlan: "80/20", condicion: "M80", familia: "mobi", emoji: "🏙️", precio: 25024793, entregaMin: 6056000, da: 454200, gastos: 2925000, pctEntrega: 20, adjCuotas: [4,6], licitacionMin: 30, restriccion: "Familia Mobi + cambio a Cronos disponible.", descripcion: "El 0km más accesible." },
 ];
 
@@ -862,7 +862,7 @@ export default function FiatApp() {
             {planStep === 0 && (
               <div className="bg-amber-500/10 border border-amber-500/30 rounded-lg p-2 mb-3">
                 <p className="text-[10px] text-amber-200 leading-tight">
-                  ⚠️ Valores Comercial FIAT Plan septiembre 2026. Sujetos a actualización mensual por FCA Compañía Financiera S.A.{' '}
+                  ⚠️ Valores Comercial FIAT Plan octubre 2026. Sujetos a actualización mensual por FCA Compañía Financiera S.A.{' '}
                   <button onClick={() => setSeccion('legal')} className="underline font-bold">Ver términos</button>
                 </p>
               </div>
@@ -893,7 +893,7 @@ export default function FiatApp() {
                   <div className="relative">
                     <div className="text-3xl mb-2">📋</div>
                     <h2 className="text-xl font-bold mb-1">FIAT Plan de Ahorro</h2>
-                    <p className="text-sm opacity-80">Sobrepauta Septiembre 2026</p>
+                    <p className="text-sm opacity-80">Sobrepauta Octubre 2026</p>
                   </div>
                 </div>
 
@@ -966,7 +966,7 @@ export default function FiatApp() {
             {planStep === 2 && (
               <div className="space-y-3">
                 <h2 className="text-lg font-bold">Elegí tu Plan</h2>
-                <p className="text-white/60 text-xs mb-2">Precios sobrepauta Septiembre 2026</p>
+                <p className="text-white/60 text-xs mb-2">Precios sobrepauta Octubre 2026</p>
                 {/* Filtro por familia */}
                 <div className="flex gap-2 overflow-x-auto pb-2 -mx-3 px-3">
                   {['Todos','Cronos','Argo','Pulse','Strada','Toro','Fastback','Titano','Mobi','Fiorino'].map(f => (
@@ -1128,7 +1128,7 @@ export default function FiatApp() {
                 {!planDetalleSelec ? (
                   <>
                     <h2 className="text-lg font-bold">📊 Simulador de Cuotas</h2>
-                    <p className="text-white/60 text-xs mb-2">FIAT Plan — Vigencia Septiembre 2026 · Valores s/IVA (TDF)</p>
+                    <p className="text-white/60 text-xs mb-2">FIAT Plan — Vigencia Octubre 2026 · Valores s/IVA (TDF)</p>
                     <p className="text-sm text-white/70 mb-2">Seleccioná un plan para ver el detalle completo:</p>
                     {planesDetalle.map(plan => (
                       <div key={plan.id} onClick={() => setPlanDetalleSelec(plan)} className="group bg-white/[0.06] rounded-2xl overflow-hidden border border-white/10 shadow-lg shadow-black/20 transition-all duration-200 hover:border-white/20 hover:-translate-y-0.5 active:scale-[0.98] cursor-pointer">
