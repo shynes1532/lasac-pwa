@@ -376,15 +376,15 @@ const MODELOS_POR_FAMILIA = {
 
 // ========== PLANES SOBREPAUTA - OCTUBRE 2026 ==========
 const planesAbril = [
-  { id: "cronos9010", base: "Cronos", tipoPlan: "90/10", condicion: "B91", familia: "cronos", emoji: "📈", precio: 32404959, entregaMin: 5881500, da: 588150, gastos: 3980000, pctEntrega: 15, adjCuotas: [3,6,9,12], licitacionMin: 30, restriccion: "Solo familia Cronos.", descripcion: "Máxima financiación: solo 10% de anticipo." },
-  { id: "argo", base: "Argo", tipoPlan: "70/30", condicion: "B70", familia: "argo", emoji: "🚗", precio: 29314050, entregaMin: 10641000, da: 532050, gastos: 3220000, pctEntrega: 30, adjCuotas: [4,6,12], licitacionMin: 30, restriccion: "Familia Argo + cambio a Cronos disponible.", descripcion: "Hatch versátil: MT y CVT." },
-  { id: "pulse", base: "Pulse", tipoPlan: "70/30", condicion: "B70", familia: "pulse", emoji: "⛰️", precio: 36297521, entregaMin: 13176000, da: 658800, gastos: 3960000, pctEntrega: 30, adjCuotas: [4,6,12], licitacionMin: 30, restriccion: "Familia Pulse (incluye FIAT 600) + cambio a Cronos.", descripcion: "SUV compacto + acceso al FIAT 600." },
-  { id: "strada", base: "Strada", tipoPlan: "70/30", condicion: "B70", familia: "strada", emoji: "🛻", precio: 40045249, entregaMin: 13275000, da: 726821, gastos: 4435000, pctEntrega: 30, adjCuotas: [6,12], licitacionMin: 35, restriccion: "Familia Strada + cambio a Cronos disponible.", descripcion: "Pickup compacta. Cabina doble y simple." },
-  { id: "fiorino", base: "Fiorino", tipoPlan: "70/30", condicion: "B70", familia: "fiorino", emoji: "📦", precio: 31230769, entregaMin: 10353000, da: 566838, gastos: 3465000, pctEntrega: 30, adjCuotas: [4,6,12], licitacionMin: 30, restriccion: "Familia Fiorino + cambio a Cronos disponible.", descripcion: "Utilitario compacto. Ideal para negocios." },
-  { id: "toro", base: "Toro", tipoPlan: "70/30", condicion: "B71", familia: "toro", emoji: "💪", precio: 50434389, entregaMin: 16719000, da: 915384, gastos: 5590000, pctEntrega: 30, adjCuotas: [4,6,12], licitacionMin: 30, restriccion: "Familia Toro + cambio a Cronos disponible.", descripcion: "Pickup mediana. Potencia y tecnología." },
-  { id: "fastback", base: "Fastback", tipoPlan: "70/30", condicion: "B71", familia: "fastback", emoji: "🏎️", precio: 44834711, entregaMin: 16275000, da: 813750, gastos: 4890000, pctEntrega: 30, adjCuotas: [4,6,12], licitacionMin: 30, restriccion: "Familia Fastback (incluye FIAT 600) + cambio a Cronos.", descripcion: "SUV coupé. Turbo 270 CV." },
-  { id: "titano", base: "Titano", tipoPlan: "70/30", condicion: "B76", familia: "titano", emoji: "🏔️", precio: 59176471, entregaMin: 13078000, da: 1074053, gastos: 6890000, pctEntrega: 20, adjCuotas: [2,4,6], licitacionMin: 40, restriccion: "Familia Titano + cambio a Cronos disponible.", descripcion: "La pickup grande de FIAT." },
-  { id: "mobi", base: "Mobi", tipoPlan: "80/20", condicion: "M80", familia: "mobi", emoji: "🏙️", precio: 25024793, entregaMin: 6056000, da: 454200, gastos: 2925000, pctEntrega: 20, adjCuotas: [4,6], licitacionMin: 30, restriccion: "Familia Mobi + cambio a Cronos disponible.", descripcion: "El 0km más accesible." },
+  { id: "cronos9010", base: "Cronos", tipoPlan: "90/10", condicion: "B91", familia: "cronos", emoji: "📈", precio: 32404959, entregaMin: 5881500, da: 588150, pctEntrega: 15, adjCuotas: [3,6,9,12], licitacionMin: 30, restriccion: "Solo familia Cronos.", descripcion: "Máxima financiación: solo 10% de anticipo." },
+  { id: "argo", base: "Argo", tipoPlan: "70/30", condicion: "B70", familia: "argo", emoji: "🚗", precio: 29314050, entregaMin: 10641000, da: 532050, pctEntrega: 30, adjCuotas: [4,6,12], licitacionMin: 30, restriccion: "Familia Argo + cambio a Cronos disponible.", descripcion: "Hatch versátil: MT y CVT." },
+  { id: "pulse", base: "Pulse", tipoPlan: "70/30", condicion: "B70", familia: "pulse", emoji: "⛰️", precio: 36297521, entregaMin: 13176000, da: 658800, pctEntrega: 30, adjCuotas: [4,6,12], licitacionMin: 30, restriccion: "Familia Pulse (incluye FIAT 600) + cambio a Cronos.", descripcion: "SUV compacto + acceso al FIAT 600." },
+  { id: "strada", base: "Strada", tipoPlan: "70/30", condicion: "B70", familia: "strada", emoji: "🛻", precio: 40045249, entregaMin: 13275000, da: 726821, pctEntrega: 30, adjCuotas: [6,12], licitacionMin: 35, restriccion: "Familia Strada + cambio a Cronos disponible.", descripcion: "Pickup compacta. Cabina doble y simple." },
+  { id: "fiorino", base: "Fiorino", tipoPlan: "70/30", condicion: "B70", familia: "fiorino", emoji: "📦", precio: 31230769, entregaMin: 10353000, da: 566838, pctEntrega: 30, adjCuotas: [4,6,12], licitacionMin: 30, restriccion: "Familia Fiorino + cambio a Cronos disponible.", descripcion: "Utilitario compacto. Ideal para negocios." },
+  { id: "toro", base: "Toro", tipoPlan: "70/30", condicion: "B71", familia: "toro", emoji: "💪", precio: 50434389, entregaMin: 16719000, da: 915384, pctEntrega: 30, adjCuotas: [4,6,12], licitacionMin: 30, restriccion: "Familia Toro + cambio a Cronos disponible.", descripcion: "Pickup mediana. Potencia y tecnología." },
+  { id: "fastback", base: "Fastback", tipoPlan: "70/30", condicion: "B71", familia: "fastback", emoji: "🏎️", precio: 44834711, entregaMin: 16275000, da: 813750, pctEntrega: 30, adjCuotas: [4,6,12], licitacionMin: 30, restriccion: "Familia Fastback (incluye FIAT 600) + cambio a Cronos.", descripcion: "SUV coupé. Turbo 270 CV." },
+  { id: "titano", base: "Titano", tipoPlan: "70/30", condicion: "B76", familia: "titano", emoji: "🏔️", precio: 59176471, entregaMin: 13078000, da: 1074053, pctEntrega: 20, adjCuotas: [2,4,6], licitacionMin: 40, restriccion: "Familia Titano + cambio a Cronos disponible.", descripcion: "La pickup grande de FIAT." },
+  { id: "mobi", base: "Mobi", tipoPlan: "80/20", condicion: "M80", familia: "mobi", emoji: "🏙️", precio: 25024793, entregaMin: 6056000, da: 454200, pctEntrega: 20, adjCuotas: [4,6], licitacionMin: 30, restriccion: "Familia Mobi + cambio a Cronos disponible.", descripcion: "El 0km más accesible." },
 ];
 
 // ========== DOCUMENTACIÓN REQUERIDA PLAN ==========
@@ -399,6 +399,24 @@ const DOCUMENTACION_PLAN = [
   { id: 8, texto: "Seguro con compañía autorizada FCA", icono: "🛡️" },
   { id: 9, texto: "No figurar en Veraz (titular ni garantes)", icono: "⚠️" },
 ];
+
+// Desglose de gastos de cada plan de "Elegí tu Plan": sale de planesDetalle (misma
+// lista que el cotizador del CRM), cruzado por valor móvil y condición.
+const detalleDePlanAbril = (plan) =>
+  planesDetalle.find(d => d.valorMovil === plan.precio && d.condicion === plan.condicion) || null;
+
+const tramoSellado = (rotulo) => {
+  const m = rotulo?.match(/(\d+)\s*-\s*C?(\d+)/i);
+  return m ? `cuotas ${m[1]} a ${m[2]}` : rotulo;
+};
+
+const gastosDelPlan = (d) => d ? [
+  ['Derecho de suscripción', d.derSusc],
+  ['Seguro de vida', d.seguroVida],
+  ['Gastos administrativos', d.gastosAdm],
+  ['Alícuota', d.alicuota],
+  [`Sellado TDF por cuota (${tramoSellado(d.selladoCuotas)})`, d.selladoPorCuota],
+].filter(([, v]) => v > 0) : [];
 
 const obtenerModelosParaPlan = (plan) => {
   const modelosFamilia = MODELOS_POR_FAMILIA[plan.familia] || [];
@@ -988,11 +1006,21 @@ export default function FiatApp() {
                       <span className="bg-red-600 px-2 py-1 rounded text-[10px] font-bold">{plan.tipoPlan}</span>
                     </div>
                     <p className="text-[10px] text-white/50 mb-2">{plan.descripcion}</p>
-                    <div className="grid grid-cols-3 gap-2">
+                    <div className="grid grid-cols-2 gap-2">
                       <div className="bg-black/20 rounded-lg p-2"><p className="text-[8px] text-white/40">Valor Móvil</p><p className="text-xs font-bold text-green-400">{formatPrecio(plan.precio)}</p></div>
                       <div className="bg-black/20 rounded-lg p-2"><p className="text-[8px] text-white/40">Entrega Mín</p><p className="text-xs font-bold">{formatPrecio(plan.entregaMin)}</p></div>
-                      <div className="bg-black/20 rounded-lg p-2"><p className="text-[8px] text-white/40">Gastos</p><p className="text-xs font-bold">{formatPrecio(plan.gastos)}</p></div>
                     </div>
+                    {gastosDelPlan(detalleDePlanAbril(plan)).length > 0 && (
+                      <div className="mt-2 bg-black/20 rounded-lg p-2">
+                        <p className="text-[8px] text-white/40 uppercase tracking-wide mb-1">Gastos del plan (por cuota)</p>
+                        {gastosDelPlan(detalleDePlanAbril(plan)).map(([label, valor]) => (
+                          <div key={label} className="flex justify-between items-center py-0.5">
+                            <span className="text-[10px] text-white/60">{label}</span>
+                            <span className="text-[11px] font-bold tabular-nums">{formatPrecio(valor)}</span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
                     <div className="mt-2 flex items-center gap-1 flex-wrap">
                       <span className="text-[9px] text-white/40">Adjudicación cuotas:</span>
                       {plan.adjCuotas.map(c => <span key={c} className="bg-blue-500/30 px-1.5 py-0.5 rounded text-[9px]">{c}</span>)}
