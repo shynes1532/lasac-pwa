@@ -116,6 +116,52 @@ Buscá los números en el código y reemplazalos:
 - Service Ushuaia: `5492901559933`
 - Service Río Grande: `5492964465050`
 
+## 🛰️ Radar de Mercado (uso interno)
+
+Pantalla interna para el equipo comercial. Busca en la web con **Exa** a través del
+**AI Gateway de Vercel** y devuelve un informe con hallazgos, impacto para LASAC,
+acciones sugeridas y links a las notas originales.
+
+**No aparece en la navegación del cliente.** Se entra por hash:
+
+```
+https://<tu-dominio>/#radar
+```
+
+### Configuración en Vercel
+
+En `Project → Settings → Environment Variables` (ver `.env.example`):
+
+| Variable | Obligatoria | Para qué |
+|---|---|---|
+| `AI_GATEWAY_API_KEY` | Sí | Key del AI Gateway. La búsqueda de Exa se enruta por el Gateway: **no hace falta una API key de Exa** |
+| `RADAR_ACCESS_CODE` | Sí | Código interno que se pide antes de dejar buscar. Sin esta variable el endpoint no responde |
+| `RADAR_MODEL` | No | Modelo del Gateway (default `anthropic/claude-opus-5`) |
+| `RADAR_MAX_DIA` | No | Tope de búsquedas por día (default `120`) |
+
+Cada búsqueda del radar consume una request de Exa en el Gateway, así que el endpoint
+tiene tres frenos: código de acceso, límite por IP (20/hora) y tope diario. Además cachea
+30 minutos cada consulta repetida.
+
+### Ejes disponibles
+
+`Competencia` · `Nuestras marcas` · `Plan de Ahorro` · `Mercado` · `Tierra del Fuego` · `Búsqueda libre`
+
+Cada eje filtra por dominios de prensa automotriz/económica argentina y por fecha
+(7, 30 o 90 días). Se editan en `src/data/radar.js`.
+
+### Archivos
+
+```
+api/radar.js                      # función serverless (Exa vía AI Gateway)
+src/data/radar.js                 # presets, dominios y períodos (compartido front/back)
+src/components/RadarMercado.jsx   # pantalla interna (se carga aparte del bundle del cliente)
+```
+
+> ⚠️ Los precios que aparecen en el informe son referencias de prensa, no listas
+> oficiales de LASAC. La pantalla lo aclara, pero conviene verificar antes de usar
+> un dato con un cliente.
+
 ## 📞 Soporte
 
 Desarrollado para LASAC - Liendo Automotores S.A.C.

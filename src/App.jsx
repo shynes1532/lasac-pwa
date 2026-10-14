@@ -1,12 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { getMarca } from './data/index.js';
 import BrandSelector from './components/BrandSelector.jsx';
 import GenericBrandApp from './components/GenericBrandApp.jsx';
 import FiatApp from './FiatApp.jsx';
 
+// Pantalla interna (equipo comercial): se carga aparte para no sumar peso
+// al bundle que descarga el cliente.
+const RadarMercado = lazy(() => import('./components/RadarMercado.jsx'));
+
 const STORAGE_KEY = 'lasac-marca';
+const HASH_RADAR = '#radar';
 
 // Orquestador del Grupo LASAC:
+//  - #radar     -> Radar de Mercado (uso interno, fuera de la nav del cliente)
 //  - sin marca  -> selector de marcas
 //  - FIAT       -> app dedicada y completa (FiatApp), con botón flotante "Cambiar marca"
 //  - JAC/Forthing/Dongfeng -> app genérica modular (GenericBrandApp)
@@ -14,8 +20,15 @@ export default function App() {
   const [marcaId, setMarcaId] = useState(() => {
     try { return localStorage.getItem(STORAGE_KEY) || null; } catch { return null; }
   });
+  const [hash, setHash] = useState(() => window.location.hash);
 
   const marca = getMarca(marcaId);
+
+  useEffect(() => {
+    const onHashChange = () => setHash(window.location.hash);
+    window.addEventListener('hashchange', onHashChange);
+    return () => window.removeEventListener('hashchange', onHashChange);
+  }, []);
 
   useEffect(() => {
     try {
@@ -26,6 +39,14 @@ export default function App() {
 
   const elegirMarca = (id) => setMarcaId(id);
   const cambiarMarca = () => setMarcaId(null);
+
+  if (hash === HASH_RADAR) {
+    return (
+      <Suspense fallback={<div className="min-h-screen bg-slate-900" />}>
+        <RadarMercado onSalir={() => { window.location.hash = ''; setHash(''); }} />
+      </Suspense>
+    );
+  }
 
   if (!marca) {
     return <BrandSelector onElegir={elegirMarca} />;
