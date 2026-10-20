@@ -658,7 +658,7 @@ export default function FiatApp() {
       `🏢 Área: ${f.area || 'General'}%0A📍 Sucursal: ${atencionSucursal}%0A` +
       (f.modelo || f.patente ? `🚗 Vehículo: ${f.modelo} ${f.patente}%0A%0A` : '%0A') +
       `✍️ *Mensaje:*%0A${f.mensaje}`;
-    window.open(`https://wa.me/5492964610900?text=${msg}`, '_blank');
+    window.open(`https://wa.me/5492964494360?text=${msg}`, '_blank');
     setAtencionEnviado(true);
   };
 
@@ -1345,13 +1345,13 @@ export default function FiatApp() {
                 const sucursal = document.querySelector('[data-suc].bg-red-600')?.innerText?.split('\n')[0] || '';
                 const msg = `🛡️ *ATENCIÓN DE SINIESTRO*%0A%0A👤 *TITULAR*%0ANombre: ${nombre}%0ADNI: ${dni}%0ATel: ${telefono}%0A%0A🚗 *VEHÍCULO*%0A${marca} ${modelo} ${anio}%0APatente: ${patente}%0A%0A🏢 *SEGURO*%0AAseguradora: ${aseguradora}%0APóliza: ${poliza}%0AN° Siniestro: ${numSiniestro || 'Pendiente'}%0A%0A📋 *SINIESTRO*%0AFecha: ${fecha}%0ATipo: ${tipo}%0ADescripción: ${descripcion}%0A%0A📍 Sucursal: ${sucursal}`;
                 // Siniestros van a Calidad/Reclamos
-                window.open(`https://wa.me/5492964610900?text=${msg}`, '_blank');
+                window.open(`https://wa.me/5492964494360?text=${msg}`, '_blank');
               }} className="w-full py-4 rounded-xl font-bold text-lg bg-gradient-to-r from-orange-600 to-orange-700 active:scale-95 transition-all">
                 📱 Enviar Solicitud por WhatsApp
               </button>
               <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20 text-center">
                 <p className="text-xs text-white/60 mb-2">¿Necesitás ayuda urgente?</p>
-                <a href="tel:+5492964610900" className="inline-block px-4 py-2 bg-green-600 rounded-full text-sm font-bold">📞 Llamar ahora</a>
+                <a href="tel:+5492964494360" className="inline-block px-4 py-2 bg-green-600 rounded-full text-sm font-bold">📞 Llamar ahora</a>
               </div>
             </div>
           </div>
@@ -1472,7 +1472,7 @@ export default function FiatApp() {
                     <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
                       <p className="text-sm text-center text-white/70 mb-3">También podés contactarnos directamente:</p>
                       <div className="flex gap-2 justify-center">
-                        <a href="tel:+5492964610900" className="px-4 py-2 bg-green-600 rounded-full text-sm font-bold">📞 Llamar</a>
+                        <a href="tel:+5492964494360" className="px-4 py-2 bg-green-600 rounded-full text-sm font-bold">📞 Llamar</a>
                         <a href="mailto:atencion@lasac.com.ar" className="px-4 py-2 bg-blue-600 rounded-full text-sm font-bold">✉️ Email</a>
                       </div>
                     </div>
