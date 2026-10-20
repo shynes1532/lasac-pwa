@@ -64,7 +64,7 @@ export default function GenericBrandApp({ marca, onCambiarMarca }) {
           <div className="flex items-center gap-2 shrink-0">
             {mostrarAtras && (
               <button onClick={atras} className="text-[11px] font-bold bg-white/10 hover:bg-white/20 px-2.5 py-1.5 rounded-full flex items-center gap-1 whitespace-nowrap">
-                <ChevronLeft className="inline h-4 w-4 mr-1.5 align-[-0.2em]" />Atrás
+                <ChevronLeft className="inline h-4 w-4 mr-1.5 align-[-0.2em]" />Inicio
               </button>
             )}
             <button onClick={onCambiarMarca} className="text-[11px] font-bold bg-white/10 hover:bg-white/20 px-2.5 py-1.5 rounded-full flex items-center gap-1 whitespace-nowrap">

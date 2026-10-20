@@ -30,8 +30,8 @@ const catalogo = [
 const stockOportunidad = [];
 
 const novedades = [
-  { id: 9, fecha: '08 Ago 2026', titulo: '🎉 Ahora somos Grupo LASAC', descripcion: 'Crecimos para estar más cerca tuyo. LASAC ahora es Grupo LASAC: una sola gran familia que reúne a FIAT, JAC Motors, Forthing y Dongfeng bajo un mismo techo. Más marcas, más modelos y la misma atención de siempre en Ushuaia y Río Grande. ¡Bienvenido a Grupo LASAC! 🇦🇷', imagen: 'grupo-lasac', destacado: true },
-  { id: 1, fecha: '2026', titulo: '🚀 JAC Motors en el Grupo LASAC', descripcion: 'Toda la gama JAC en Tierra del Fuego: SUVs, pickups, híbridos y eléctricos. Consultá disponibilidad y financiación.', imagen: 'js6', destacado: true },
+  { id: 9, fecha: '08 Ago 2026', titulo: 'Ahora somos Grupo LASAC', descripcion: 'Crecimos para estar más cerca tuyo. LASAC ahora es Grupo LASAC: una sola gran familia que reúne a FIAT, JAC Motors, Forthing y Dongfeng bajo un mismo techo. Más marcas, más modelos y la misma atención de siempre en Ushuaia y Río Grande. ¡Bienvenido a Grupo LASAC! 🇦🇷', imagen: 'grupo-lasac', destacado: true },
+  { id: 1, fecha: '2026', titulo: 'JAC Motors en el Grupo LASAC', descripcion: 'Toda la gama JAC en Tierra del Fuego: SUVs, pickups, híbridos y eléctricos. Consultá disponibilidad y financiación.', imagen: 'js6', destacado: true },
 ];
 
 const servicios = [
@@ -49,6 +49,7 @@ const jac = {
   descripcion: 'Concesionario Oficial JAC',
   oficial: true,
   imagenesPath: '/images/jac/',
+  heroModelo: 'js4', // modelo destacado en el hero de inicio (tiene imagen)
   imgExt: 'webp',
   moneda: 'ARS',
   notaCatalogo: 'Lista JIÀNTÓU Septiembre 2026 · Precio contado/BNA (incluye flete, inscripción y gastos). Ushuaia: +$500.000 de flete si la unidad viene de Río Grande.',

@@ -1,37 +1,43 @@
 import React from 'react';
-import { Flame, MessageCircle, Newspaper, ChevronRight } from 'lucide-react';
+import { ArrowRight, ChevronRight, Flame, MessageCircle, Newspaper } from 'lucide-react';
 import AutoImagen from '../AutoImagen.jsx';
+import PromoHero from '../ui/PromoHero.jsx';
 import { SeccionIcon } from '../ui/Icon.jsx';
 import { SECCIONES_META, HOME_GRID_ORDER } from '../../data/grupo.js';
 
 export default function Inicio({ marca, onNavegar }) {
   // Accesos rápidos: solo las secciones que la marca tiene y que están en el grid.
   const accesos = HOME_GRID_ORDER.filter((id) => marca.secciones.includes(id));
-  const tieneOportunidades = marca.secciones.includes('oportunidades');
+  const tiene = (id) => marca.secciones.includes(id);
   const novedadesDestacadas = (marca.novedades || []).filter((n) => n.destacado);
   const waVentas = marca.contacto?.whatsapp?.ventas;
+  const catalogo = marca.catalogo || [];
+  const destacado = catalogo.find((m) => m.modelo === marca.heroModelo) || catalogo[0];
+
+  // Hero de promos deslizable: bienvenida, catálogo y service (según las secciones de la marca).
+  const slides = [
+    {
+      id: 'bienvenida', eyebrow: `${marca.descripcion} · Tierra del Fuego`, title: `Bienvenido a ${marca.nombre}`,
+      text: 'Catálogo, turnos de service y atención al cliente, todo en un solo lugar.',
+      cta: tiene('oportunidades') ? { label: 'Oferta del Mes', icon: Flame, onClick: () => onNavegar('oportunidades') } : undefined,
+      cta2: waVentas ? { label: 'WhatsApp', icon: MessageCircle, href: `https://wa.me/${waVentas}?text=${encodeURIComponent(`Hola ${marca.nombre} 👋 Quiero hacer una consulta.`)}` } : undefined,
+    },
+    tiene('catalogo') && destacado && {
+      id: 'catalogo', eyebrow: `Catálogo ${marca.nombre}`, title: `Toda la gama ${marca.nombre}`,
+      text: `${catalogo.length} modelos con versiones y equipamiento detallado.`,
+      image: { basePath: marca.imagenesPath, modelo: destacado.modelo, ext: destacado.ext || marca.imgExt, nombre: destacado.nombre },
+      cta: { label: 'Ver catálogo', arrow: true, onClick: () => onNavegar('catalogo') },
+    },
+    tiene('turnos') && {
+      id: 'service', eyebrow: 'Posventa oficial', title: 'Turno de service online',
+      text: 'Pedilo en segundos y te lo confirmamos por WhatsApp.',
+      cta: { label: 'Pedir turno', arrow: true, onClick: () => onNavegar('turnos') },
+    },
+  ].filter(Boolean);
 
   return (
     <div className="space-y-4">
-      <section className="relative overflow-hidden rounded-3xl bg-brand-gradient p-6 pt-7 text-on-brand shadow-xl shadow-black/30 ring-1 ring-inset ring-white/15">
-        <div className="pointer-events-none absolute -top-20 -right-16 h-56 w-56 rounded-full bg-white/15 blur-2xl" />
-        <div className="pointer-events-none absolute -bottom-24 -left-10 h-48 w-48 rounded-full bg-black/25 blur-2xl" />
-        <p className="relative text-[11px] font-semibold uppercase tracking-[0.18em] opacity-75">{marca.descripcion} · Tierra del Fuego</p>
-        <h1 className="relative mt-1.5 text-[28px] font-extrabold leading-tight tracking-tight">Bienvenido a {marca.nombre}</h1>
-        <p className="relative mt-1.5 text-sm opacity-85">Catálogo, turnos de service y atención al cliente, todo en un solo lugar.</p>
-        <div className="relative mt-5 flex flex-wrap gap-2">
-          {tieneOportunidades && (
-            <button onClick={() => onNavegar('oportunidades')} className="inline-flex items-center gap-1.5 rounded-full bg-white px-4 py-2 text-sm font-bold text-brand shadow-md shadow-black/20 transition-transform active:scale-95">
-              <Flame className="h-4 w-4" /> Oferta del Mes
-            </button>
-          )}
-          {waVentas && (
-            <a href={`https://wa.me/${waVentas}?text=${encodeURIComponent(`Hola ${marca.nombre} 👋 Quiero hacer una consulta.`)}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 rounded-full bg-white/15 px-4 py-2 text-sm font-bold ring-1 ring-inset ring-white/30 backdrop-blur-sm transition-transform active:scale-95">
-              <MessageCircle className="h-4 w-4" /> WhatsApp
-            </a>
-          )}
-        </div>
-      </section>
+      <PromoHero watermark={marca.nombre} slides={slides} />
 
       <div className="grid grid-cols-3 gap-2.5">
         {accesos.map((id) => {
@@ -50,7 +56,10 @@ export default function Inicio({ marca, onNavegar }) {
 
       {novedadesDestacadas.length > 0 && (
         <div>
-          <h2 className="mb-3 flex items-center gap-2.5 font-bold"><span className="icon-chip"><Newspaper className="h-4 w-4" /></span>Novedades</h2>
+          <div className="mb-3 flex items-center justify-between">
+            <h2 className="flex items-center gap-2.5 font-bold"><span className="icon-chip"><Newspaper className="h-4 w-4" /></span>Novedades</h2>
+            <button onClick={() => onNavegar('novedades')} className="inline-flex items-center gap-1 text-xs font-bold text-brand">Ver todas <ArrowRight className="h-3.5 w-3.5" /></button>
+          </div>
           <div className="space-y-2">
             {novedadesDestacadas.map((nov) => (
               <div key={nov.id} onClick={() => onNavegar('novedades')} className="flex cursor-pointer items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.06] p-3 shadow-lg shadow-black/20 transition-all duration-200 hover:border-white/20 active:scale-[0.98]">

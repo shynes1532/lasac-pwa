@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
-import { AlertTriangle, ArrowLeftRight, BarChart3, Briefcase, Building2, Calendar, Car, Check, CheckCircle2, ChevronLeft, ClipboardList, Clock, Cog, CreditCard, FileText, Flame, Globe, Heart, Lightbulb, Mail, MapPin, MessageCircle, MousePointerClick, Newspaper, Palette, PartyPopper, PenLine, Phone, Plus, RefreshCw, ShieldAlert, Star, Store, Timer, Trophy, User, Wrench, Zap } from 'lucide-react';
+import { AlertTriangle, ArrowLeftRight, ArrowRight, BarChart3, Briefcase, Building2, Calendar, Car, Check, CheckCircle2, ChevronLeft, ClipboardList, Clock, Cog, CreditCard, FileText, Flame, Globe, Heart, House, IdCard, Info, Lightbulb, Mail, MapPin, MessageCircle, MousePointerClick, Newspaper, Palette, PartyPopper, PenLine, Phone, Plus, RefreshCw, Shield, ShieldAlert, Star, Store, Timer, Trophy, User, Wrench, Zap } from 'lucide-react';
 import { SeccionIcon, TipoAtencionIcon, SucursalIcon, TipoUsuarioPlanIcon, FamiliaIcon } from './components/ui/Icon.jsx';
+import PromoHero from './components/ui/PromoHero.jsx';
+import Stepper from './components/ui/Stepper.jsx';
 // Logo LASAC como componente SVG
 const LogoLASAC = ({ className = "h-8" }) => (
   <svg viewBox="0 0 200 50" className={className}>
@@ -283,11 +285,11 @@ const stockOportunidad = [
 
 // ========== NOVEDADES ==========
 const novedades = [
-  { id: 9, fecha: '08 Ago 2026', titulo: '🎉 Ahora somos Grupo LASAC', descripcion: 'Crecimos para estar más cerca tuyo. LASAC ahora es Grupo LASAC: una sola gran familia que reúne a FIAT, JAC Motors, Forthing y Dongfeng bajo un mismo techo. Más marcas, más modelos y la misma atención de siempre en Ushuaia y Río Grande. ¡Bienvenido a Grupo LASAC! 🇦🇷', imagen: 'grupo-lasac', destacado: true },
-  { id: 1, fecha: '01 Ago 2026', titulo: '📋 Nueva Sobrepauta Agosto 2026', descripcion: 'Actualizamos el FIAT Plan con la sobrepauta comercial de Agosto 2026. Nuevo Cronos Drive Plus 90/10, Argo, Pulse, Fastback, Titano y más. Consultá el simulador de cuotas.', imagen: 'cronos', destacado: true },
-  { id: 2, fecha: '04 Mar 2026', titulo: '💳 Nuevo: Solicitud de Crédito Online', descripcion: 'Ahora podés solicitar tu crédito automotor directamente desde la app. Completá el formulario y te contactamos en 24hs.', imagen: 'pulse', destacado: true },
-  { id: 3, fecha: '01 Mar 2026', titulo: '🚀 Nuevo Fiat 600 Hybrid disponible', descripcion: 'Llegó el nuevo Fiat 600 con tecnología híbrida. Motor 1.2 de 145 CV. Disponible para ahorristas de Pulse y Fastback.', imagen: 'fiat600', destacado: false },
-  { id: 4, fecha: '20 Feb 2026', titulo: '🔥 Oportunidades de Stock', descripcion: 'Unidades con precios especiales y entrega inmediata. Cronos, Fastback, Pulse, Titano y más.', imagen: 'fastback', destacado: false },
+  { id: 9, fecha: '08 Ago 2026', titulo: 'Ahora somos Grupo LASAC', descripcion: 'Crecimos para estar más cerca tuyo. LASAC ahora es Grupo LASAC: una sola gran familia que reúne a FIAT, JAC Motors, Forthing y Dongfeng bajo un mismo techo. Más marcas, más modelos y la misma atención de siempre en Ushuaia y Río Grande. ¡Bienvenido a Grupo LASAC! 🇦🇷', imagen: 'grupo-lasac', destacado: true },
+  { id: 1, fecha: '01 Ago 2026', titulo: 'Nueva Sobrepauta Agosto 2026', descripcion: 'Actualizamos el FIAT Plan con la sobrepauta comercial de Agosto 2026. Nuevo Cronos Drive Plus 90/10, Argo, Pulse, Fastback, Titano y más. Consultá el simulador de cuotas.', imagen: 'cronos', destacado: true },
+  { id: 2, fecha: '04 Mar 2026', titulo: 'Nuevo: Solicitud de Crédito Online', descripcion: 'Ahora podés solicitar tu crédito automotor directamente desde la app. Completá el formulario y te contactamos en 24hs.', imagen: 'pulse', destacado: true },
+  { id: 3, fecha: '01 Mar 2026', titulo: 'Nuevo Fiat 600 Hybrid disponible', descripcion: 'Llegó el nuevo Fiat 600 con tecnología híbrida. Motor 1.2 de 145 CV. Disponible para ahorristas de Pulse y Fastback.', imagen: 'fiat600', destacado: false },
+  { id: 4, fecha: '20 Feb 2026', titulo: 'Oportunidades de Stock', descripcion: 'Unidades con precios especiales y entrega inmediata. Cronos, Fastback, Pulse, Titano y más.', imagen: 'fastback', destacado: false },
 ];
 
 // ========== SERVICIOS ==========
@@ -400,6 +402,16 @@ const DOCUMENTACION_PLAN = [
   { id: 7, texto: "Solicitud de pedido de unidad", icono: "📄" },
   { id: 8, texto: "Seguro con compañía autorizada FCA", icono: "🛡️" },
   { id: 9, texto: "No figurar en Veraz (titular ni garantes)", icono: "⚠️" },
+];
+const DOC_ICONS = { 1: IdCard, 2: ClipboardList, 3: House, 4: Briefcase, 5: Heart, 6: PenLine, 7: FileText, 8: Shield, 9: AlertTriangle };
+const DocIcon = ({ id, className }) => { const I = DOC_ICONS[id] || FileText; return <I className={className} aria-hidden="true" />; };
+
+// Pasos del Plan de Ahorro (línea de progreso en la pantalla del plan)
+const PASOS_PLAN = [
+  { titulo: 'Suscribite', desc: 'Elegí modelo y plan' },
+  { titulo: 'Pagá cuotas', desc: '84 cuotas mensuales' },
+  { titulo: 'Adjudicá', desc: 'Sorteo o licitación' },
+  { titulo: 'Retirá tu 0KM', desc: 'Ushuaia o Río Grande' },
 ];
 
 const obtenerModelosParaPlan = (plan) => {
@@ -627,6 +639,7 @@ export default function FiatApp({ onCambiarMarca }) {
 
   const vehiculos = filtro === 'todos' ? catalogo : catalogo.filter(v => v.categoria === filtro);
   const totalStock = stockOportunidad.reduce((a, b) => a + b.stock, 0);
+  const cuotaDesde = Math.min(...planesDetalle.map((p) => p.cuotas?.[1]?.valor ?? Infinity));
   const formatFecha = (fecha) => fecha ? fecha.toLocaleDateString('es-AR', { weekday: 'short', day: 'numeric', month: 'short' }) : '';
   const tipoActual = tiposAtencion.find(t => t.id === atencionTipo);
 
@@ -734,17 +747,17 @@ export default function FiatApp({ onCambiarMarca }) {
         {/* ========== INICIO ========== */}
         {seccion === 'inicio' && (
           <div className="space-y-4">
-            <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-red-600 via-red-700 to-red-900 p-6 pt-7 text-white shadow-xl shadow-black/30 ring-1 ring-inset ring-white/15">
-              <div className="pointer-events-none absolute -top-20 -right-16 h-56 w-56 rounded-full bg-white/15 blur-2xl" />
-              <div className="pointer-events-none absolute -bottom-24 -left-10 h-48 w-48 rounded-full bg-black/25 blur-2xl" />
-              <p className="relative text-[11px] font-semibold uppercase tracking-[0.18em] text-white/75">Concesionario Oficial FIAT · Tierra del Fuego</p>
-              <h1 className="relative mt-1.5 text-[28px] font-extrabold leading-tight tracking-tight">Bienvenido a LASAC</h1>
-              <p className="relative mt-1.5 text-sm text-white/85">Catálogo 0KM, Plan de Ahorro, crédito y posventa, todo en un solo lugar.</p>
-              <div className="relative mt-5 flex flex-wrap gap-2">
-                <button onClick={() => setSeccion('oportunidades')} className="inline-flex items-center gap-1.5 rounded-full bg-white px-4 py-2 text-sm font-bold text-red-700 shadow-md shadow-black/20 transition-transform active:scale-95"><Flame className="h-4 w-4" /> Oferta del Mes</button>
-                <a href="https://wa.me/5492964487924?text=Hola%20LASAC%20%F0%9F%91%8B%20Quiero%20hacer%20una%20consulta." target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 rounded-full bg-white/15 px-4 py-2 text-sm font-bold text-white ring-1 ring-inset ring-white/30 backdrop-blur-sm transition-transform active:scale-95"><MessageCircle className="h-4 w-4" /> WhatsApp</a>
-              </div>
-            </section>
+            <PromoHero watermark="FIAT" slides={[
+              { id: 'bienvenida', eyebrow: 'Concesionario Oficial FIAT · Tierra del Fuego', title: 'Bienvenido a LASAC', text: 'Catálogo 0KM, Plan de Ahorro, crédito y posventa, todo en un solo lugar.',
+                cta: { label: 'Oferta del Mes', icon: Flame, onClick: () => setSeccion('oportunidades') },
+                cta2: { label: 'WhatsApp', icon: MessageCircle, href: 'https://wa.me/5492964487924?text=Hola%20LASAC%20%F0%9F%91%8B%20Quiero%20hacer%20una%20consulta.' } },
+              { id: 'ofertas', eyebrow: 'Oferta del Mes · Entrega inmediata', title: `${totalStock} unidades en oferta`, text: 'Unidades 0KM en stock en Tierra del Fuego, hasta agotar existencias.',
+                image: { modelo: stockOportunidad[0]?.modelo, nombre: stockOportunidad[0]?.nombre },
+                cta: { label: 'Ver las ofertas', arrow: true, onClick: () => setSeccion('oportunidades') } },
+              { id: 'plan', eyebrow: 'FIAT Plan de Ahorro · Octubre 2026', title: 'Tu FIAT 0KM en 84 cuotas', text: `Cuotas desde ${formatPrecio(cuotaDesde)} por mes (s/IVA). Simulá y consultá por WhatsApp.`,
+                image: { modelo: 'cronos', nombre: 'Cronos' },
+                cta: { label: 'Simular cuotas', arrow: true, onClick: () => setSeccion('simulador') } },
+            ]} />
 
             <div className="grid grid-cols-3 gap-2.5">
               {[
@@ -767,7 +780,10 @@ export default function FiatApp({ onCambiarMarca }) {
             </div>
 
             <div>
-              <h2 className="font-bold mb-3 flex items-center gap-2 gap-2.5"><span className="icon-chip"><Newspaper className="h-4 w-4" /></span>Novedades</h2>
+              <div className="mb-3 flex items-center justify-between">
+                <h2 className="flex items-center gap-2.5 font-bold"><span className="icon-chip"><Newspaper className="h-4 w-4" /></span>Novedades</h2>
+                <button onClick={() => setSeccion('novedades')} className="inline-flex items-center gap-1 text-xs font-bold text-brand">Ver todas <ArrowRight className="h-3.5 w-3.5" /></button>
+              </div>
               <div className="space-y-2">
                 {novedades.filter(n => n.destacado).map(nov => (
                   <div key={nov.id} onClick={() => setSeccion('novedades')} className="bg-white/[0.06] rounded-2xl p-3 border border-white/10 shadow-lg shadow-black/20 flex gap-3 items-center transition-all duration-200 hover:border-white/20 active:scale-[0.98] cursor-pointer">
@@ -828,16 +844,22 @@ export default function FiatApp({ onCambiarMarca }) {
         {/* ========== OPORTUNIDADES ========== */}
         {seccion === 'oportunidades' && (
           <div>
-            <div className="bg-gradient-to-r from-red-600 to-red-800 rounded-xl p-4 text-center mb-3">
-              <h2 className="text-xl font-bold mb-1 flex items-center gap-2.5"><span className="icon-chip"><Flame className="h-4 w-4" /></span>Oferta del Mes</h2>
-              <p className="text-sm">{totalStock} unidades • Entrega inmediata</p>
+            <div className="relative mb-3 overflow-hidden rounded-2xl bg-brand-gradient-x p-4 text-on-brand shadow-lg shadow-black/25">
+              <div className="brand-watermark brand-watermark--sm" aria-hidden="true"><span>Oferta</span><span>del mes</span></div>
+              <div className="relative flex items-center gap-3">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/20 ring-1 ring-inset ring-white/30"><Flame className="h-6 w-6" /></span>
+                <div>
+                  <h2 className="font-display text-3xl font-extrabold uppercase leading-none tracking-tight">Oferta del Mes</h2>
+                  <p className="mt-1 text-sm opacity-90">{totalStock} unidades · Entrega inmediata</p>
+                </div>
+              </div>
             </div>
 
             {/* Countdown grande */}
             <div className="bg-gradient-to-r from-amber-600/30 to-red-600/30 border border-amber-500/50 rounded-xl p-3 mb-3">
               <p className="text-center text-[10px] text-white/70 mb-1.5"><Zap className="inline h-3.5 w-3.5 mr-1 align-[-0.15em]" />Estas ofertas finalizan en:</p>
               <Countdown deadline={getFinDeMes()} />
-              <p className="text-center text-[9px] text-white/50 mt-1.5">No te quedes sin la tuya 🚗💨</p>
+              <p className="text-center text-[9px] text-white/50 mt-1.5">No te quedes sin la tuya</p>
             </div>
 
             <div className="bg-amber-500/10 border border-amber-500/30 rounded-lg p-2 mb-3">
@@ -850,7 +872,9 @@ export default function FiatApp({ onCambiarMarca }) {
             <div className="space-y-3">
               {stockOportunidad.map((item, i) => (
                 <div key={i} className="bg-white/[0.06] rounded-2xl overflow-hidden border border-white/10 shadow-lg shadow-black/20 relative transition-all duration-200 hover:border-white/20 hover:-translate-y-0.5">
-                  <span className="absolute top-2 right-2 bg-red-600 px-2 py-1 rounded-md text-xs font-bold z-10 shadow-md shadow-black/30">x{item.stock} unidades</span>
+                  {item.stock === 1
+                    ? <span className="sticker absolute top-3 right-3 z-10">Última unidad</span>
+                    : <span className="sticker sticker-brand absolute top-3 right-3 z-10">x{item.stock} unidades</span>}
                   <AutoImagen modelo={item.modelo} className="w-full h-40" contain />
                   <div className="p-3">
                     <div className="flex items-start justify-between mb-1">
@@ -904,14 +928,17 @@ export default function FiatApp({ onCambiarMarca }) {
             {/* STEP 0: Tipo de usuario + sucursal */}
             {planStep === 0 && (
               <div className="space-y-4">
-                <div className="bg-gradient-to-r from-red-600 to-red-800 rounded-2xl p-6 text-center relative overflow-hidden">
-                  <div className="absolute -top-10 -right-10 w-32 h-32 bg-white/10 rounded-full" />
-                  <div className="relative">
-                    <div className="text-3xl mb-2"><ClipboardList className="h-9 w-9" /></div>
-                    <h2 className="text-xl font-bold mb-1">FIAT Plan de Ahorro</h2>
-                    <p className="text-sm opacity-80">Sobrepauta Octubre 2026</p>
+                <div className="relative overflow-hidden rounded-2xl bg-brand-gradient-x p-5 text-on-brand shadow-lg shadow-black/25">
+                  <div className="brand-watermark brand-watermark--sm" aria-hidden="true"><span>Plan</span><span>de ahorro</span></div>
+                  <div className="relative flex items-center gap-3">
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/20 ring-1 ring-inset ring-white/30"><ClipboardList className="h-6 w-6" /></span>
+                    <div>
+                      <h2 className="font-display text-3xl font-extrabold uppercase leading-none tracking-tight">FIAT Plan de Ahorro</h2>
+                      <p className="mt-1 text-sm opacity-90">Sobrepauta Octubre 2026 · 84 cuotas</p>
+                    </div>
                   </div>
                 </div>
+                <Stepper titulo="¿Cómo funciona?" pasos={PASOS_PLAN} />
 
                 <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
                   <h3 className="font-bold text-sm mb-3">¿Cuál es tu situación?</h3>
@@ -941,7 +968,7 @@ export default function FiatApp({ onCambiarMarca }) {
                     {['Ushuaia', 'Río Grande'].map(s => (
                       <button key={s} onClick={() => setPlanSucursal(s)}
                         className={`p-3 rounded-lg font-bold text-sm transition-all ${planSucursal === s ? 'bg-red-600' : 'bg-white/5 border border-white/20'}`}>
-                        {s === 'Ushuaia' ? '🏔️' : '🏭'} {s}
+                        <SucursalIcon ciudad={s} className="inline h-4 w-4 mr-1.5 align-[-0.2em]" />{s}
                       </button>
                     ))}
                   </div>
@@ -1057,7 +1084,7 @@ export default function FiatApp({ onCambiarMarca }) {
                           <div className="bg-black/20 rounded-lg p-2"><span className="text-white/40 text-[10px]">Motor</span><p className="font-bold">{modelo.motor}</p></div>
                           <div className="bg-black/20 rounded-lg p-2"><span className="text-white/40 text-[10px]">Caja</span><p className="font-bold">{modelo.caja}</p></div>
                         </div>
-                        {modelo.nota && <p className="text-[10px] text-amber-300 bg-amber-500/10 rounded-lg p-2">ℹ️ {modelo.nota}</p>}
+                        {modelo.nota && <p className="text-[10px] text-amber-300 bg-amber-500/10 rounded-lg p-2"><Info className="inline h-3.5 w-3.5 mr-1 align-[-0.15em]" />{modelo.nota}</p>}
                         <div>
                           <p className="text-[10px] text-white/50 mb-2">Colores disponibles:</p>
                           <div className="flex flex-wrap gap-2">
@@ -1087,7 +1114,7 @@ export default function FiatApp({ onCambiarMarca }) {
                   {DOCUMENTACION_PLAN.map(doc => (
                     <button key={doc.id} onClick={() => setDocChecks({...docChecks, [doc.id]: !docChecks[doc.id]})}
                       className={`w-full flex items-center gap-3 p-3 rounded-xl border transition-all ${docChecks[doc.id] ? 'bg-green-500/20 border-green-500/40' : 'bg-white/5 border-white/10'}`}>
-                      <span className="text-lg">{docChecks[doc.id] ? '✅' : doc.icono}</span>
+                      <span className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg ${docChecks[doc.id] ? 'bg-green-500/25 text-green-300' : 'bg-white/10 text-white/70'}`}>{docChecks[doc.id] ? <CheckCircle2 className="h-4 w-4" /> : <DocIcon id={doc.id} className="h-4 w-4" />}</span>
                       <span className={`text-sm text-left ${docChecks[doc.id] ? 'line-through text-white/40' : ''}`}>{doc.texto}</span>
                     </button>
                   ))}
@@ -1207,7 +1234,7 @@ export default function FiatApp({ onCambiarMarca }) {
                         {/* Tabla de cuotas */}
                         <div className="bg-black/20 rounded-xl p-3 mb-4">
                           <h4 className="font-bold text-sm mb-3">
-                            {showTotalCliente ? '★ Total lo que paga el cliente (Cuota + Sellado TDF)' : '📋 Cuotas s/IVA (sin sellado)'}
+                            {showTotalCliente ? <><Star className="inline h-4 w-4 mr-1.5 align-[-0.2em] text-amber-300" />Total lo que paga el cliente (Cuota + Sellado TDF)</> : <><ClipboardList className="inline h-4 w-4 mr-1.5 align-[-0.2em] text-brand" />Cuotas s/IVA (sin sellado)</>}
                           </h4>
                           <div className="space-y-1">
                             {(showTotalCliente ? planDetalleSelec.totalCliente : planDetalleSelec.cuotas).map((c, i) => (
@@ -1706,10 +1733,10 @@ export default function FiatApp({ onCambiarMarca }) {
                     <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
                       <h3 className="font-bold text-sm mb-3"><Clock className="inline h-4 w-4 mr-1.5 align-[-0.2em] text-brand" />Urgencia</h3>
                       <div className="grid grid-cols-3 gap-2">
-                        {[{id:'alta',label:'🔥 Urgente',desc:'Esta semana'},{id:'normal',label:'📅 Normal',desc:'Este mes'},{id:'baja',label:'🕐 Sin apuro',desc:'Explorando'}].map(u => (
+                        {[{id:'alta',label:'Urgente',desc:'Esta semana',Icon:Flame},{id:'normal',label:'Normal',desc:'Este mes',Icon:Calendar},{id:'baja',label:'Sin apuro',desc:'Explorando',Icon:Clock}].map(u => (
                           <button key={u.id} onClick={() => setCreditoForm({...creditoForm, urgencia: u.id})}
                             className={`p-2 rounded-lg text-center transition-all ${creditoForm.urgencia === u.id ? 'bg-red-600' : 'bg-white/5 border border-white/20'}`}>
-                            <div className="text-sm">{u.label}</div>
+                            <div className="text-sm font-semibold"><u.Icon className="inline h-4 w-4 mr-1 align-[-0.2em]" />{u.label}</div>
                             <div className="text-[9px] text-white/50 mt-0.5">{u.desc}</div>
                           </button>
                         ))}

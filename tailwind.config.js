@@ -14,6 +14,7 @@ export default {
       },
       fontFamily: {
         sans: ['Plus Jakarta Sans Variable', 'Inter', 'system-ui', 'sans-serif'],
+        display: ['Barlow Condensed', 'Plus Jakarta Sans Variable', 'system-ui', 'sans-serif'],
       },
     },
   },
