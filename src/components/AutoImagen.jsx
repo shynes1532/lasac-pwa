@@ -52,9 +52,7 @@ const AutoImagen = ({ basePath = '/images/', modelo, nombre = '', ext, className
   return (
     <div className={`relative bg-brand-gradient ${className}`}>
       {loading && (
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-        </div>
+        <div className="absolute inset-0 loading-shimmer" aria-hidden="true" />
       )}
       <img
         key={src}

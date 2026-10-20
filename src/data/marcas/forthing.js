@@ -40,10 +40,10 @@ const forthing = {
   imagenesPath: '/images/forthing/',
   imgExt: 'png',
   // moneda: definir cuando lleguen los precios ('ARS' o 'USD'). Default ARS.
-  // ⚠️ Color tentativo (teal). Ajustar al oficial.
+  // Color oficial de la marca (misma paleta que gruppolasac.com).
   tema: {
-    primary: '#0d9488', primaryDark: '#115e59',
-    gradient: ['#0d9488', '#115e59'], onPrimary: '#ffffff',
+    primary: '#3FA79E', primaryDark: '#2B7D76',
+    gradient: ['#3FA79E', '#2B7D76'], onPrimary: '#ffffff',
   },
   categorias: ['todos', 'suv', 'monovolumen'],
   catalogo,

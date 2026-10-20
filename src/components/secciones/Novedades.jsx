@@ -1,14 +1,15 @@
 import React from 'react';
+import { Newspaper } from 'lucide-react';
 import AutoImagen from '../AutoImagen.jsx';
 
 export default function Novedades({ marca }) {
   const novedades = marca.novedades || [];
   return (
     <div>
-      <h2 className="text-xl font-bold mb-4">📰 Novedades {marca.nombre}</h2>
+      <h2 className="text-xl font-bold mb-4 flex items-center gap-2.5"><span className="icon-chip"><Newspaper className="h-4 w-4" /></span>Novedades {marca.nombre}</h2>
       {novedades.length === 0 ? (
         <div className="text-center py-12 text-white/40">
-          <div className="text-4xl mb-3">📰</div>
+          <div className="text-4xl mb-3"><Newspaper className="h-12 w-12 mx-auto" /></div>
           <p className="text-sm">No hay novedades por el momento.</p>
         </div>
       ) : (

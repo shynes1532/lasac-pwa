@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
+import { AlertTriangle, ArrowLeftRight, BarChart3, Briefcase, Building2, Calendar, Car, Check, CheckCircle2, ChevronLeft, ClipboardList, Clock, Cog, CreditCard, FileText, Flame, Globe, Heart, Lightbulb, Mail, MapPin, MessageCircle, MousePointerClick, Newspaper, Palette, PartyPopper, PenLine, Phone, Plus, RefreshCw, ShieldAlert, Star, Store, Timer, Trophy, User, Wrench, Zap } from 'lucide-react';
+import { SeccionIcon, TipoAtencionIcon, SucursalIcon, TipoUsuarioPlanIcon, FamiliaIcon } from './components/ui/Icon.jsx';
 // Logo LASAC como componente SVG
 const LogoLASAC = ({ className = "h-8" }) => (
   <svg viewBox="0 0 200 50" className={className}>
@@ -440,7 +442,7 @@ const Countdown = ({ deadline, compact = false }) => {
   }, [deadline]);
 
   if (tiempo <= 0) {
-    return <span className="text-red-400 text-xs font-bold">⏰ Oferta finalizada</span>;
+    return <span className="text-red-400 text-xs font-bold"><Clock className="inline h-3.5 w-3.5 mr-1 align-[-0.15em]" />Oferta finalizada</span>;
   }
 
   const dias = Math.floor(tiempo / (1000 * 60 * 60 * 24));
@@ -453,14 +455,14 @@ const Countdown = ({ deadline, compact = false }) => {
   if (compact) {
     return (
       <span className={`${color} text-[10px] font-bold`}>
-        ⏰ {dias > 0 ? `${dias}d ${horas}h` : `${horas}h ${minutos}m`}
+        <Clock className="inline h-3.5 w-3.5 mr-1 align-[-0.15em]" />{dias > 0 ? `${dias}d ${horas}h` : `${horas}h ${minutos}m`}
       </span>
     );
   }
 
   return (
     <div className={`flex items-center justify-center gap-2 ${color} font-bold`}>
-      <span>⏰</span>
+      <span><Clock className="h-5 w-5" /></span>
       <div className="flex gap-1.5">
         {dias > 0 && (
           <div className="bg-black/40 rounded px-2 py-0.5 text-center min-w-[36px]">
@@ -557,7 +559,7 @@ const Calendario = ({ fechaSeleccionada, onSeleccionar }) => {
   return (
     <div className="bg-white/5 rounded-xl p-3 border border-white/10">
       <div className="flex justify-between items-center mb-3">
-        <button onClick={() => setMesActual(new Date(mesActual.getFullYear(), mesActual.getMonth() - 1, 1))} className="p-2 hover:bg-white/10 rounded-lg text-lg">←</button>
+        <button onClick={() => setMesActual(new Date(mesActual.getFullYear(), mesActual.getMonth() - 1, 1))} className="p-2 hover:bg-white/10 rounded-lg text-lg"><ChevronLeft className="inline h-4 w-4 mr-1.5 align-[-0.2em]" /></button>
         <span className="font-bold text-sm">{meses[mesActual.getMonth()]} {mesActual.getFullYear()}</span>
         <button onClick={() => setMesActual(new Date(mesActual.getFullYear(), mesActual.getMonth() + 1, 1))} className="p-2 hover:bg-white/10 rounded-lg text-lg">→</button>
       </div>
@@ -582,7 +584,7 @@ const Calendario = ({ fechaSeleccionada, onSeleccionar }) => {
 };
 
 // ========== APP PRINCIPAL ==========
-export default function FiatApp() {
+export default function FiatApp({ onCambiarMarca }) {
   const [seccion, setSeccion] = useState('inicio');
   const [filtro, setFiltro] = useState('todos');
   const [planSeleccionado, setPlanSeleccionado] = useState(null);
@@ -704,54 +706,68 @@ export default function FiatApp() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white pb-20">
+    <div className="relative min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white pb-20">
       {/* Header */}
-      <header className="bg-black/40 backdrop-blur-lg border-b border-white/10 p-3 sticky top-0 z-50">
-        <div className="max-w-lg mx-auto flex justify-between items-center">
-          <LogoLASAC className="h-7" />
-          <div className="flex items-center gap-2">
-            <span className="text-[10px] text-white/60 hidden sm:block">Tierra del Fuego</span>
-            <span className="text-lg">🇦🇷</span>
+      <div className="brand-glow" aria-hidden="true" />
+      <header className="bg-black/40 backdrop-blur-lg border-b border-white/10 sticky top-0 z-50">
+        <div className="h-1 bg-brand-gradient-x" />
+        <div className="max-w-lg mx-auto flex justify-between items-center gap-2 p-3">
+          <div className="flex items-center gap-2 min-w-0">
+            <LogoLASAC className="h-7" />
+            <span className="hidden sm:inline text-[10px] font-semibold uppercase tracking-[0.18em] text-white/50">Tierra del Fuego</span>
+          </div>
+          <div className="flex items-center gap-2 shrink-0">
+            {seccion !== 'inicio' && (
+              <button onClick={() => setSeccion('inicio')} className="text-[11px] font-bold bg-white/10 hover:bg-white/20 px-2.5 py-1.5 rounded-full inline-flex items-center gap-1 whitespace-nowrap"><ChevronLeft className="h-3.5 w-3.5" /> Inicio</button>
+            )}
+            {onCambiarMarca && (
+              <button onClick={onCambiarMarca} className="text-[11px] font-bold bg-white/10 hover:bg-white/20 px-2.5 py-1.5 rounded-full inline-flex items-center gap-1 whitespace-nowrap"><ArrowLeftRight className="h-3.5 w-3.5" /> Marca</button>
+            )}
           </div>
         </div>
       </header>
 
       {/* Main */}
       <main className="max-w-lg mx-auto p-3">
+        <div key={seccion} className="animate-fade-up">
 
         {/* ========== INICIO ========== */}
         {seccion === 'inicio' && (
           <div className="space-y-4">
-            <div className="bg-gradient-to-r from-red-600 to-red-800 rounded-2xl p-6 text-center relative overflow-hidden">
-              <div className="absolute -top-16 -right-16 w-48 h-48 bg-white/10 rounded-full" />
-              <h1 className="text-2xl font-bold mb-1 relative">Bienvenido a LASAC</h1>
-              <p className="text-sm opacity-90 mb-4 relative">Concesionario Oficial FIAT</p>
-              <div className="flex gap-2 justify-center flex-wrap relative">
-                <button onClick={() => setSeccion('oportunidades')} className="px-6 py-2 bg-white text-red-600 rounded-full font-bold text-sm">🔥 Oferta del Mes</button>
+            <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-red-600 via-red-700 to-red-900 p-6 pt-7 text-white shadow-xl shadow-black/30 ring-1 ring-inset ring-white/15">
+              <div className="pointer-events-none absolute -top-20 -right-16 h-56 w-56 rounded-full bg-white/15 blur-2xl" />
+              <div className="pointer-events-none absolute -bottom-24 -left-10 h-48 w-48 rounded-full bg-black/25 blur-2xl" />
+              <p className="relative text-[11px] font-semibold uppercase tracking-[0.18em] text-white/75">Concesionario Oficial FIAT · Tierra del Fuego</p>
+              <h1 className="relative mt-1.5 text-[28px] font-extrabold leading-tight tracking-tight">Bienvenido a LASAC</h1>
+              <p className="relative mt-1.5 text-sm text-white/85">Catálogo 0KM, Plan de Ahorro, crédito y posventa, todo en un solo lugar.</p>
+              <div className="relative mt-5 flex flex-wrap gap-2">
+                <button onClick={() => setSeccion('oportunidades')} className="inline-flex items-center gap-1.5 rounded-full bg-white px-4 py-2 text-sm font-bold text-red-700 shadow-md shadow-black/20 transition-transform active:scale-95"><Flame className="h-4 w-4" /> Oferta del Mes</button>
+                <a href="https://wa.me/5492964487924?text=Hola%20LASAC%20%F0%9F%91%8B%20Quiero%20hacer%20una%20consulta." target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 rounded-full bg-white/15 px-4 py-2 text-sm font-bold text-white ring-1 ring-inset ring-white/30 backdrop-blur-sm transition-transform active:scale-95"><MessageCircle className="h-4 w-4" /> WhatsApp</a>
               </div>
-            </div>
+            </section>
 
-            <div className="grid grid-cols-3 gap-2">
+            <div className="grid grid-cols-3 gap-2.5">
               {[
-                { icon: '🚗', title: 'Catálogo', id: 'catalogo', color: 'from-blue-500 to-blue-600' },
-                { icon: '📋', title: 'Plan Ahorro', id: 'simulador', color: 'from-green-500 to-green-600' },
-                { icon: '💳', title: 'Crédito', id: 'credito', color: 'from-violet-500 to-violet-600' },
-                { icon: '🔧', title: 'Service', id: 'turnos', color: 'from-amber-500 to-amber-600' },
-                { icon: '🛡️', title: 'Siniestros', id: 'siniestros', color: 'from-orange-500 to-orange-600' },
-                { icon: '💬', title: 'Atención', id: 'atencion', color: 'from-sky-500 to-sky-600' },
-                { icon: '📰', title: 'Novedades', id: 'novedades', color: 'from-purple-500 to-purple-600' },
-                { icon: '🔥', title: 'Ofertas', id: 'oportunidades', color: 'from-red-500 to-red-600' },
-                { icon: '📍', title: 'Contacto', id: 'contacto', color: 'from-teal-500 to-teal-600' },
+                { id: 'catalogo', title: 'Catálogo', hint: 'Modelos y precios', color: 'from-blue-500 to-blue-600' },
+                { id: 'simulador', title: 'Plan Ahorro', hint: 'Cuotas y adjudicación', color: 'from-green-500 to-green-600' },
+                { id: 'credito', title: 'Crédito', hint: 'Solicitud online', color: 'from-violet-500 to-violet-600' },
+                { id: 'turnos', title: 'Service', hint: 'Turnos de taller', color: 'from-amber-500 to-amber-600' },
+                { id: 'siniestros', title: 'Siniestros', hint: 'Gestión de reclamos', color: 'from-orange-500 to-orange-600' },
+                { id: 'atencion', title: 'Atención', hint: 'Consultas y reclamos', color: 'from-sky-500 to-sky-600' },
+                { id: 'novedades', title: 'Novedades', hint: 'Noticias FIAT', color: 'from-purple-500 to-purple-600' },
+                { id: 'oportunidades', title: 'Ofertas', hint: 'Entrega inmediata', color: 'from-red-500 to-red-600' },
+                { id: 'contacto', title: 'Contacto', hint: 'Sucursales', color: 'from-teal-500 to-teal-600' },
               ].map(item => (
-                <div key={item.id} onClick={() => setSeccion(item.id)} className="bg-white/5 rounded-xl p-3 active:scale-95 transition-all border border-white/10 text-center">
-                  <div className={`w-10 h-10 mx-auto rounded-lg bg-gradient-to-r ${item.color} flex items-center justify-center text-xl mb-2`}>{item.icon}</div>
-                  <h3 className="font-bold text-xs">{item.title}</h3>
-                </div>
+                <button key={item.id} onClick={() => setSeccion(item.id)} className="group rounded-2xl border border-white/10 bg-white/[0.06] p-3 text-left shadow-lg shadow-black/20 transition-all duration-200 hover:border-white/20 hover:-translate-y-0.5 active:scale-95">
+                  <div className={`mb-2.5 flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br ${item.color} text-white shadow-md shadow-black/30`}><SeccionIcon id={item.id} className="h-5 w-5" /></div>
+                  <h3 className="text-[13px] font-bold leading-tight">{item.title}</h3>
+                  <p className="mt-0.5 text-[10px] leading-tight text-white/45">{item.hint}</p>
+                </button>
               ))}
             </div>
 
             <div>
-              <h2 className="font-bold mb-3 flex items-center gap-2">📰 Novedades</h2>
+              <h2 className="font-bold mb-3 flex items-center gap-2 gap-2.5"><span className="icon-chip"><Newspaper className="h-4 w-4" /></span>Novedades</h2>
               <div className="space-y-2">
                 {novedades.filter(n => n.destacado).map(nov => (
                   <div key={nov.id} onClick={() => setSeccion('novedades')} className="bg-white/[0.06] rounded-2xl p-3 border border-white/10 shadow-lg shadow-black/20 flex gap-3 items-center transition-all duration-200 hover:border-white/20 active:scale-[0.98] cursor-pointer">
@@ -772,11 +788,11 @@ export default function FiatApp() {
         {/* ========== CATÁLOGO ========== */}
         {seccion === 'catalogo' && (
           <div>
-            <h2 className="text-xl font-bold mb-1">🚗 Catálogo</h2>
+            <h2 className="text-xl font-bold mb-1 flex items-center gap-2.5"><span className="icon-chip"><Car className="h-4 w-4" /></span>Catálogo</h2>
             <p className="text-white/60 text-xs mb-2">Precio final Tierra del Fuego · base Lista N°08/2026</p>
             <div className="bg-amber-500/10 border border-amber-500/30 rounded-lg p-2 mb-3">
               <p className="text-[10px] text-amber-200 leading-tight">
-                ⚠️ Precio final en Tierra del Fuego (sin IVA): incluye flete, patentamiento y gastos administrativos. Precios orientativos sujetos a modificación sin previo aviso. La cotización final se confirma al momento de la operación. No constituye oferta vinculante.{' '}
+                <AlertTriangle className="inline h-3.5 w-3.5 mr-1 align-[-0.15em]" />Precio final en Tierra del Fuego (sin IVA): incluye flete, patentamiento y gastos administrativos. Precios orientativos sujetos a modificación sin previo aviso. La cotización final se confirma al momento de la operación. No constituye oferta vinculante.{' '}
                 <button onClick={() => setSeccion('legal')} className="underline font-bold">Ver términos</button>
               </p>
             </div>
@@ -800,7 +816,7 @@ export default function FiatApp() {
                         <p className="text-[10px] text-white/40 leading-none mb-1">Precio final TDF</p>
                         <p className="text-xl font-extrabold text-green-400 tabular-nums tracking-tight leading-none">{formatPrecio(v.precio)}</p>
                       </div>
-                      <button onClick={() => consultarVehiculo(v)} className="shrink-0 px-4 py-2 bg-red-600 text-white rounded-lg text-xs font-bold shadow-md shadow-black/20 active:scale-95 transition-transform">💬 Consultar</button>
+                      <button onClick={() => consultarVehiculo(v)} className="shrink-0 px-4 py-2 bg-red-600 text-white rounded-lg text-xs font-bold shadow-md shadow-black/20 active:scale-95 transition-transform"><MessageCircle className="inline h-4 w-4 mr-1.5 align-[-0.2em]" />Consultar</button>
                     </div>
                   </div>
                 </div>
@@ -813,20 +829,20 @@ export default function FiatApp() {
         {seccion === 'oportunidades' && (
           <div>
             <div className="bg-gradient-to-r from-red-600 to-red-800 rounded-xl p-4 text-center mb-3">
-              <h2 className="text-xl font-bold mb-1">🔥 Oferta del Mes</h2>
+              <h2 className="text-xl font-bold mb-1 flex items-center gap-2.5"><span className="icon-chip"><Flame className="h-4 w-4" /></span>Oferta del Mes</h2>
               <p className="text-sm">{totalStock} unidades • Entrega inmediata</p>
             </div>
 
             {/* Countdown grande */}
             <div className="bg-gradient-to-r from-amber-600/30 to-red-600/30 border border-amber-500/50 rounded-xl p-3 mb-3">
-              <p className="text-center text-[10px] text-white/70 mb-1.5">⚡ Estas ofertas finalizan en:</p>
+              <p className="text-center text-[10px] text-white/70 mb-1.5"><Zap className="inline h-3.5 w-3.5 mr-1 align-[-0.15em]" />Estas ofertas finalizan en:</p>
               <Countdown deadline={getFinDeMes()} />
               <p className="text-center text-[9px] text-white/50 mt-1.5">No te quedes sin la tuya 🚗💨</p>
             </div>
 
             <div className="bg-amber-500/10 border border-amber-500/30 rounded-lg p-2 mb-3">
               <p className="text-[10px] text-amber-200 leading-tight">
-                ⚠️ Precios y stock sujetos a modificación. Oferta válida hasta agotar existencias.{' '}
+                <AlertTriangle className="inline h-3.5 w-3.5 mr-1 align-[-0.15em]" />Precios y stock sujetos a modificación. Oferta válida hasta agotar existencias.{' '}
                 <button onClick={() => setSeccion('legal')} className="underline font-bold">Ver términos</button>
               </p>
             </div>
@@ -841,13 +857,13 @@ export default function FiatApp() {
                       <h3 className="font-bold text-sm flex-1">{item.nombre}</h3>
                       <Countdown deadline={getFinDeMes()} compact />
                     </div>
-                    <p className="text-xs text-white/60 mb-2">🎨 {item.color}</p>
+                    <p className="text-xs text-white/60 mb-2"><Palette className="inline h-3.5 w-3.5 mr-1 align-[-0.15em]" />{item.color}</p>
                     <div className="flex justify-between items-end mt-1">
                       <div className="min-w-0">
                         <p className="text-[10px] text-white/40 leading-none mb-1">Precio oferta</p>
                         <p className="text-xl font-extrabold text-green-400 tabular-nums tracking-tight leading-none">{formatPrecio(item.precioFinal)}</p>
                       </div>
-                      <button onClick={() => consultarVehiculo(item)} className="shrink-0 px-4 py-2 bg-green-600 text-white rounded-lg text-xs font-bold shadow-md shadow-black/20 active:scale-95 transition-transform">⚡ Consultar</button>
+                      <button onClick={() => consultarVehiculo(item)} className="shrink-0 px-4 py-2 bg-green-600 text-white rounded-lg text-xs font-bold shadow-md shadow-black/20 active:scale-95 transition-transform"><Zap className="inline h-4 w-4 mr-1.5 align-[-0.2em]" />Consultar</button>
                     </div>
                   </div>
                 </div>
@@ -862,7 +878,7 @@ export default function FiatApp() {
             {planStep === 0 && (
               <div className="bg-amber-500/10 border border-amber-500/30 rounded-lg p-2 mb-3">
                 <p className="text-[10px] text-amber-200 leading-tight">
-                  ⚠️ Valores Comercial FIAT Plan octubre 2026. Sujetos a actualización mensual por FCA Compañía Financiera S.A.{' '}
+                  <AlertTriangle className="inline h-3.5 w-3.5 mr-1 align-[-0.15em]" />Valores Comercial FIAT Plan octubre 2026. Sujetos a actualización mensual por FCA Compañía Financiera S.A.{' '}
                   <button onClick={() => setSeccion('legal')} className="underline font-bold">Ver términos</button>
                 </p>
               </div>
@@ -870,7 +886,7 @@ export default function FiatApp() {
             {/* Barra de navegación interna */}
             {planStep > 0 && (
               <div className="flex items-center justify-between mb-4">
-                <button onClick={planVolver} className="text-sm text-white/60 flex items-center gap-1">← Volver</button>
+                <button onClick={planVolver} className="text-sm text-white/60 flex items-center gap-1"><ChevronLeft className="inline h-4 w-4 mr-1.5 align-[-0.2em]" />Volver</button>
                 {planStep !== 6 && (
                   <div className="flex gap-1">
                     {[0,1,2,3,4].map(i => (
@@ -879,7 +895,7 @@ export default function FiatApp() {
                   </div>
                 )}
                 {planStep === 6 && (
-                  <span className="text-[10px] text-white/50 bg-white/10 px-2 py-1 rounded">📊 Simulador</span>
+                  <span className="text-[10px] text-white/50 bg-white/10 px-2 py-1 rounded"><BarChart3 className="inline h-3.5 w-3.5 mr-1 align-[-0.15em]" />Simulador</span>
                 )}
                 <button onClick={resetPlan} className="text-[10px] text-white/40 px-2 py-1 bg-white/5 rounded">Reiniciar</button>
               </div>
@@ -891,7 +907,7 @@ export default function FiatApp() {
                 <div className="bg-gradient-to-r from-red-600 to-red-800 rounded-2xl p-6 text-center relative overflow-hidden">
                   <div className="absolute -top-10 -right-10 w-32 h-32 bg-white/10 rounded-full" />
                   <div className="relative">
-                    <div className="text-3xl mb-2">📋</div>
+                    <div className="text-3xl mb-2"><ClipboardList className="h-9 w-9" /></div>
                     <h2 className="text-xl font-bold mb-1">FIAT Plan de Ahorro</h2>
                     <p className="text-sm opacity-80">Sobrepauta Octubre 2026</p>
                   </div>
@@ -908,7 +924,7 @@ export default function FiatApp() {
                       <button key={tipo.id} onClick={() => setTipoUsuarioPlan(tipo.id)}
                         className={`w-full p-4 rounded-xl text-left transition-all border-2 ${tipoUsuarioPlan === tipo.id ? 'bg-red-500/20 border-red-500 scale-[1.01]' : 'bg-white/5 border-white/10'}`}>
                         <div className="flex items-center gap-3">
-                          <span className="text-2xl">{tipo.icon}</span>
+                          <TipoUsuarioPlanIcon id={tipo.id} className="h-7 w-7" />
                           <div>
                             <div className="font-bold text-sm">{tipo.titulo}</div>
                             <div className="text-[10px] text-white/50 mt-0.5">{tipo.desc}</div>
@@ -920,7 +936,7 @@ export default function FiatApp() {
                 </div>
 
                 <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
-                  <h3 className="font-bold text-sm mb-3">📍 Sucursal</h3>
+                  <h3 className="font-bold text-sm mb-3"><MapPin className="inline h-4 w-4 mr-1.5 align-[-0.2em] text-brand" />Sucursal</h3>
                   <div className="grid grid-cols-2 gap-2">
                     {['Ushuaia', 'Río Grande'].map(s => (
                       <button key={s} onClick={() => setPlanSucursal(s)}
@@ -943,17 +959,17 @@ export default function FiatApp() {
             {planStep === 1 && (
               <div className="space-y-4">
                 <div className="bg-gradient-to-br from-amber-900/40 to-amber-700/20 rounded-xl p-5 border border-amber-500/30">
-                  <div className="text-3xl mb-2">🏆</div>
+                  <div className="text-3xl mb-2"><Trophy className="h-9 w-9 text-amber-300" /></div>
                   <h3 className="text-lg font-bold mb-2">¿Por qué licitar?</h3>
                   <div className="space-y-3 text-sm text-white/80">
                     <p>La <strong className="text-amber-400">licitación</strong> te permite adelantar la adjudicación ofreciendo un porcentaje sobre el valor móvil.</p>
                     <div className="bg-black/20 rounded-lg p-3 space-y-2">
-                      <div className="flex items-center gap-2"><span className="text-green-400">✓</span> Elegís el monto que ofrecés</div>
-                      <div className="flex items-center gap-2"><span className="text-green-400">✓</span> Podés ganar la adjudicación este mes</div>
-                      <div className="flex items-center gap-2"><span className="text-green-400">✓</span> Retirás tu 0KM en semanas, no meses</div>
-                      <div className="flex items-center gap-2"><span className="text-green-400">✓</span> Accedés al cambio de modelo</div>
+                      <div className="flex items-center gap-2"><span className="text-green-400"><Check className="h-5 w-5" /></span> Elegís el monto que ofrecés</div>
+                      <div className="flex items-center gap-2"><span className="text-green-400"><Check className="h-5 w-5" /></span> Podés ganar la adjudicación este mes</div>
+                      <div className="flex items-center gap-2"><span className="text-green-400"><Check className="h-5 w-5" /></span> Retirás tu 0KM en semanas, no meses</div>
+                      <div className="flex items-center gap-2"><span className="text-green-400"><Check className="h-5 w-5" /></span> Accedés al cambio de modelo</div>
                     </div>
-                    <p className="text-amber-300 text-xs">💡 Mínimo de licitación según plan: entre 30% y 40% del valor móvil.</p>
+                    <p className="text-amber-300 text-xs"><Lightbulb className="inline h-3.5 w-3.5 mr-1 align-[-0.15em]" />Mínimo de licitación según plan: entre 30% y 40% del valor móvil.</p>
                   </div>
                 </div>
                 <button onClick={() => setPlanStep(2)} className="w-full py-4 rounded-xl font-bold bg-gradient-to-r from-amber-600 to-amber-700 active:scale-95 transition-all">
@@ -979,7 +995,7 @@ export default function FiatApp() {
                     className="w-full bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20 text-left active:scale-[0.98] transition-all">
                     <div className="flex items-center justify-between mb-2">
                       <div className="flex items-center gap-2">
-                        <span className="text-xl">{plan.emoji}</span>
+                        <FamiliaIcon familia={plan.familia} className="h-5 w-5" />
                         <div>
                           <h3 className="font-bold text-sm">{plan.base}</h3>
                           <span className="text-[10px] text-white/50">{plan.condicion}</span>
@@ -1050,7 +1066,7 @@ export default function FiatApp() {
                         </div>
                         <button onClick={() => { setModeloSelec(modelo); setPlanStep(4); }}
                           className="w-full py-3 bg-gradient-to-r from-green-600 to-green-700 rounded-xl font-bold text-sm active:scale-95 transition-all">
-                          ✅ Elegir este modelo
+                          <CheckCircle2 className="inline h-4 w-4 mr-1.5 align-[-0.2em]" />Elegir este modelo
                         </button>
                       </div>
                     )}
@@ -1065,7 +1081,7 @@ export default function FiatApp() {
             {/* STEP 4: Documentación */}
             {planStep === 4 && (
               <div className="space-y-4">
-                <h2 className="text-lg font-bold">📋 Documentación Requerida</h2>
+                <h2 className="text-lg font-bold flex items-center gap-2.5"><span className="icon-chip"><ClipboardList className="h-4 w-4" /></span>Documentación Requerida</h2>
                 <p className="text-xs text-white/60">Marcá lo que ya tenés listo</p>
                 <div className="space-y-2">
                   {DOCUMENTACION_PLAN.map(doc => (
@@ -1092,13 +1108,13 @@ export default function FiatApp() {
             {planStep === 5 && (
               <div className="space-y-4">
                 <div className="bg-gradient-to-r from-green-600 to-green-800 rounded-xl p-5 text-center">
-                  <div className="text-4xl mb-2">🎉</div>
+                  <div className="text-4xl mb-2"><PartyPopper className="h-12 w-12 mx-auto text-amber-300" /></div>
                   <h2 className="text-xl font-bold">¡Último paso!</h2>
                   <p className="text-sm opacity-80">Contactá a tu asesor para avanzar</p>
                 </div>
                 {/* Resumen */}
                 <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20 space-y-2 text-sm">
-                  <h3 className="font-bold">📝 Resumen</h3>
+                  <h3 className="font-bold"><FileText className="inline h-4 w-4 mr-1.5 align-[-0.2em] text-brand" />Resumen</h3>
                   {tipoUsuarioPlan && <p className="text-white/60">Tipo: <span className="text-white font-medium capitalize">{tipoUsuarioPlan}</span></p>}
                   {planSelecAbril && <p className="text-white/60">Plan: <span className="text-white font-medium">{planSelecAbril.base} {planSelecAbril.tipoPlan}</span></p>}
                   {modeloSelec && <p className="text-white/60">Modelo: <span className="text-white font-medium">{modeloSelec.nombre} ({modeloSelec.pda})</span></p>}
@@ -1110,11 +1126,11 @@ export default function FiatApp() {
                   `📋 *CONSULTA FIAT PLAN*\n\nSoy ${tipoUsuarioPlan || 'interesado'}.\n${planSelecAbril ? `Plan: ${planSelecAbril.base} ${planSelecAbril.tipoPlan} (${planSelecAbril.condicion})` : ''}\n${modeloSelec ? `Modelo: ${modeloSelec.nombre} (PDA: ${modeloSelec.pda})` : ''}\nSucursal: ${planSucursal}\nDocs listos: ${Object.values(docChecks).filter(Boolean).length}/${DOCUMENTACION_PLAN.length}`)}`}
                   target="_blank" rel="noopener noreferrer"
                   className="flex items-center justify-center gap-2 w-full py-4 bg-green-600 rounded-xl font-bold text-lg active:scale-95 transition-all">
-                  💬 WhatsApp {planSucursal}
+                  <MessageCircle className="inline h-4 w-4 mr-1.5 align-[-0.2em]" />WhatsApp {planSucursal}
                 </a>
                 <div className="grid grid-cols-2 gap-2">
-                  <a href="tel:+5492964465270" className="py-3 bg-white/10 rounded-xl font-bold text-center text-sm">📞 Llamar</a>
-                  <a href="mailto:planes@lasac.com.ar" className="py-3 bg-white/10 rounded-xl font-bold text-center text-sm">✉️ Email</a>
+                  <a href="tel:+5492964465270" className="py-3 bg-white/10 rounded-xl font-bold text-center text-sm"><Phone className="inline h-4 w-4 mr-1.5 align-[-0.2em]" />Llamar</a>
+                  <a href="mailto:planes@lasac.com.ar" className="py-3 bg-white/10 rounded-xl font-bold text-center text-sm"><Mail className="inline h-4 w-4 mr-1.5 align-[-0.2em]" />Email</a>
                 </div>
                 <div className="text-center">
                   <button onClick={resetPlan} className="text-xs text-white/40 underline">Reiniciar consulta</button>
@@ -1127,7 +1143,7 @@ export default function FiatApp() {
               <div className="space-y-3">
                 {!planDetalleSelec ? (
                   <>
-                    <h2 className="text-lg font-bold">📊 Simulador de Cuotas</h2>
+                    <h2 className="text-lg font-bold flex items-center gap-2.5"><span className="icon-chip"><BarChart3 className="h-4 w-4" /></span>Simulador de Cuotas</h2>
                     <p className="text-white/60 text-xs mb-2">FIAT Plan — Vigencia Octubre 2026 · Valores s/IVA (TDF)</p>
                     <p className="text-sm text-white/70 mb-2">Seleccioná un plan para ver el detalle completo:</p>
                     {planesDetalle.map(plan => (
@@ -1184,7 +1200,7 @@ export default function FiatApp() {
                           </button>
                           <button onClick={() => setShowTotalCliente(true)}
                             className={`flex-1 py-2 rounded-md text-xs font-bold transition-all ${showTotalCliente ? 'bg-red-600 text-white' : 'text-white/50'}`}>
-                            ★ Total Cliente
+                            <Star className="inline h-4 w-4 mr-1.5 align-[-0.2em]" />Total Cliente
                           </button>
                         </div>
 
@@ -1205,7 +1221,7 @@ export default function FiatApp() {
 
                         {/* Sellado TDF info */}
                         <div className="bg-amber-500/10 rounded-xl p-3 mb-4 border border-amber-500/20">
-                          <p className="text-xs font-bold text-amber-300 mb-1">✚ Sellado TDF</p>
+                          <p className="text-xs font-bold text-amber-300 mb-1"><Plus className="inline h-3.5 w-3.5 mr-1 align-[-0.15em]" />Sellado TDF</p>
                           <div className="flex justify-between text-xs">
                             <span className="text-white/60">Total sellado:</span>
                             <span className="font-bold">{formatPrecio(planDetalleSelec.selladoTDF)}</span>
@@ -1218,9 +1234,9 @@ export default function FiatApp() {
 
                         {/* Condiciones */}
                         <div className="space-y-2 text-xs">
-                          <div className="bg-blue-500/20 rounded-lg p-3"><p className="text-white/60">🏆 Adjudicación</p><p className="font-bold">{planDetalleSelec.adjudicacion}</p></div>
-                          <div className="bg-purple-500/20 rounded-lg p-3"><p className="text-white/60">📊 Diferimientos</p><p className="font-bold">{planDetalleSelec.diferimientos}</p></div>
-                          {planDetalleSelec.subite && <div className="bg-green-500/20 rounded-lg p-3"><p className="font-bold">✅ Opción SUBITE disponible</p></div>}
+                          <div className="bg-blue-500/20 rounded-lg p-3"><p className="text-white/60"><Trophy className="inline h-3.5 w-3.5 mr-1 align-[-0.15em]" />Adjudicación</p><p className="font-bold">{planDetalleSelec.adjudicacion}</p></div>
+                          <div className="bg-purple-500/20 rounded-lg p-3"><p className="text-white/60"><BarChart3 className="inline h-3.5 w-3.5 mr-1 align-[-0.15em]" />Diferimientos</p><p className="font-bold">{planDetalleSelec.diferimientos}</p></div>
+                          {planDetalleSelec.subite && <div className="bg-green-500/20 rounded-lg p-3"><p className="font-bold"><CheckCircle2 className="inline h-3.5 w-3.5 mr-1 align-[-0.15em]" />Opción SUBITE disponible</p></div>}
                         </div>
 
                         {/* Contactar */}
@@ -1228,7 +1244,7 @@ export default function FiatApp() {
                           const msg = `📋 *QUIERO SUSCRIBIRME - FIAT PLAN*%0A%0AModelo: *${planDetalleSelec.nombre}*%0ACódigo: ${planDetalleSelec.codigo}%0APlan: ${planDetalleSelec.plan} (${planDetalleSelec.condicion})%0ASuscripción: ${formatPrecio(planDetalleSelec.suscripcion)}%0AValor Móvil: ${formatPrecio(planDetalleSelec.valorMovil)}%0ASucursal: ${planSucursal}`;
                           window.open(`https://wa.me/5492964465270?text=${msg}`, '_blank');
                         }} className="w-full mt-4 py-3 bg-gradient-to-r from-green-600 to-green-700 rounded-xl font-bold flex items-center justify-center gap-2">
-                          💬 Quiero este Plan
+                          <MessageCircle className="inline h-4 w-4 mr-1.5 align-[-0.2em]" />Quiero este Plan
                         </button>
                       </div>
                     </div>
@@ -1242,7 +1258,7 @@ export default function FiatApp() {
         {/* ========== NOVEDADES ========== */}
         {seccion === 'novedades' && (
           <div>
-            <h2 className="text-xl font-bold mb-4">📰 Novedades</h2>
+            <h2 className="text-xl font-bold mb-4 flex items-center gap-2.5"><span className="icon-chip"><Newspaper className="h-4 w-4" /></span>Novedades</h2>
             <div className="space-y-4">
               {novedades.map(nov => (
                 <div key={nov.id} className="bg-white/[0.06] rounded-2xl overflow-hidden border border-white/10 shadow-lg shadow-black/20 transition-all duration-200 hover:border-white/20 hover:-translate-y-0.5">
@@ -1261,14 +1277,14 @@ export default function FiatApp() {
         {/* ========== SINIESTROS ========== */}
         {seccion === 'siniestros' && (
           <div>
-            <h2 className="text-xl font-bold mb-1">🛡️ Atención de Siniestros</h2>
+            <h2 className="text-xl font-bold mb-1 flex items-center gap-2.5"><span className="icon-chip"><ShieldAlert className="h-4 w-4" /></span>Atención de Siniestros</h2>
             <p className="text-white/60 text-xs mb-4">Gestión de reclamos por seguro</p>
             <div className="space-y-4">
               <div className="bg-amber-500/20 rounded-xl p-4 border border-amber-500/30">
-                <p className="text-sm">⚠️ <strong>Importante:</strong> Completá todos los datos para agilizar la gestión de tu siniestro.</p>
+                <p className="text-sm"><AlertTriangle className="inline h-3.5 w-3.5 mr-1 align-[-0.15em]" /><strong>Importante:</strong> Completá todos los datos para agilizar la gestión de tu siniestro.</p>
               </div>
               <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
-                <h3 className="font-bold text-sm mb-3">👤 Datos del Titular</h3>
+                <h3 className="font-bold text-sm mb-3"><User className="inline h-4 w-4 mr-1.5 align-[-0.2em] text-brand" />Datos del Titular</h3>
                 <div className="space-y-2">
                   <input placeholder="Nombre completo *" id="siniestro-nombre" className="w-full p-2.5 rounded-lg bg-white/5 border border-white/20 text-sm" />
                   <input placeholder="DNI *" id="siniestro-dni" className="w-full p-2.5 rounded-lg bg-white/5 border border-white/20 text-sm" />
@@ -1277,7 +1293,7 @@ export default function FiatApp() {
                 </div>
               </div>
               <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
-                <h3 className="font-bold text-sm mb-3">🚗 Datos del Vehículo</h3>
+                <h3 className="font-bold text-sm mb-3"><Car className="inline h-4 w-4 mr-1.5 align-[-0.2em] text-brand" />Datos del Vehículo</h3>
                 <div className="grid grid-cols-2 gap-2">
                   <select id="siniestro-marca" className="p-2.5 rounded-lg bg-slate-800 border border-white/20 text-sm">
                     <option value="">Marca *</option><option value="FIAT">FIAT</option><option value="Otra">Otra marca</option>
@@ -1290,7 +1306,7 @@ export default function FiatApp() {
                 </div>
               </div>
               <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
-                <h3 className="font-bold text-sm mb-3">🏢 Datos de la Aseguradora</h3>
+                <h3 className="font-bold text-sm mb-3"><Building2 className="inline h-4 w-4 mr-1.5 align-[-0.2em] text-brand" />Datos de la Aseguradora</h3>
                 <div className="space-y-2">
                   <select id="siniestro-aseguradora" className="w-full p-2.5 rounded-lg bg-slate-800 border border-white/20 text-sm">
                     <option value="">Compañía de Seguros *</option>
@@ -1305,7 +1321,7 @@ export default function FiatApp() {
                 </div>
               </div>
               <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
-                <h3 className="font-bold text-sm mb-3">📋 Datos del Siniestro</h3>
+                <h3 className="font-bold text-sm mb-3"><ClipboardList className="inline h-4 w-4 mr-1.5 align-[-0.2em] text-brand" />Datos del Siniestro</h3>
                 <div className="space-y-2">
                   <input placeholder="Fecha del siniestro *" id="siniestro-fecha" type="date" className="w-full p-2.5 rounded-lg bg-slate-800 border border-white/20 text-sm" />
                   <select id="siniestro-tipo" className="w-full p-2.5 rounded-lg bg-slate-800 border border-white/20 text-sm">
@@ -1318,7 +1334,7 @@ export default function FiatApp() {
                 </div>
               </div>
               <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
-                <h3 className="font-bold text-sm mb-3">📍 Sucursal de Atención</h3>
+                <h3 className="font-bold text-sm mb-3"><MapPin className="inline h-4 w-4 mr-1.5 align-[-0.2em] text-brand" />Sucursal de Atención</h3>
                 <div className="grid grid-cols-2 gap-2">
                   <button type="button" onClick={(e) => { document.querySelectorAll('[data-suc]').forEach(el => el.classList.remove('bg-red-600')); e.currentTarget.classList.add('bg-red-600'); }} data-suc data-sucursal="Ushuaia" className="p-3 rounded-lg text-left bg-white/5 border border-white/10">
                     <div className="font-bold text-sm">Ushuaia</div><div className="text-[10px] text-white/60">Piedrabuena 256</div>
@@ -1347,11 +1363,11 @@ export default function FiatApp() {
                 // Siniestros van a Calidad/Reclamos
                 window.open(`https://wa.me/5492964494360?text=${msg}`, '_blank');
               }} className="w-full py-4 rounded-xl font-bold text-lg bg-gradient-to-r from-orange-600 to-orange-700 active:scale-95 transition-all">
-                📱 Enviar Solicitud por WhatsApp
+                <MessageCircle className="inline h-4 w-4 mr-1.5 align-[-0.2em]" />Enviar Solicitud por WhatsApp
               </button>
               <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20 text-center">
                 <p className="text-xs text-white/60 mb-2">¿Necesitás ayuda urgente?</p>
-                <a href="tel:+5492964494360" className="inline-block px-4 py-2 bg-green-600 rounded-full text-sm font-bold">📞 Llamar ahora</a>
+                <a href="tel:+5492964494360" className="inline-block px-4 py-2 bg-green-600 rounded-full text-sm font-bold"><Phone className="inline h-4 w-4 mr-1.5 align-[-0.2em]" />Llamar ahora</a>
               </div>
             </div>
           </div>
@@ -1360,12 +1376,12 @@ export default function FiatApp() {
         {/* ========== ATENCIÓN AL CLIENTE - INTERACTIVA ========== */}
         {seccion === 'atencion' && (
           <div>
-            <h2 className="text-xl font-bold mb-1">💬 Atención al Cliente</h2>
+            <h2 className="text-xl font-bold mb-1 flex items-center gap-2.5"><span className="icon-chip"><MessageCircle className="h-4 w-4" /></span>Atención al Cliente</h2>
             <p className="text-white/60 text-xs mb-5">Seleccioná el motivo de tu contacto</p>
 
             {atencionEnviado ? (
               <div className="text-center py-12 space-y-4">
-                <div className="text-6xl">✅</div>
+                <div className="text-6xl"><CheckCircle2 className="h-14 w-14 mx-auto text-emerald-400" /></div>
                 <h3 className="text-xl font-bold">¡Mensaje enviado!</h3>
                 <p className="text-white/60 text-sm">Tu {tipoActual?.titulo.toLowerCase()} fue derivada al equipo de atención</p>
                 <button onClick={resetAtencion} className="px-6 py-3 bg-white/10 rounded-xl font-bold text-sm">Enviar otra consulta</button>
@@ -1381,10 +1397,10 @@ export default function FiatApp() {
                         className={`relative p-4 rounded-2xl text-left transition-all duration-300 border-2 ${sel ? `${tipo.bg} ${tipo.border} scale-[1.02] shadow-lg` : 'bg-white/5 border-white/10 hover:bg-white/10'}`}>
                         {sel && (
                           <div className="absolute top-2 right-2 w-5 h-5 bg-white rounded-full flex items-center justify-center">
-                            <span className="text-green-600 text-xs font-bold">✓</span>
+                            <span className="text-green-600 text-xs font-bold"><Check className="h-3.5 w-3.5" /></span>
                           </div>
                         )}
-                        <div className="text-2xl mb-2">{tipo.icon}</div>
+                        <div className="mb-2 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white/10"><TipoAtencionIcon id={tipo.id} className="h-5 w-5" /></div>
                         <div className="font-bold text-sm">{tipo.titulo}</div>
                         <div className="text-[10px] text-white/50 mt-0.5">{tipo.desc}</div>
                       </button>
@@ -1397,7 +1413,7 @@ export default function FiatApp() {
                   <div className="space-y-4">
                     {/* Barra de color del tipo */}
                     <div className={`bg-gradient-to-r ${tipoActual.color} rounded-xl p-3 flex items-center gap-3`}>
-                      <span className="text-2xl">{tipoActual.icon}</span>
+                      <TipoAtencionIcon id={tipoActual.id} className="h-6 w-6" />
                       <div>
                         <div className="font-bold text-sm">{tipoActual.titulo}</div>
                         <div className="text-[10px] opacity-80">Completá los datos para enviar</div>
@@ -1406,7 +1422,7 @@ export default function FiatApp() {
 
                     {/* Datos personales */}
                     <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20 space-y-2">
-                      <h3 className="font-bold text-sm mb-3">👤 Tus Datos</h3>
+                      <h3 className="font-bold text-sm mb-3"><User className="inline h-4 w-4 mr-1.5 align-[-0.2em] text-brand" />Tus Datos</h3>
                       <input placeholder="Nombre completo *" value={atencionForm.nombre} onChange={e => setAtencionForm({...atencionForm, nombre: e.target.value})} className="w-full p-2.5 rounded-lg bg-white/5 border border-white/20 text-sm" />
                       <input placeholder="Teléfono *" type="tel" value={atencionForm.telefono} onChange={e => setAtencionForm({...atencionForm, telefono: e.target.value})} className="w-full p-2.5 rounded-lg bg-white/5 border border-white/20 text-sm" />
                       <input placeholder="Email (opcional)" type="email" value={atencionForm.email} onChange={e => setAtencionForm({...atencionForm, email: e.target.value})} className="w-full p-2.5 rounded-lg bg-white/5 border border-white/20 text-sm" />
@@ -1414,7 +1430,7 @@ export default function FiatApp() {
 
                     {/* Área - botones seleccionables */}
                     <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
-                      <h3 className="font-bold text-sm mb-3">🏢 Área Relacionada</h3>
+                      <h3 className="font-bold text-sm mb-3"><Building2 className="inline h-4 w-4 mr-1.5 align-[-0.2em] text-brand" />Área Relacionada</h3>
                       <div className="grid grid-cols-2 gap-2">
                         {areasAtencion.map(a => (
                           <button key={a} onClick={() => setAtencionForm({...atencionForm, area: a})}
@@ -1427,7 +1443,7 @@ export default function FiatApp() {
 
                     {/* Vehículo - más prominente en Reclamo */}
                     <div className={`bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20 ${atencionTipo === 'reclamo' ? 'ring-1 ring-red-400/30' : ''}`}>
-                      <h3 className="font-bold text-sm mb-1">🚗 Vehículo {atencionTipo === 'reclamo' ? '' : '(opcional)'}</h3>
+                      <h3 className="font-bold text-sm mb-1"><Car className="inline h-4 w-4 mr-1.5 align-[-0.2em] text-brand" />Vehículo {atencionTipo === 'reclamo' ? '' : '(opcional)'}</h3>
                       {atencionTipo === 'reclamo' && <p className="text-[10px] text-red-300 mb-3">Completá estos datos para agilizar tu reclamo</p>}
                       <div className="grid grid-cols-2 gap-2">
                         <input placeholder="Modelo" value={atencionForm.modelo} onChange={e => setAtencionForm({...atencionForm, modelo: e.target.value})} className="p-2.5 rounded-lg bg-white/5 border border-white/20 text-sm" />
@@ -1437,7 +1453,7 @@ export default function FiatApp() {
 
                     {/* Mensaje - placeholder adaptado */}
                     <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
-                      <h3 className="font-bold text-sm mb-3">✍️ Tu Mensaje *</h3>
+                      <h3 className="font-bold text-sm mb-3"><PenLine className="inline h-4 w-4 mr-1.5 align-[-0.2em] text-brand" />Tu Mensaje *</h3>
                       <textarea
                         placeholder={
                           atencionTipo === 'consulta' ? '¿Cuál es tu consulta?' :
@@ -1451,7 +1467,7 @@ export default function FiatApp() {
 
                     {/* Sucursal */}
                     <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
-                      <h3 className="font-bold text-sm mb-3">📍 Sucursal *</h3>
+                      <h3 className="font-bold text-sm mb-3"><MapPin className="inline h-4 w-4 mr-1.5 align-[-0.2em] text-brand" />Sucursal *</h3>
                       <div className="grid grid-cols-2 gap-2">
                         {['Ushuaia', 'Río Grande'].map(s => (
                           <button key={s} onClick={() => setAtencionSucursal(s)}
@@ -1465,15 +1481,15 @@ export default function FiatApp() {
                     {/* Enviar - color del tipo seleccionado */}
                     <button onClick={enviarAtencion}
                       className={`w-full p-4 rounded-xl font-bold text-sm flex items-center justify-center gap-2 bg-gradient-to-r ${tipoActual.color} active:scale-95 transition-all`}>
-                      <span>📲</span> Enviar {tipoActual.titulo} por WhatsApp
+                      <span><MessageCircle className="h-5 w-5" /></span> Enviar {tipoActual.titulo} por WhatsApp
                     </button>
 
                     {/* Contacto directo */}
                     <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
                       <p className="text-sm text-center text-white/70 mb-3">También podés contactarnos directamente:</p>
                       <div className="flex gap-2 justify-center">
-                        <a href="tel:+5492964494360" className="px-4 py-2 bg-green-600 rounded-full text-sm font-bold">📞 Llamar</a>
-                        <a href="mailto:atencion@lasac.com.ar" className="px-4 py-2 bg-blue-600 rounded-full text-sm font-bold">✉️ Email</a>
+                        <a href="tel:+5492964494360" className="px-4 py-2 bg-green-600 rounded-full text-sm font-bold"><Phone className="inline h-4 w-4 mr-1.5 align-[-0.2em]" />Llamar</a>
+                        <a href="mailto:atencion@lasac.com.ar" className="px-4 py-2 bg-blue-600 rounded-full text-sm font-bold"><Mail className="inline h-4 w-4 mr-1.5 align-[-0.2em]" />Email</a>
                       </div>
                     </div>
                   </div>
@@ -1482,7 +1498,7 @@ export default function FiatApp() {
                 {/* Mensaje cuando no hay tipo seleccionado */}
                 {!atencionTipo && (
                   <div className="text-center py-8 text-white/30">
-                    <div className="text-4xl mb-3">👆</div>
+                    <div className="text-4xl mb-3"><MousePointerClick className="h-12 w-12 mx-auto text-white/40" /></div>
                     <p className="text-sm">Seleccioná una opción para continuar</p>
                   </div>
                 )}
@@ -1494,11 +1510,11 @@ export default function FiatApp() {
         {/* ========== TURNOS ========== */}
         {seccion === 'turnos' && (
           <div>
-            <h2 className="text-xl font-bold mb-1">🔧 Turno Service</h2>
+            <h2 className="text-xl font-bold mb-1 flex items-center gap-2.5"><span className="icon-chip"><Wrench className="h-4 w-4" /></span>Turno Service</h2>
             <p className="text-white/60 text-xs mb-4">Solicitá tu turno online</p>
             {enviado ? (
               <div className="bg-green-500/20 rounded-xl p-6 text-center border border-green-500/30">
-                <div className="text-5xl mb-3">✅</div>
+                <div className="text-5xl mb-3"><CheckCircle2 className="h-14 w-14 mx-auto text-emerald-400" /></div>
                 <h3 className="text-xl font-bold mb-2">¡Solicitud Enviada!</h3>
                 <p className="text-sm text-white/70 mb-4">Te contactaremos para confirmar</p>
                 <button onClick={() => { setEnviado(false); setTurno({nombre:'',telefono:'',email:'',patente:'',modelo:'',km:'',servicio:'',sucursal:'',fecha:null,horario:'',comentarios:''}); }} className="px-4 py-2 bg-white/10 rounded-lg text-sm">Nueva Solicitud</button>
@@ -1506,14 +1522,14 @@ export default function FiatApp() {
             ) : (
               <div className="space-y-4">
                 <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
-                  <h3 className="font-bold text-sm mb-3">👤 Datos</h3>
+                  <h3 className="font-bold text-sm mb-3"><User className="inline h-4 w-4 mr-1.5 align-[-0.2em] text-brand" />Datos</h3>
                   <div className="space-y-2">
                     <input placeholder="Nombre *" value={turno.nombre} onChange={e => setTurno({...turno, nombre: e.target.value})} className="w-full p-2.5 rounded-lg bg-white/5 border border-white/20 text-sm" />
                     <input placeholder="Teléfono *" value={turno.telefono} onChange={e => setTurno({...turno, telefono: e.target.value})} className="w-full p-2.5 rounded-lg bg-white/5 border border-white/20 text-sm" />
                   </div>
                 </div>
                 <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
-                  <h3 className="font-bold text-sm mb-3">🚗 Vehículo</h3>
+                  <h3 className="font-bold text-sm mb-3"><Car className="inline h-4 w-4 mr-1.5 align-[-0.2em] text-brand" />Vehículo</h3>
                   <div className="grid grid-cols-2 gap-2">
                     <select value={turno.modelo} onChange={e => setTurno({...turno, modelo: e.target.value})} className="p-2.5 rounded-lg bg-slate-800 border border-white/20 text-sm">
                       <option value="">Modelo *</option>
@@ -1524,18 +1540,18 @@ export default function FiatApp() {
                   </div>
                 </div>
                 <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
-                  <h3 className="font-bold text-sm mb-3">🔧 Servicio</h3>
+                  <h3 className="font-bold text-sm mb-3"><Wrench className="inline h-4 w-4 mr-1.5 align-[-0.2em] text-brand" />Servicio</h3>
                   <div className="grid grid-cols-2 gap-2">
                     {servicios.map(s => (
                       <button key={s.id} onClick={() => { setTurno({...turno, servicio: s.nombre}); setServicioDetalle(s); }} className={`p-2 rounded-lg text-left text-xs ${turno.servicio === s.nombre ? 'bg-red-600' : 'bg-white/5'} border border-white/10`}>
                         <div className="font-bold">{s.nombre}</div>
-                        <div className="text-white/60 text-[10px]">⏱️ {s.duracion}</div>
+                        <div className="text-white/60 text-[10px]"><Timer className="inline h-3.5 w-3.5 mr-1 align-[-0.15em]" />{s.duracion}</div>
                       </button>
                     ))}
                   </div>
                 </div>
                 <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
-                  <h3 className="font-bold text-sm mb-3">📅 Fecha</h3>
+                  <h3 className="font-bold text-sm mb-3"><Calendar className="inline h-4 w-4 mr-1.5 align-[-0.2em] text-brand" />Fecha</h3>
                   <Calendario fechaSeleccionada={turno.fecha} onSeleccionar={(fecha) => setTurno({...turno, fecha})} />
                   {turno.fecha && (
                     <div className="mt-3">
@@ -1547,7 +1563,7 @@ export default function FiatApp() {
                   )}
                 </div>
                 <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
-                  <h3 className="font-bold text-sm mb-3">📍 Sucursal</h3>
+                  <h3 className="font-bold text-sm mb-3"><MapPin className="inline h-4 w-4 mr-1.5 align-[-0.2em] text-brand" />Sucursal</h3>
                   <div className="grid grid-cols-2 gap-2">
                     {[{ nombre: 'Ushuaia', dir: 'Piedrabuena 256' }, { nombre: 'Río Grande', dir: 'San Martín 2599' }].map(suc => (
                       <button key={suc.nombre} onClick={() => setTurno({...turno, sucursal: suc.nombre})} className={`p-3 rounded-lg text-left ${turno.sucursal === suc.nombre ? 'bg-red-600' : 'bg-white/5'} border border-white/10`}>
@@ -1559,7 +1575,7 @@ export default function FiatApp() {
                 </div>
                 <button onClick={enviarTurno} disabled={!turno.nombre || !turno.telefono || !turno.patente || !turno.modelo || !turno.km || !turno.servicio || !turno.sucursal}
                   className={`w-full py-4 rounded-xl font-bold text-lg ${turno.nombre && turno.telefono && turno.patente && turno.modelo && turno.km && turno.servicio && turno.sucursal ? 'bg-gradient-to-r from-green-600 to-green-700' : 'bg-white/20 text-white/50'}`}>
-                  📱 Enviar por WhatsApp
+                  <MessageCircle className="inline h-4 w-4 mr-1.5 align-[-0.2em]" />Enviar por WhatsApp
                 </button>
               </div>
             )}
@@ -1569,13 +1585,13 @@ export default function FiatApp() {
         {/* ========== CRÉDITO AUTOMOTOR ========== */}
         {seccion === 'credito' && (
           <div>
-            <h2 className="text-xl font-bold mb-1">💳 Solicitud de Crédito</h2>
+            <h2 className="text-xl font-bold mb-1 flex items-center gap-2.5"><span className="icon-chip"><CreditCard className="h-4 w-4" /></span>Solicitud de Crédito</h2>
             <p className="text-white/60 text-xs mb-4">Completá tus datos para pre-aprobación</p>
 
             {creditoEnviado ? (
               <div className="text-center py-8 space-y-4">
                 <div className="bg-green-500/20 rounded-2xl p-8 border border-green-500/30">
-                  <div className="text-5xl mb-3">✅</div>
+                  <div className="text-5xl mb-3"><CheckCircle2 className="h-14 w-14 mx-auto text-emerald-400" /></div>
                   <h3 className="text-xl font-bold mb-2">¡Solicitud Enviada!</h3>
                   <p className="text-sm text-white/70 mb-4">Te contactamos en 24hs con tu oferta personalizada.</p>
                   <button onClick={resetCredito} className="px-6 py-3 bg-white/10 rounded-xl font-bold text-sm">Nueva Solicitud</button>
@@ -1595,7 +1611,7 @@ export default function FiatApp() {
                 {creditoStep === 0 && (
                   <div className="space-y-3">
                     <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20 space-y-2">
-                      <h3 className="font-bold text-sm mb-2">👤 Datos Personales</h3>
+                      <h3 className="font-bold text-sm mb-2"><User className="inline h-4 w-4 mr-1.5 align-[-0.2em] text-brand" />Datos Personales</h3>
                       <input placeholder="Nombre completo *" value={creditoForm.nombre} onChange={e => setCreditoForm({...creditoForm, nombre: e.target.value})} className="w-full p-2.5 rounded-lg bg-white/5 border border-white/20 text-sm" />
                       <input placeholder="DNI *" value={creditoForm.dni} onChange={e => setCreditoForm({...creditoForm, dni: e.target.value})} className="w-full p-2.5 rounded-lg bg-white/5 border border-white/20 text-sm" />
                       <input placeholder="Domicilio *" value={creditoForm.domicilio} onChange={e => setCreditoForm({...creditoForm, domicilio: e.target.value})} className="w-full p-2.5 rounded-lg bg-white/5 border border-white/20 text-sm" />
@@ -1612,7 +1628,7 @@ export default function FiatApp() {
                       <input placeholder="Email *" type="email" value={creditoForm.email} onChange={e => setCreditoForm({...creditoForm, email: e.target.value})} className="w-full p-2.5 rounded-lg bg-white/5 border border-white/20 text-sm" />
                     </div>
                     <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
-                      <h3 className="font-bold text-sm mb-3">💍 Estado Civil</h3>
+                      <h3 className="font-bold text-sm mb-3"><Heart className="inline h-4 w-4 mr-1.5 align-[-0.2em] text-brand" />Estado Civil</h3>
                       <div className="grid grid-cols-2 gap-2">
                         {['Soltero/a', 'Casado/a', 'Divorciado/a', 'Viudo/a'].map(ec => (
                           <button key={ec} onClick={() => setCreditoForm({...creditoForm, estadoCivil: ec})}
@@ -1637,7 +1653,7 @@ export default function FiatApp() {
                 {creditoStep === 1 && (
                   <div className="space-y-3">
                     <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20 space-y-2">
-                      <h3 className="font-bold text-sm mb-2">💼 Datos Laborales</h3>
+                      <h3 className="font-bold text-sm mb-2"><Briefcase className="inline h-4 w-4 mr-1.5 align-[-0.2em] text-brand" />Datos Laborales</h3>
                       <input placeholder="Empleador / Empresa *" value={creditoForm.empleador} onChange={e => setCreditoForm({...creditoForm, empleador: e.target.value})} className="w-full p-2.5 rounded-lg bg-white/5 border border-white/20 text-sm" />
                       <div className="grid grid-cols-2 gap-2">
                         <input placeholder="Cargo" value={creditoForm.cargo} onChange={e => setCreditoForm({...creditoForm, cargo: e.target.value})} className="p-2.5 rounded-lg bg-white/5 border border-white/20 text-sm" />
@@ -1647,7 +1663,7 @@ export default function FiatApp() {
                     </div>
                     <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
                       <div className="flex items-center justify-between mb-3">
-                        <h3 className="font-bold text-sm">💳 ¿Tenés tarjetas de crédito?</h3>
+                        <h3 className="font-bold text-sm"><CreditCard className="inline h-4 w-4 mr-1.5 align-[-0.2em] text-brand" />¿Tenés tarjetas de crédito?</h3>
                         <button onClick={() => setCreditoForm({...creditoForm, tieneTarjetas: !creditoForm.tieneTarjetas})}
                           className={`w-12 h-6 rounded-full transition-all ${creditoForm.tieneTarjetas ? 'bg-green-500' : 'bg-white/20'}`}>
                           <div className={`w-5 h-5 bg-white rounded-full transition-all ${creditoForm.tieneTarjetas ? 'translate-x-6' : 'translate-x-0.5'}`} />
@@ -1668,7 +1684,7 @@ export default function FiatApp() {
                       )}
                     </div>
                     <div className="flex gap-2">
-                      <button onClick={() => setCreditoStep(0)} className="flex-1 py-3 bg-white/10 rounded-xl font-bold text-sm">← Anterior</button>
+                      <button onClick={() => setCreditoStep(0)} className="flex-1 py-3 bg-white/10 rounded-xl font-bold text-sm"><ChevronLeft className="inline h-4 w-4 mr-1.5 align-[-0.2em]" />Anterior</button>
                       <button onClick={() => setCreditoStep(2)} disabled={!creditoForm.empleador || !creditoForm.ingresoNeto}
                         className={`flex-1 py-3 rounded-xl font-bold text-sm ${creditoForm.empleador && creditoForm.ingresoNeto ? 'bg-gradient-to-r from-red-600 to-red-700' : 'bg-white/20 text-white/50'}`}>
                         Siguiente →
@@ -1681,14 +1697,14 @@ export default function FiatApp() {
                 {creditoStep === 2 && (
                   <div className="space-y-3">
                     <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20 space-y-2">
-                      <h3 className="font-bold text-sm mb-2">🚗 Vehículo de Interés</h3>
+                      <h3 className="font-bold text-sm mb-2"><Car className="inline h-4 w-4 mr-1.5 align-[-0.2em] text-brand" />Vehículo de Interés</h3>
                       <select value={creditoForm.vehiculoInteres} onChange={e => setCreditoForm({...creditoForm, vehiculoInteres: e.target.value})} className="w-full p-2.5 rounded-lg bg-slate-800 border border-white/20 text-sm">
                         <option value="">Seleccioná un modelo *</option>
                         {catalogo.map(v => <option key={v.id} value={v.nombre}>{v.nombre} — {formatPrecio(v.precio)}</option>)}
                       </select>
                     </div>
                     <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
-                      <h3 className="font-bold text-sm mb-3">⏰ Urgencia</h3>
+                      <h3 className="font-bold text-sm mb-3"><Clock className="inline h-4 w-4 mr-1.5 align-[-0.2em] text-brand" />Urgencia</h3>
                       <div className="grid grid-cols-3 gap-2">
                         {[{id:'alta',label:'🔥 Urgente',desc:'Esta semana'},{id:'normal',label:'📅 Normal',desc:'Este mes'},{id:'baja',label:'🕐 Sin apuro',desc:'Explorando'}].map(u => (
                           <button key={u.id} onClick={() => setCreditoForm({...creditoForm, urgencia: u.id})}
@@ -1701,7 +1717,7 @@ export default function FiatApp() {
                     </div>
                     <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
                       <div className="flex items-center justify-between mb-3">
-                        <h3 className="font-bold text-sm">🔄 ¿Entregás un usado?</h3>
+                        <h3 className="font-bold text-sm"><RefreshCw className="inline h-4 w-4 mr-1.5 align-[-0.2em] text-brand" />¿Entregás un usado?</h3>
                         <button onClick={() => setCreditoForm({...creditoForm, entregaUsado: !creditoForm.entregaUsado})}
                           className={`w-12 h-6 rounded-full transition-all ${creditoForm.entregaUsado ? 'bg-green-500' : 'bg-white/20'}`}>
                           <div className={`w-5 h-5 bg-white rounded-full transition-all ${creditoForm.entregaUsado ? 'translate-x-6' : 'translate-x-0.5'}`} />
@@ -1721,7 +1737,7 @@ export default function FiatApp() {
                     </div>
                     <textarea placeholder="Comentarios adicionales (opcional)" value={creditoForm.comentarios} onChange={e => setCreditoForm({...creditoForm, comentarios: e.target.value})} rows={3} className="w-full p-2.5 rounded-lg bg-white/5 border border-white/20 text-sm resize-none" />
                     <div className="flex gap-2">
-                      <button onClick={() => setCreditoStep(1)} className="flex-1 py-3 bg-white/10 rounded-xl font-bold text-sm">← Anterior</button>
+                      <button onClick={() => setCreditoStep(1)} className="flex-1 py-3 bg-white/10 rounded-xl font-bold text-sm"><ChevronLeft className="inline h-4 w-4 mr-1.5 align-[-0.2em]" />Anterior</button>
                       <button onClick={() => setCreditoStep(3)} disabled={!creditoForm.vehiculoInteres}
                         className={`flex-1 py-3 rounded-xl font-bold text-sm ${creditoForm.vehiculoInteres ? 'bg-gradient-to-r from-red-600 to-red-700' : 'bg-white/20 text-white/50'}`}>
                         Revisar →
@@ -1734,7 +1750,7 @@ export default function FiatApp() {
                 {creditoStep === 3 && (
                   <div className="space-y-3">
                     <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
-                      <h3 className="font-bold text-sm mb-3">📋 Resumen de Solicitud</h3>
+                      <h3 className="font-bold text-sm mb-3"><ClipboardList className="inline h-4 w-4 mr-1.5 align-[-0.2em] text-brand" />Resumen de Solicitud</h3>
                       <div className="space-y-2 text-xs">
                         <div className="flex justify-between py-1.5 border-b border-white/10"><span className="text-white/50">Nombre</span><span className="font-medium">{creditoForm.nombre}</span></div>
                         <div className="flex justify-between py-1.5 border-b border-white/10"><span className="text-white/50">DNI</span><span className="font-medium">{creditoForm.dni}</span></div>
@@ -1747,12 +1763,12 @@ export default function FiatApp() {
                       </div>
                     </div>
                     <div className="bg-amber-500/20 rounded-xl p-3 border border-amber-500/30 text-xs">
-                      <p>⚠️ Al enviar, tus datos serán recibidos por el equipo comercial de LASAC para evaluar tu solicitud. Te contactamos en <strong>menos de 24 horas</strong>.</p>
+                      <p><AlertTriangle className="inline h-3.5 w-3.5 mr-1 align-[-0.15em]" />Al enviar, tus datos serán recibidos por el equipo comercial de LASAC para evaluar tu solicitud. Te contactamos en <strong>menos de 24 horas</strong>.</p>
                     </div>
                     <div className="flex gap-2">
-                      <button onClick={() => setCreditoStep(2)} className="flex-1 py-3 bg-white/10 rounded-xl font-bold text-sm">← Editar</button>
+                      <button onClick={() => setCreditoStep(2)} className="flex-1 py-3 bg-white/10 rounded-xl font-bold text-sm"><ChevronLeft className="inline h-4 w-4 mr-1.5 align-[-0.2em]" />Editar</button>
                       <button onClick={enviarCredito} className="flex-1 py-4 bg-gradient-to-r from-green-600 to-green-700 rounded-xl font-bold text-sm active:scale-95 transition-all">
-                        📱 Enviar Solicitud
+                        <MessageCircle className="inline h-4 w-4 mr-1.5 align-[-0.2em]" />Enviar Solicitud
                       </button>
                     </div>
                   </div>
@@ -1765,7 +1781,7 @@ export default function FiatApp() {
         {/* ========== CONTACTO ========== */}
         {seccion === 'contacto' && (
           <div>
-            <h2 className="text-xl font-bold mb-4">📍 Sucursales</h2>
+            <h2 className="text-xl font-bold mb-4 flex items-center gap-2.5"><span className="icon-chip"><MapPin className="h-4 w-4" /></span>Sucursales</h2>
             <div className="space-y-4">
               {[
                 { ciudad: 'Ushuaia', icon: '🏔️', sub: 'Fin del Mundo', ventas: 'L. Lugones 1950', service: 'Piedrabuena 256', waVentas: '5492964487924', waService: '5492964465050' },
@@ -1773,37 +1789,37 @@ export default function FiatApp() {
               ].map(suc => (
                 <div key={suc.ciudad} className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
                   <div className="bg-gradient-to-r from-red-600 to-red-700 rounded-lg p-3 text-center mb-3">
-                    <span className="text-3xl">{suc.icon}</span>
+                    <SucursalIcon ciudad={suc.ciudad} className="mx-auto h-8 w-8" />
                     <h3 className="text-xl font-bold">{suc.ciudad}</h3>
                     <p className="text-white/70 text-xs">{suc.sub}</p>
                   </div>
                   <div className="space-y-1 mb-3 text-xs">
-                    {suc.ventas && <p>🪧 Ventas: {suc.ventas}</p>}
-                    {suc.service && <p>🔧 Service: {suc.service}</p>}
-                    {suc.dir && <p>📍 {suc.dir}</p>}
+                    {suc.ventas && <p><Store className="inline h-3.5 w-3.5 mr-1 align-[-0.15em]" />Ventas: {suc.ventas}</p>}
+                    {suc.service && <p><Wrench className="inline h-3.5 w-3.5 mr-1 align-[-0.15em]" />Service: {suc.service}</p>}
+                    {suc.dir && <p><MapPin className="inline h-3.5 w-3.5 mr-1 align-[-0.15em]" />{suc.dir}</p>}
                   </div>
                   <div className="grid grid-cols-2 gap-2">
-                    <a href={`https://wa.me/${suc.waVentas}`} className="py-2 bg-green-600 rounded-lg font-bold text-center text-sm">💬 Ventas</a>
-                    <a href={`https://wa.me/${suc.waService}`} className="py-2 bg-blue-600 rounded-lg font-bold text-center text-sm">🔧 Service</a>
+                    <a href={`https://wa.me/${suc.waVentas}`} className="py-2 bg-green-600 rounded-lg font-bold text-center text-sm"><MessageCircle className="inline h-4 w-4 mr-1.5 align-[-0.2em]" />Ventas</a>
+                    <a href={`https://wa.me/${suc.waService}`} className="py-2 bg-blue-600 rounded-lg font-bold text-center text-sm"><Wrench className="inline h-4 w-4 mr-1.5 align-[-0.2em]" />Service</a>
                   </div>
                 </div>
               ))}
             </div>
-            <h3 className="text-lg font-bold mt-6 mb-3">📞 Otros Contactos</h3>
+            <h3 className="text-lg font-bold mt-6 mb-3"><Phone className="inline h-4 w-4 mr-1.5 align-[-0.2em] text-brand" />Otros Contactos</h3>
             <div className="space-y-2">
               <a href="https://wa.me/5492964465270" className="flex items-center gap-3 bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20 active:scale-[0.98] transition-all">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 flex items-center justify-center text-xl">📋</div>
+                <div className="w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 flex items-center justify-center text-xl"><ClipboardList className="h-6 w-6" /></div>
                 <div className="flex-1"><h4 className="font-bold text-sm">FIAT Plan - Administración</h4><p className="text-xs text-white/60">Consultas sobre tu plan de ahorro</p></div>
-                <span className="text-green-500 text-xl">💬</span>
+                <span className="text-green-500 text-xl"><MessageCircle className="h-6 w-6" /></span>
               </a>
               <a href="https://wa.me/5492964609082" className="flex items-center gap-3 bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20 active:scale-[0.98] transition-all">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 flex items-center justify-center text-xl">🔩</div>
+                <div className="w-12 h-12 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 flex items-center justify-center text-xl"><Cog className="h-6 w-6" /></div>
                 <div className="flex-1"><h4 className="font-bold text-sm">Repuestos</h4><p className="text-xs text-white/60">Consultas y pedidos de repuestos</p></div>
-                <span className="text-green-500 text-xl">💬</span>
+                <span className="text-green-500 text-xl"><MessageCircle className="h-6 w-6" /></span>
               </a>
             </div>
             <div className="bg-white/5 rounded-xl p-4 mt-4 text-center border border-white/10">
-              <a href="https://lasac.com.ar" target="_blank" rel="noopener noreferrer" className="inline-block px-6 py-2 bg-gradient-to-r from-red-600 to-red-700 rounded-full font-bold text-sm">🌐 lasac.com.ar</a>
+              <a href="https://lasac.com.ar" target="_blank" rel="noopener noreferrer" className="inline-block px-6 py-2 bg-gradient-to-r from-red-600 to-red-700 rounded-full font-bold text-sm"><Globe className="inline h-4 w-4 mr-1.5 align-[-0.2em]" />lasac.com.ar</a>
             </div>
             <div className="text-center mt-4 pb-4">
               <button onClick={() => setSeccion('legal')} className="text-[10px] text-white/40 underline">
@@ -1817,11 +1833,11 @@ export default function FiatApp() {
         {seccion === 'legal' && (
           <div className="space-y-4 pb-8">
             <button onClick={() => setSeccion('contacto')} className="text-sm text-white/60 flex items-center gap-1">
-              ← Volver
+              <ChevronLeft className="inline h-4 w-4 mr-1.5 align-[-0.2em]" />Volver
             </button>
 
             <div className="text-center">
-              <h2 className="text-xl font-bold mb-1">📜 Términos y Condiciones</h2>
+              <h2 className="text-xl font-bold mb-1 flex items-center gap-2.5"><span className="icon-chip"><FileText className="h-4 w-4" /></span>Términos y Condiciones</h2>
               <p className="text-[10px] text-white/50">Última actualización: Abril 2026</p>
             </div>
 
@@ -1906,31 +1922,32 @@ export default function FiatApp() {
               <p className="text-[10px] text-white/60">Concesionario Oficial FIAT</p>
               <p className="text-[10px] text-white/60">Tierra del Fuego, Antártida e Islas del Atlántico Sur</p>
               <p className="text-[10px] text-white/60">CUIT: 30-70767846-8</p>
-              <p className="text-[10px] text-white/40 mt-2">📧 atencionalcliente@lasac.com.ar</p>
+              <p className="text-[10px] text-white/40 mt-2"><Mail className="inline h-3.5 w-3.5 mr-1 align-[-0.15em]" />atencionalcliente@lasac.com.ar</p>
             </div>
 
             <div className="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3">
               <p className="text-[10px] text-amber-200 leading-tight">
-                ⚠️ Al utilizar esta aplicación, el usuario declara haber leído, comprendido y aceptado los presentes Términos y Condiciones en todos sus términos.
+                <AlertTriangle className="inline h-3.5 w-3.5 mr-1 align-[-0.15em]" />Al utilizar esta aplicación, el usuario declara haber leído, comprendido y aceptado los presentes Términos y Condiciones en todos sus términos.
               </p>
             </div>
           </div>
         )}
+        </div>
       </main>
 
       {/* Bottom Nav */}
       <nav className="fixed bottom-0 left-0 right-0 bg-black/90 backdrop-blur-lg border-t border-white/10 p-2 z-50">
         <div className="max-w-lg mx-auto flex justify-around">
           {[
-            { id: 'inicio', icon: '🏠', label: 'Inicio' },
-            { id: 'catalogo', icon: '🚗', label: 'Catálogo' },
-            { id: 'simulador', icon: '📋', label: 'Plan Ahorro' },
-            { id: 'credito', icon: '💳', label: 'Crédito' },
-            { id: 'turnos', icon: '🔧', label: 'Service' },
-            { id: 'contacto', icon: '📍', label: 'Contacto' },
+            { id: 'inicio', label: 'Inicio' },
+            { id: 'catalogo', label: 'Catálogo' },
+            { id: 'simulador', label: 'Plan Ahorro' },
+            { id: 'credito', label: 'Crédito' },
+            { id: 'turnos', label: 'Service' },
+            { id: 'contacto', label: 'Contacto' },
           ].map(item => (
             <button key={item.id} onClick={() => setSeccion(item.id)} className={`flex flex-col items-center py-1.5 px-3 rounded-xl transition-all duration-200 ${seccion === item.id ? 'text-red-500 bg-red-500/15' : 'text-white/55 hover:text-white/85 active:scale-95'}`}>
-              <span className={`text-lg transition-transform duration-200 ${seccion === item.id ? 'scale-110' : ''}`}>{item.icon}</span>
+              <SeccionIcon id={item.id} className={`h-5 w-5 transition-transform duration-200 ${seccion === item.id ? 'scale-110' : ''}`} strokeWidth={seccion === item.id ? 2.4 : 2} />
               <span className={`text-[9px] mt-0.5 ${seccion === item.id ? 'font-semibold' : ''}`}>{item.label}</span>
             </button>
           ))}

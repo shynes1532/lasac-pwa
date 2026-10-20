@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Car, MessageCircle } from 'lucide-react';
 import AutoImagen from '../AutoImagen.jsx';
 import { formatPrecio } from '../../data/grupo.js';
 
@@ -14,7 +15,7 @@ export default function Catalogo({ marca }) {
 
   return (
     <div>
-      <h2 className="text-xl font-bold mb-1">🚗 Catálogo {marca.nombre}</h2>
+      <h2 className="text-xl font-bold mb-1 flex items-center gap-2.5"><span className="icon-chip"><Car className="h-4 w-4" /></span>Catálogo {marca.nombre}</h2>
       <p className="text-white/60 text-xs mb-3">Precios Tierra del Fuego</p>
       {marca.notaCatalogo && (
         <div className="bg-amber-500/10 border border-amber-500/30 rounded-lg p-2 mb-3 -mt-1">
@@ -28,7 +29,7 @@ export default function Catalogo({ marca }) {
       </div>
       {vehiculos.length === 0 ? (
         <div className="text-center py-12 text-white/40">
-          <div className="text-4xl mb-3">🚗</div>
+          <div className="text-4xl mb-3"><Car className="h-12 w-12 mx-auto" /></div>
           <p className="text-sm">Catálogo en preparación. Consultá disponibilidad.</p>
         </div>
       ) : (
@@ -48,7 +49,7 @@ export default function Catalogo({ marca }) {
                     <p className="text-xl font-extrabold text-green-400 tabular-nums tracking-tight leading-none">{formatPrecio(v.precio, marca.moneda)}</p>
                     {v.precioFinanciado && <p className="text-[10px] text-white/45 mt-1 tabular-nums">Financiado {formatPrecio(v.precioFinanciado, marca.moneda)}</p>}
                   </div>
-                  <button onClick={() => consultar(v)} className="shrink-0 px-4 py-2 bg-brand text-on-brand rounded-lg text-xs font-bold shadow-md shadow-black/20 active:scale-95 transition-transform">💬 Consultar</button>
+                  <button onClick={() => consultar(v)} className="shrink-0 px-4 py-2 bg-brand text-on-brand rounded-lg text-xs font-bold shadow-md shadow-black/20 active:scale-95 transition-transform"><MessageCircle className="inline h-4 w-4 mr-1.5 align-[-0.2em]" />Consultar</button>
                 </div>
               </div>
             </div>

@@ -6,7 +6,7 @@
 // Ushuaia: sumar $500.000 de flete si la unidad se solicita desde Río Grande.
 // Imágenes en  public/images/jac/<modelo>.png  (un archivo por modelo base:
 //   js2, js4, js6, js8, ev30x, t8, t9, jacx200).
-// ⚠️ Color de marca tentativo: ajustar al oficial JAC.
+// Color de marca alineado con gruppolasac.com.
 // ============================================================
 
 const catalogo = [
@@ -52,10 +52,10 @@ const jac = {
   imgExt: 'webp',
   moneda: 'ARS',
   notaCatalogo: 'Lista JIÀNTÓU Septiembre 2026 · Precio contado/BNA (incluye flete, inscripción y gastos). Ushuaia: +$500.000 de flete si la unidad viene de Río Grande.',
-  // ⚠️ Color tentativo (azul JAC). Ajustar al oficial.
+  // Color oficial de la marca (misma paleta que gruppolasac.com).
   tema: {
-    primary: '#2563eb', primaryDark: '#1e3a8a',
-    gradient: ['#2563eb', '#1e3a8a'], onPrimary: '#ffffff',
+    primary: '#2E7CC9', primaryDark: '#1D5A99',
+    gradient: ['#2E7CC9', '#1D5A99'], onPrimary: '#ffffff',
   },
   categorias: ['todos', 'suv', 'pickups', 'comerciales'],
   catalogo,

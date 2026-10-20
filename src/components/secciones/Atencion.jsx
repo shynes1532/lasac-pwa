@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Building2, Car, Check, CheckCircle2, Mail, MapPin, MessageCircle, MousePointerClick, PenLine, Phone, User } from 'lucide-react';
+import { TipoAtencionIcon } from '../ui/Icon.jsx';
 import { tiposAtencion, areasAtencion } from '../../data/grupo.js';
 
 const FORM_VACIO = { nombre: '', telefono: '', email: '', area: '', modelo: '', patente: '', mensaje: '' };
@@ -33,12 +35,12 @@ export default function Atencion({ marca }) {
 
   return (
     <div>
-      <h2 className="text-xl font-bold mb-1">💬 Atención al Cliente</h2>
+      <h2 className="text-xl font-bold mb-1 flex items-center gap-2.5"><span className="icon-chip"><MessageCircle className="h-4 w-4" /></span>Atención al Cliente</h2>
       <p className="text-white/60 text-xs mb-5">Seleccioná el motivo de tu contacto</p>
 
       {enviado ? (
         <div className="text-center py-12 space-y-4">
-          <div className="text-6xl">✅</div>
+          <div className="text-6xl"><CheckCircle2 className="h-14 w-14 mx-auto text-emerald-400" /></div>
           <h3 className="text-xl font-bold">¡Mensaje enviado!</h3>
           <p className="text-white/60 text-sm">Tu {tipoActual?.titulo.toLowerCase()} fue derivada al equipo de atención</p>
           <button onClick={reset} className="px-6 py-3 bg-white/10 hover:bg-white/20 rounded-xl font-bold text-sm transition-all active:scale-95">Enviar otra consulta</button>
@@ -53,10 +55,10 @@ export default function Atencion({ marca }) {
                   className={`relative p-4 rounded-2xl text-left transition-all duration-300 border-2 ${sel ? `${t.bg} ${t.border} scale-[1.02] shadow-lg` : 'bg-white/5 border-white/10 hover:bg-white/10'}`}>
                   {sel && (
                     <div className="absolute top-2 right-2 w-5 h-5 bg-white rounded-full flex items-center justify-center">
-                      <span className="text-green-600 text-xs font-bold">✓</span>
+                      <span className="text-green-600 text-xs font-bold"><Check className="h-3.5 w-3.5" /></span>
                     </div>
                   )}
-                  <div className="text-2xl mb-2">{t.icon}</div>
+                  <div className="mb-2 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white/10"><TipoAtencionIcon id={t.id} className="h-5 w-5" /></div>
                   <div className="font-bold text-sm">{t.titulo}</div>
                   <div className="text-[10px] text-white/50 mt-0.5">{t.desc}</div>
                 </button>
@@ -67,7 +69,7 @@ export default function Atencion({ marca }) {
           {tipo && tipoActual && (
             <div className="space-y-4">
               <div className={`bg-gradient-to-r ${tipoActual.color} rounded-xl p-3 flex items-center gap-3`}>
-                <span className="text-2xl">{tipoActual.icon}</span>
+                <TipoAtencionIcon id={tipoActual.id} className="h-6 w-6" />
                 <div>
                   <div className="font-bold text-sm">{tipoActual.titulo}</div>
                   <div className="text-[10px] opacity-80">Completá los datos para enviar</div>
@@ -75,14 +77,14 @@ export default function Atencion({ marca }) {
               </div>
 
               <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20 space-y-2">
-                <h3 className="font-bold text-sm mb-3">👤 Tus Datos</h3>
+                <h3 className="font-bold text-sm mb-3"><User className="inline h-4 w-4 mr-1.5 align-[-0.2em] text-brand" />Tus Datos</h3>
                 <input placeholder="Nombre completo *" value={form.nombre} onChange={(e) => set('nombre', e.target.value)} className="w-full p-2.5 rounded-lg bg-white/5 border border-white/20 text-sm" />
                 <input placeholder="Teléfono *" type="tel" value={form.telefono} onChange={(e) => set('telefono', e.target.value)} className="w-full p-2.5 rounded-lg bg-white/5 border border-white/20 text-sm" />
                 <input placeholder="Email (opcional)" type="email" value={form.email} onChange={(e) => set('email', e.target.value)} className="w-full p-2.5 rounded-lg bg-white/5 border border-white/20 text-sm" />
               </div>
 
               <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
-                <h3 className="font-bold text-sm mb-3">🏢 Área Relacionada</h3>
+                <h3 className="font-bold text-sm mb-3"><Building2 className="inline h-4 w-4 mr-1.5 align-[-0.2em] text-brand" />Área Relacionada</h3>
                 <div className="grid grid-cols-2 gap-2">
                   {areasAtencion.map((a) => (
                     <button key={a} onClick={() => set('area', a)}
@@ -94,7 +96,7 @@ export default function Atencion({ marca }) {
               </div>
 
               <div className={`bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20 ${tipo === 'reclamo' ? 'ring-1 ring-red-400/30' : ''}`}>
-                <h3 className="font-bold text-sm mb-1">🚗 Vehículo {tipo === 'reclamo' ? '' : '(opcional)'}</h3>
+                <h3 className="font-bold text-sm mb-1"><Car className="inline h-4 w-4 mr-1.5 align-[-0.2em] text-brand" />Vehículo {tipo === 'reclamo' ? '' : '(opcional)'}</h3>
                 {tipo === 'reclamo' && <p className="text-[10px] text-red-300 mb-3">Completá estos datos para agilizar tu reclamo</p>}
                 <div className="grid grid-cols-2 gap-2">
                   <input placeholder="Modelo" value={form.modelo} onChange={(e) => set('modelo', e.target.value)} className="p-2.5 rounded-lg bg-white/5 border border-white/20 text-sm" />
@@ -103,7 +105,7 @@ export default function Atencion({ marca }) {
               </div>
 
               <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
-                <h3 className="font-bold text-sm mb-3">✍️ Tu Mensaje *</h3>
+                <h3 className="font-bold text-sm mb-3"><PenLine className="inline h-4 w-4 mr-1.5 align-[-0.2em] text-brand" />Tu Mensaje *</h3>
                 <textarea
                   placeholder={
                     tipo === 'consulta' ? '¿Cuál es tu consulta?' :
@@ -116,7 +118,7 @@ export default function Atencion({ marca }) {
               </div>
 
               <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
-                <h3 className="font-bold text-sm mb-3">📍 Sucursal *</h3>
+                <h3 className="font-bold text-sm mb-3"><MapPin className="inline h-4 w-4 mr-1.5 align-[-0.2em] text-brand" />Sucursal *</h3>
                 <div className="grid grid-cols-2 gap-2">
                   {sucursales.map((s) => (
                     <button key={s.ciudad} onClick={() => setSucursal(s.ciudad)}
@@ -129,14 +131,14 @@ export default function Atencion({ marca }) {
 
               <button onClick={enviar}
                 className={`w-full p-4 rounded-xl font-bold text-sm flex items-center justify-center gap-2 bg-gradient-to-r ${tipoActual.color} active:scale-95 transition-all`}>
-                <span>📲</span> Enviar {tipoActual.titulo} por WhatsApp
+                <span><MessageCircle className="h-5 w-5" /></span> Enviar {tipoActual.titulo} por WhatsApp
               </button>
 
               <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
                 <p className="text-sm text-center text-white/70 mb-3">También podés contactarnos directamente:</p>
                 <div className="flex gap-2 justify-center">
-                  <a href={`tel:+${marca.contacto.whatsapp.atencion || marca.contacto.whatsapp.ventas}`} className="px-4 py-2 bg-green-600 hover:bg-green-500 rounded-full text-sm font-bold shadow-md shadow-black/20 transition-all active:scale-95">📞 Llamar</a>
-                  <a href="mailto:atencion@lasac.com.ar" className="px-4 py-2 bg-blue-600 hover:bg-blue-500 rounded-full text-sm font-bold shadow-md shadow-black/20 transition-all active:scale-95">✉️ Email</a>
+                  <a href={`tel:+${marca.contacto.whatsapp.atencion || marca.contacto.whatsapp.ventas}`} className="px-4 py-2 bg-green-600 hover:bg-green-500 rounded-full text-sm font-bold shadow-md shadow-black/20 transition-all active:scale-95"><Phone className="inline h-4 w-4 mr-1.5 align-[-0.2em]" />Llamar</a>
+                  <a href="mailto:atencion@lasac.com.ar" className="px-4 py-2 bg-blue-600 hover:bg-blue-500 rounded-full text-sm font-bold shadow-md shadow-black/20 transition-all active:scale-95"><Mail className="inline h-4 w-4 mr-1.5 align-[-0.2em]" />Email</a>
                 </div>
               </div>
             </div>
@@ -144,7 +146,7 @@ export default function Atencion({ marca }) {
 
           {!tipo && (
             <div className="text-center py-8 text-white/30">
-              <div className="text-4xl mb-3">👆</div>
+              <div className="text-4xl mb-3"><MousePointerClick className="h-12 w-12 mx-auto text-white/40" /></div>
               <p className="text-sm">Seleccioná una opción para continuar</p>
             </div>
           )}

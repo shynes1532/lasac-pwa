@@ -3,6 +3,7 @@ import { getMarca } from './data/index.js';
 import BrandSelector from './components/BrandSelector.jsx';
 import GenericBrandApp from './components/GenericBrandApp.jsx';
 import FiatApp from './FiatApp.jsx';
+import useTemaMarca from './hooks/useTemaMarca.js';
 
 const STORAGE_KEY = 'lasac-marca';
 
@@ -16,6 +17,7 @@ export default function App() {
   });
 
   const marca = getMarca(marcaId);
+  useTemaMarca(marca); // colores de la marca activa (o del Grupo en el selector) para toda la app
 
   useEffect(() => {
     try {
@@ -32,17 +34,7 @@ export default function App() {
   }
 
   if (marca.id === 'fiat') {
-    return (
-      <div className="relative">
-        <FiatApp />
-        <button
-          onClick={cambiarMarca}
-          className="fixed top-2.5 right-2.5 z-[60] text-[11px] font-bold bg-black/70 hover:bg-black/90 text-white px-3 py-1.5 rounded-full backdrop-blur border border-white/20 flex items-center gap-1 whitespace-nowrap shadow-lg"
-        >
-          ⇄ Marca
-        </button>
-      </div>
-    );
+    return <FiatApp onCambiarMarca={cambiarMarca} />;
   }
 
   return <GenericBrandApp marca={marca} onCambiarMarca={cambiarMarca} />;
