@@ -72,7 +72,7 @@ const dongfeng = {
     // TODO: confirmar WhatsApp/sucursales específicos de Dongfeng
     whatsapp: {
       ventas: '5492964487924',
-      atencion: '5492964610900',
+      atencion: '5492964494360',
       repuestos: '5492964609082',
     },
     sucursales: [
