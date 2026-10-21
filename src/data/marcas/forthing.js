@@ -19,8 +19,8 @@ const catalogo = [
 const stockOportunidad = [];
 
 const novedades = [
-  { id: 9, fecha: '08 Ago 2026', titulo: '🎉 Ahora somos Grupo LASAC', descripcion: 'Crecimos para estar más cerca tuyo. LASAC ahora es Grupo LASAC: una sola gran familia que reúne a FIAT, JAC Motors, Forthing y Dongfeng bajo un mismo techo. Más marcas, más modelos y la misma atención de siempre en Ushuaia y Río Grande. ¡Bienvenido a Grupo LASAC! 🇦🇷', imagen: 'grupo-lasac', destacado: true },
-  { id: 1, fecha: '2026', titulo: '🚀 Forthing en el Grupo LASAC', descripcion: 'Llegó Forthing a Tierra del Fuego: SUVs T5 EVO y T5 HEV, y monovolúmenes Friday y U-Tour. Consultá disponibilidad y precios.', imagen: 't5hev', destacado: true },
+  { id: 9, fecha: '08 Ago 2026', titulo: 'Ahora somos Grupo LASAC', descripcion: 'Crecimos para estar más cerca tuyo. LASAC ahora es Grupo LASAC: una sola gran familia que reúne a FIAT, JAC Motors, Forthing y Dongfeng bajo un mismo techo. Más marcas, más modelos y la misma atención de siempre en Ushuaia y Río Grande. ¡Bienvenido a Grupo LASAC! 🇦🇷', imagen: 'grupo-lasac', destacado: true },
+  { id: 1, fecha: '2026', titulo: 'Forthing en el Grupo LASAC', descripcion: 'Llegó Forthing a Tierra del Fuego: SUVs T5 EVO y T5 HEV, y monovolúmenes Friday y U-Tour. Consultá disponibilidad y precios.', imagen: 't5hev', destacado: true },
 ];
 
 const servicios = [
@@ -40,10 +40,10 @@ const forthing = {
   imagenesPath: '/images/forthing/',
   imgExt: 'png',
   // moneda: definir cuando lleguen los precios ('ARS' o 'USD'). Default ARS.
-  // ⚠️ Color tentativo (teal). Ajustar al oficial.
+  // Color oficial de la marca (misma paleta que gruppolasac.com).
   tema: {
-    primary: '#0d9488', primaryDark: '#115e59',
-    gradient: ['#0d9488', '#115e59'], onPrimary: '#ffffff',
+    primary: '#3FA79E', primaryDark: '#2B7D76',
+    gradient: ['#3FA79E', '#2B7D76'], onPrimary: '#ffffff',
   },
   categorias: ['todos', 'suv', 'monovolumen'],
   catalogo,

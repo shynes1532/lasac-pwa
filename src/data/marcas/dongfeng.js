@@ -3,7 +3,7 @@
 // Lista Septiembre 2026 — precios en USD. Se muestra el "Precio Final" (incluye
 // flete, inscripción, gastos administrativos e ingresos brutos). T/C ref. $1.530.
 // Imágenes en  public/images/dongfeng/<modelo>.png
-// ⚠️ Color de marca tentativo: ajustar al oficial Dongfeng.
+// Color de marca alineado con gruppolasac.com.
 // ============================================================
 
 // Precio Final en USD (lista + flete + inscripción + Gs.Ad/IB).
@@ -35,8 +35,8 @@ const catalogo = [
 const stockOportunidad = [];
 
 const novedades = [
-  { id: 9, fecha: '08 Ago 2026', titulo: '🎉 Ahora somos Grupo LASAC', descripcion: 'Crecimos para estar más cerca tuyo. LASAC ahora es Grupo LASAC: una sola gran familia que reúne a FIAT, JAC Motors, Forthing y Dongfeng bajo un mismo techo. Más marcas, más modelos y la misma atención de siempre en Ushuaia y Río Grande. ¡Bienvenido a Grupo LASAC! 🇦🇷', imagen: 'grupo-lasac', destacado: true },
-  { id: 1, fecha: '2026', titulo: '🚚 Dongfeng Camiones en el Grupo LASAC', descripcion: 'Gama completa de utilitarios, vans y camiones Dongfeng en Tierra del Fuego. Consultá disponibilidad y financiación.', imagen: 'c1016caja', destacado: true },
+  { id: 9, fecha: '08 Ago 2026', titulo: 'Ahora somos Grupo LASAC', descripcion: 'Crecimos para estar más cerca tuyo. LASAC ahora es Grupo LASAC: una sola gran familia que reúne a FIAT, JAC Motors, Forthing y Dongfeng bajo un mismo techo. Más marcas, más modelos y la misma atención de siempre en Ushuaia y Río Grande. ¡Bienvenido a Grupo LASAC! 🇦🇷', imagen: 'grupo-lasac', destacado: true },
+  { id: 1, fecha: '2026', titulo: 'Dongfeng Camiones en el Grupo LASAC', descripcion: 'Gama completa de utilitarios, vans y camiones Dongfeng en Tierra del Fuego. Consultá disponibilidad y financiación.', imagen: 'c1016caja', destacado: true },
 ];
 
 const servicios = [
@@ -56,10 +56,10 @@ const dongfeng = {
   imgExt: 'webp',
   moneda: 'USD',
   notaCatalogo: 'Lista Septiembre 2026 · Precios finales en USD (incluyen flete, inscripción y gastos). Tipo de cambio de referencia: $1.530.',
-  // ⚠️ Color tentativo (índigo). Ajustar al oficial Dongfeng.
+  // Color oficial de la marca (misma paleta que gruppolasac.com).
   tema: {
-    primary: '#4f46e5', primaryDark: '#3730a3',
-    gradient: ['#4f46e5', '#3730a3'], onPrimary: '#ffffff',
+    primary: '#E8632A', primaryDark: '#B6471A',
+    gradient: ['#E8632A', '#B6471A'], onPrimary: '#ffffff',
   },
   categorias: ['todos', 'utilitarios', 'vans', 'camiones'],
   catalogo,

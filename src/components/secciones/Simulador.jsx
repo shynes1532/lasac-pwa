@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { BarChart3, CheckCircle2, ChevronLeft, ClipboardList, Phone, Target } from 'lucide-react';
 import AutoImagen from '../AutoImagen.jsx';
 import { formatPrecio } from '../../data/grupo.js';
 
@@ -15,7 +16,7 @@ export default function Simulador({ marca }) {
 
   return (
     <div>
-      <h2 className="text-xl font-bold mb-1">📊 Simulador de Cuotas</h2>
+      <h2 className="text-xl font-bold mb-1 flex items-center gap-2.5"><span className="icon-chip"><BarChart3 className="h-4 w-4" /></span>Simulador de Cuotas</h2>
       <p className="text-white/60 text-xs mb-4">{marca.nombre} Plan</p>
       {!planSeleccionado ? (
         <div className="space-y-3">
@@ -42,7 +43,7 @@ export default function Simulador({ marca }) {
         </div>
       ) : (
         <div className="space-y-4">
-          <button onClick={() => setPlanSeleccionado(null)} className="text-sm text-white/60 hover:text-white/90 transition-colors flex items-center gap-1">← Volver a planes</button>
+          <button onClick={() => setPlanSeleccionado(null)} className="text-sm text-white/60 hover:text-white/90 transition-colors flex items-center gap-1"><ChevronLeft className="inline h-4 w-4 mr-1.5 align-[-0.2em]" />Volver a planes</button>
           <div className="bg-white/[0.06] rounded-2xl overflow-hidden border border-white/10 shadow-xl shadow-black/30">
             <AutoImagen basePath={marca.imagenesPath} modelo={planSeleccionado.modelo} ext={marca.imgExt} className="w-full h-44" nombre={planSeleccionado.nombre} contain />
             <div className="p-4">
@@ -60,7 +61,7 @@ export default function Simulador({ marca }) {
                 <p className="text-2xl font-extrabold tabular-nums tracking-tight">{formatPrecio(planSeleccionado.suscripcion)}</p>
               </div>
               <div className="bg-black/20 rounded-xl p-3 mb-4">
-                <h4 className="font-bold text-sm mb-3">📋 Detalle de Cuotas (sin IVA)</h4>
+                <h4 className="font-bold text-sm mb-3"><ClipboardList className="inline h-4 w-4 mr-1.5 align-[-0.2em] text-brand" />Detalle de Cuotas (sin IVA)</h4>
                 <div className="space-y-2">
                   {planSeleccionado.cuotas.map((c, i) => (
                     <div key={i} className="flex justify-between items-center py-2 border-b border-white/10 last:border-0">
@@ -71,11 +72,11 @@ export default function Simulador({ marca }) {
                 </div>
               </div>
               <div className="space-y-2 text-xs">
-                <div className="bg-blue-500/20 rounded-lg p-3"><p className="text-white/60">🎯 Adjudicación</p><p className="font-bold">{planSeleccionado.adjudicacion}</p></div>
-                <div className="bg-amber-500/20 rounded-lg p-3"><p className="text-white/60">📊 Diferimientos</p><p className="font-bold">{planSeleccionado.diferimientos}</p></div>
-                {planSeleccionado.subite && <div className="bg-green-500/20 rounded-lg p-3"><p className="font-bold">✅ Opción SUBITE disponible</p></div>}
+                <div className="bg-blue-500/20 rounded-lg p-3"><p className="text-white/60"><Target className="inline h-3.5 w-3.5 mr-1 align-[-0.15em]" />Adjudicación</p><p className="font-bold">{planSeleccionado.adjudicacion}</p></div>
+                <div className="bg-amber-500/20 rounded-lg p-3"><p className="text-white/60"><BarChart3 className="inline h-3.5 w-3.5 mr-1 align-[-0.15em]" />Diferimientos</p><p className="font-bold">{planSeleccionado.diferimientos}</p></div>
+                {planSeleccionado.subite && <div className="bg-green-500/20 rounded-lg p-3"><p className="font-bold"><CheckCircle2 className="inline h-3.5 w-3.5 mr-1 align-[-0.15em]" />Opción SUBITE disponible</p></div>}
               </div>
-              <button onClick={() => consultarPlan(planSeleccionado)} className="w-full mt-4 py-3 bg-brand-gradient-x rounded-xl font-bold text-on-brand shadow-lg shadow-black/25 active:scale-[0.98] transition-transform">📞 Consultar este Plan</button>
+              <button onClick={() => consultarPlan(planSeleccionado)} className="w-full mt-4 py-3 bg-brand-gradient-x rounded-xl font-bold text-on-brand shadow-lg shadow-black/25 active:scale-[0.98] transition-transform"><Phone className="inline h-4 w-4 mr-1.5 align-[-0.2em]" />Consultar este Plan</button>
             </div>
           </div>
         </div>

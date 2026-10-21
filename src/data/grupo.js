@@ -42,14 +42,14 @@ export const tiposSiniestro = [
 // Metadatos de cada sección. `grid` = color del ícono en el grid de Inicio.
 export const SECCIONES_META = {
   inicio: { icon: '🏠', label: 'Inicio', navLabel: 'Inicio' },
-  catalogo: { icon: '🚗', label: 'Catálogo', navLabel: 'Catálogo', grid: 'from-blue-500 to-blue-600' },
-  simulador: { icon: '📋', label: 'Plan de Ahorro', navLabel: 'Plan Ahorro', grid: 'from-green-500 to-green-600' },
-  oportunidades: { icon: '🔥', label: 'Oportunidades', navLabel: 'Ofertas' },
-  novedades: { icon: '📰', label: 'Novedades', navLabel: 'Novedades', grid: 'from-purple-500 to-purple-600' },
-  siniestros: { icon: '🛡️', label: 'Siniestros', navLabel: 'Siniestros', grid: 'from-orange-500 to-orange-600' },
-  turnos: { icon: '🔧', label: 'Service', navLabel: 'Service', grid: 'from-amber-500 to-amber-600' },
-  atencion: { icon: '💬', label: 'Atención', navLabel: 'Atención', grid: 'from-sky-500 to-sky-600' },
-  contacto: { icon: '📍', label: 'Contacto', navLabel: 'Contacto' },
+  catalogo: { hint: 'Modelos y precios', icon: '🚗', label: 'Catálogo', navLabel: 'Catálogo', grid: 'from-blue-500 to-blue-600' },
+  simulador: { hint: 'Cuotas y adjudicación', icon: '📋', label: 'Plan de Ahorro', navLabel: 'Plan Ahorro', grid: 'from-green-500 to-green-600' },
+  oportunidades: { hint: 'Entrega inmediata', icon: '🔥', label: 'Oportunidades', navLabel: 'Ofertas' },
+  novedades: { hint: 'Noticias de la marca', icon: '📰', label: 'Novedades', navLabel: 'Novedades', grid: 'from-purple-500 to-purple-600' },
+  siniestros: { hint: 'Gestión de reclamos', icon: '🛡️', label: 'Siniestros', navLabel: 'Siniestros', grid: 'from-orange-500 to-orange-600' },
+  turnos: { hint: 'Turnos de taller', icon: '🔧', label: 'Service', navLabel: 'Service', grid: 'from-amber-500 to-amber-600' },
+  atencion: { hint: 'Consultas y reclamos', icon: '💬', label: 'Atención', navLabel: 'Atención', grid: 'from-sky-500 to-sky-600' },
+  contacto: { hint: 'Sucursales y WhatsApp', icon: '📍', label: 'Contacto', navLabel: 'Contacto' },
 };
 
 // Orden de la barra inferior (se filtra por las secciones de cada marca).

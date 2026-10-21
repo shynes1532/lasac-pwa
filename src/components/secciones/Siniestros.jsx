@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { AlertTriangle, Building2, Car, ClipboardList, MapPin, MessageCircle, Phone, ShieldAlert, User } from 'lucide-react';
 import { aseguradoras, tiposSiniestro } from '../../data/grupo.js';
 
 const VACIO = {
@@ -25,15 +26,15 @@ export default function Siniestros({ marca }) {
 
   return (
     <div>
-      <h2 className="text-xl font-bold mb-1">🛡️ Atención de Siniestros</h2>
+      <h2 className="text-xl font-bold mb-1 flex items-center gap-2.5"><span className="icon-chip"><ShieldAlert className="h-4 w-4" /></span>Atención de Siniestros</h2>
       <p className="text-white/60 text-xs mb-4">Gestión de reclamos por seguro</p>
       <div className="space-y-4">
         <div className="bg-amber-500/20 rounded-xl p-4 border border-amber-500/30">
-          <p className="text-sm">⚠️ <strong>Importante:</strong> Completá todos los datos para agilizar la gestión de tu siniestro.</p>
+          <p className="text-sm"><AlertTriangle className="inline h-3.5 w-3.5 mr-1 align-[-0.15em]" /><strong>Importante:</strong> Completá todos los datos para agilizar la gestión de tu siniestro.</p>
         </div>
 
         <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
-          <h3 className="font-bold text-sm mb-3">👤 Datos del Titular</h3>
+          <h3 className="font-bold text-sm mb-3"><User className="inline h-4 w-4 mr-1.5 align-[-0.2em] text-brand" />Datos del Titular</h3>
           <div className="space-y-2">
             <input placeholder="Nombre completo *" value={f.nombre} onChange={(e) => set('nombre', e.target.value)} className={inputCls} />
             <input placeholder="DNI *" value={f.dni} onChange={(e) => set('dni', e.target.value)} className={inputCls} />
@@ -43,7 +44,7 @@ export default function Siniestros({ marca }) {
         </div>
 
         <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
-          <h3 className="font-bold text-sm mb-3">🚗 Datos del Vehículo</h3>
+          <h3 className="font-bold text-sm mb-3"><Car className="inline h-4 w-4 mr-1.5 align-[-0.2em] text-brand" />Datos del Vehículo</h3>
           <div className="grid grid-cols-2 gap-2">
             <select value={f.marcaVeh} onChange={(e) => set('marcaVeh', e.target.value)} className="p-2.5 rounded-lg bg-slate-800 border border-white/20 text-sm">
               <option value={marca.nombre}>{marca.nombre}</option>
@@ -58,7 +59,7 @@ export default function Siniestros({ marca }) {
         </div>
 
         <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
-          <h3 className="font-bold text-sm mb-3">🏢 Datos de la Aseguradora</h3>
+          <h3 className="font-bold text-sm mb-3"><Building2 className="inline h-4 w-4 mr-1.5 align-[-0.2em] text-brand" />Datos de la Aseguradora</h3>
           <div className="space-y-2">
             <select value={f.aseguradora} onChange={(e) => set('aseguradora', e.target.value)} className={selectCls}>
               <option value="">Compañía de Seguros *</option>
@@ -70,7 +71,7 @@ export default function Siniestros({ marca }) {
         </div>
 
         <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
-          <h3 className="font-bold text-sm mb-3">📋 Datos del Siniestro</h3>
+          <h3 className="font-bold text-sm mb-3"><ClipboardList className="inline h-4 w-4 mr-1.5 align-[-0.2em] text-brand" />Datos del Siniestro</h3>
           <div className="space-y-2">
             <input placeholder="Fecha del siniestro *" type="date" value={f.fecha} onChange={(e) => set('fecha', e.target.value)} className={selectCls} />
             <select value={f.tipo} onChange={(e) => set('tipo', e.target.value)} className={selectCls}>
@@ -82,7 +83,7 @@ export default function Siniestros({ marca }) {
         </div>
 
         <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
-          <h3 className="font-bold text-sm mb-3">📍 Sucursal de Atención</h3>
+          <h3 className="font-bold text-sm mb-3"><MapPin className="inline h-4 w-4 mr-1.5 align-[-0.2em] text-brand" />Sucursal de Atención</h3>
           <div className="grid grid-cols-2 gap-2">
             {sucursales.map((s) => (
               <button key={s.ciudad} type="button" onClick={() => set('sucursal', s.ciudad)}
@@ -96,12 +97,12 @@ export default function Siniestros({ marca }) {
 
         <button onClick={enviar} disabled={!f.nombre || !f.telefono || !f.patente || !f.aseguradora || !f.poliza || !f.tipo || !f.descripcion || !f.sucursal}
           className={`w-full py-4 rounded-xl font-bold text-lg transition-all active:scale-95 ${f.nombre && f.telefono && f.patente && f.aseguradora && f.poliza && f.tipo && f.descripcion && f.sucursal ? 'bg-brand-gradient-x text-on-brand' : 'bg-white/20 text-white/50'}`}>
-          📱 Enviar Solicitud por WhatsApp
+          <MessageCircle className="inline h-4 w-4 mr-1.5 align-[-0.2em]" />Enviar Solicitud por WhatsApp
         </button>
 
         <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20 text-center">
           <p className="text-xs text-white/60 mb-2">¿Necesitás ayuda urgente?</p>
-          <a href={`tel:+${marca.contacto.whatsapp.ventas}`} className="inline-block px-4 py-2 bg-green-600 hover:bg-green-500 rounded-full text-sm font-bold shadow-md shadow-black/20 transition-all active:scale-95">📞 Llamar ahora</a>
+          <a href={`tel:+${marca.contacto.whatsapp.ventas}`} className="inline-block px-4 py-2 bg-green-600 hover:bg-green-500 rounded-full text-sm font-bold shadow-md shadow-black/20 transition-all active:scale-95"><Phone className="inline h-4 w-4 mr-1.5 align-[-0.2em]" />Llamar ahora</a>
         </div>
       </div>
     </div>
