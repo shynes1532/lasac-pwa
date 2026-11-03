@@ -1,35 +1,36 @@
 // ============================================================
 // DONGFENG — Camiones y Utilitarios (Grupo LASAC)
-// Lista Septiembre 2026 — precios en USD. Se muestra el "Precio Final" (incluye
-// flete, inscripción, gastos administrativos e ingresos brutos). T/C ref. $1.530.
+// Lista Noviembre 2026 — precios en PESOS (ARS). Se muestra el "Precio Final" (incluye
+// flete, inscripción, gastos administrativos e ingresos brutos).
+// T 515 Chasis no figura en la lista de noviembre: queda en null ("Consultar").
 // Imágenes en  public/images/dongfeng/<modelo>.png
 // Color de marca alineado con gruppolasac.com.
 // ============================================================
 
-// Precio Final en USD (lista + flete + inscripción + Gs.Ad/IB).
+// Precio Final en ARS (lista + flete + inscripción + Gs.Ad/IB).
 const catalogo = [
   // --- Utilitarios livianos (W series) ---
-  { id: 1, categoria: 'utilitarios', modelo: 'w310cs', nombre: 'Captain W 310 Cabina Simple', precio: 16700 },
-  { id: 2, categoria: 'utilitarios', modelo: 'w310cd', nombre: 'Captain W 310 Cabina Doble', precio: 17700 },
-  { id: 3, categoria: 'utilitarios', modelo: 'w412cs', nombre: 'Captain W 412 Cabina Simple', precio: 18200 },
-  { id: 4, categoria: 'utilitarios', modelo: 'w412cd', nombre: 'Captain W 412 Cabina Doble', precio: 19200 },
+  { id: 1, categoria: 'utilitarios', modelo: 'w310cs', nombre: 'Captain W 310 Cabina Simple', precio: 28500000 },
+  { id: 2, categoria: 'utilitarios', modelo: 'w310cd', nombre: 'Captain W 310 Cabina Doble', precio: 30000000 },
+  { id: 3, categoria: 'utilitarios', modelo: 'w412cs', nombre: 'Captain W 412 Cabina Simple', precio: 31500000 },
+  { id: 4, categoria: 'utilitarios', modelo: 'w412cd', nombre: 'Captain W 412 Cabina Doble', precio: 32500000 },
   // --- Vans (V series) ---
-  { id: 5, categoria: 'vans', modelo: 'vvan312cargo', nombre: 'V Van 312 Cargo', precio: 21700 },
-  { id: 6, categoria: 'vans', modelo: 'vvan312largo', nombre: 'V Van 312 Largo', precio: 23700 },
-  { id: 7, categoria: 'vans', modelo: 'vvan312bus', nombre: 'V Van 312 Bus', precio: 26200 },
-  { id: 8, categoria: 'vans', modelo: 'uvan414cargo', nombre: 'V UVan 414 Cargo', precio: 36400 },
-  { id: 9, categoria: 'vans', modelo: 'uvan414bus', nombre: 'V UVan 414 Bus', precio: 41400 },
+  { id: 5, categoria: 'vans', modelo: 'vvan312cargo', nombre: 'V Van 312 Cargo', precio: 36000000 },
+  { id: 6, categoria: 'vans', modelo: 'vvan312largo', nombre: 'V Van 312 Largo', precio: 39200000 },
+  { id: 7, categoria: 'vans', modelo: 'vvan312bus', nombre: 'V Van 312 Bus', precio: 41500000 },
+  { id: 8, categoria: 'vans', modelo: 'uvan414cargo', nombre: 'V UVan 414 Cargo', precio: 59500000 },
+  { id: 9, categoria: 'vans', modelo: 'uvan414bus', nombre: 'V UVan 414 Bus', precio: 67500000 },
   // --- Camiones (T / C / D series) ---
-  { id: 10, categoria: 'camiones', modelo: 't515chasis', nombre: 'T 515 Chasis', precio: 24400 },
-  { id: 11, categoria: 'camiones', modelo: 't515caja', nombre: 'T 515 con Caja', precio: 25100 },
-  { id: 12, categoria: 'camiones', modelo: 'c615caja', nombre: 'C 615 con Caja', precio: 35200 },
-  { id: 13, categoria: 'camiones', modelo: 'c815caja', nombre: 'C 815 con Caja', precio: 37700 },
-  { id: 14, categoria: 'camiones', modelo: 'c1016chasis', nombre: 'C 1016 Chasis', precio: 42200 },
-  { id: 15, categoria: 'camiones', modelo: 'c1016caja', nombre: 'C 1016 con Caja', precio: 45700 },
-  { id: 16, categoria: 'camiones', modelo: 'c1217chasis', nombre: 'C 1217 Chasis', precio: 47200 },
-  { id: 19, categoria: 'camiones', modelo: 'd1830chasis', nombre: 'D 1830 Tractor', precio: 68000 },
-  { id: 17, categoria: 'camiones', modelo: 'd1830chasis', nombre: 'D 1830 Chasis', precio: 68000 },
-  { id: 18, categoria: 'camiones', modelo: 'd1830caja', nombre: 'D 1830 con Caja', precio: 70500 },
+  { id: 10, categoria: 'camiones', modelo: 't515chasis', nombre: 'T 515 Chasis', precio: null },
+  { id: 11, categoria: 'camiones', modelo: 't515caja', nombre: 'T 515 con Caja', precio: 41500000 },
+  { id: 12, categoria: 'camiones', modelo: 'c615caja', nombre: 'C 615 con Caja', precio: 54000000 },
+  { id: 13, categoria: 'camiones', modelo: 'c815caja', nombre: 'C 815 con Caja', precio: 58500000 },
+  { id: 14, categoria: 'camiones', modelo: 'c1016chasis', nombre: 'C 1016 Chasis', precio: 67000000 },
+  { id: 15, categoria: 'camiones', modelo: 'c1016caja', nombre: 'C 1016 con Caja', precio: 72000000 },
+  { id: 16, categoria: 'camiones', modelo: 'c1217chasis', nombre: 'C 1217 Chasis', precio: 75000000 },
+  { id: 19, categoria: 'camiones', modelo: 'd1830chasis', nombre: 'D 1830 Tractor', precio: 103000000 },
+  { id: 17, categoria: 'camiones', modelo: 'd1830chasis', nombre: 'D 1830 Chasis', precio: 105000000 },
+  { id: 18, categoria: 'camiones', modelo: 'd1830caja', nombre: 'D 1830 con Caja', precio: 107000000 },
 ];
 
 const stockOportunidad = [];
@@ -54,8 +55,8 @@ const dongfeng = {
   oficial: true,
   imagenesPath: '/images/dongfeng/',
   imgExt: 'webp',
-  moneda: 'USD',
-  notaCatalogo: 'Lista Septiembre 2026 · Precios finales en USD (incluyen flete, inscripción y gastos). Tipo de cambio de referencia: $1.530.',
+  moneda: 'ARS',
+  notaCatalogo: 'Lista Noviembre 2026 · Precios finales en pesos (incluyen flete, inscripción y gastos). Sujetos a confirmación.',
   // Color oficial de la marca (misma paleta que gruppolasac.com).
   tema: {
     primary: '#E8632A', primaryDark: '#B6471A',
