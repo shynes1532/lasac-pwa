@@ -292,6 +292,25 @@ const novedades = [
   { id: 4, fecha: '20 Feb 2026', titulo: 'Oportunidades de Stock', descripcion: 'Unidades con precios especiales y entrega inmediata. Cronos, Fastback, Pulse, Titano y más.', imagen: 'fastback', destacado: false },
 ];
 
+// ========== PRECIOS SERVICES FIAT — NOVIEMBRE 2026 ==========
+// Precio único por modelo para los services de 10.000 a 100.000 km (lista posventa FIAT, 03/11/2026).
+const preciosServices = [
+  { modelo: 'Argo', familia: 'Argo', precio: 460000 },
+  { modelo: 'Mobi', familia: 'Mobi', precio: 445000 },
+  { modelo: 'Cronos', familia: 'Cronos', precio: 460000 },
+  { modelo: 'Pulse 1.3', familia: 'Pulse', precio: 488000 },
+  { modelo: 'Pulse 1.0T', familia: 'Pulse', precio: 544000 },
+  { modelo: 'Pulse Abarth', familia: 'Pulse', precio: 596000 },
+  { modelo: 'Fastback', familia: 'Fastback', precio: 596000 },
+  { modelo: '600', familia: '600', precio: 605000 },
+  { modelo: 'Fiorino', familia: 'Fiorino', precio: 474000 },
+  { modelo: 'Nueva Strada', familia: 'Strada', precio: 481000 },
+  { modelo: 'Nueva Strada 1.0T', familia: 'Strada', precio: 516000 },
+  { modelo: 'Toro', familia: 'Toro', precio: 587000 },
+  { modelo: 'Toro Diesel', familia: 'Toro', precio: 774000 },
+  { modelo: 'Titano', familia: 'Titano', precio: 704000 },
+];
+
 // ========== SERVICIOS ==========
 const servicios = [
   { id: 'service10', nombre: 'Service 10.000 km', descripcion: 'Cambio aceite sintético Selenia + filtro aceite + filtro habitáculo + 25 controles', duracion: '2 horas' },
@@ -1565,6 +1584,22 @@ export default function FiatApp({ onCambiarMarca }) {
                     <input placeholder="Patente *" value={turno.patente} onChange={e => setTurno({...turno, patente: e.target.value.toUpperCase()})} className="p-2.5 rounded-lg bg-white/5 border border-white/20 text-sm uppercase" />
                     <input placeholder="Kilometraje *" value={turno.km} onChange={e => setTurno({...turno, km: e.target.value})} className="col-span-2 p-2.5 rounded-lg bg-white/5 border border-white/20 text-sm" />
                   </div>
+                </div>
+                <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
+                  <h3 className="font-bold text-sm mb-1"><CreditCard className="inline h-4 w-4 mr-1.5 align-[-0.2em] text-brand" />Precio del service</h3>
+                  <p className="text-[10px] text-white/50 mb-3">Services oficiales de 10.000 a 100.000 km · Noviembre 2026</p>
+                  <div className="divide-y divide-white/10">
+                    {preciosServices.map(p => {
+                      const activo = turno.modelo === p.familia;
+                      return (
+                        <div key={p.modelo} className={`flex items-center justify-between py-1.5 px-2 text-xs rounded ${activo ? 'bg-red-600/30 font-bold' : ''}`}>
+                          <span>{p.modelo}</span>
+                          <span className="tabular-nums">{formatPrecio(p.precio)}</span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                  <p className="text-[10px] text-white/40 mt-3"><Info className="inline h-3 w-3 mr-1 align-[-0.15em]" />Precios finales sujetos a confirmación en el taller. No incluyen trabajos adicionales.</p>
                 </div>
                 <div className="bg-white/[0.06] rounded-2xl p-4 border border-white/10 shadow-lg shadow-black/20">
                   <h3 className="font-bold text-sm mb-3"><Wrench className="inline h-4 w-4 mr-1.5 align-[-0.2em] text-brand" />Servicio</h3>
